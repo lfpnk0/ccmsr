@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script>
+			$m = new Object();
+		</script>
 	</head>
 	<body>
 		<module id="mod_qk">
 			<page class="settings">
 				<form>
-					<input type="text" id="qk_app" />
+					<input type="text" id="qk_app" value="CaptionNet" />
 				</form>
 			</page>
 			<page class="main">
+				<button onclick="activate();">activate</button>
 			</page>
+			<script>
+				$m.shell = new ActiveXObject("WScript.Shell");
+				function activate(){
+					$m.shell.AppActivate(document.getElementById('qk_app'));
+				}
+			</script>
 		</module
 	</body>
 </html>
