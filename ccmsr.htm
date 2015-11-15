@@ -22,15 +22,17 @@
 			</page>
 			<script>
 				function base_init(){
+					var topWin = window;
+					while (!topWin == topWin.parent){topWin=topWin.parent;}
 					var w = document.getElementById('base_width');
 					var h = document.getElementById('base_height');
 					if(document.getElementById('base_location').value=='right'){
-						window.moveTo(screen.availWidth-w,0);
-						window.resizeTo(w,h);
+						topWin.moveTo(screen.availWidth-w,0);
+						topWin.resizeTo(w,h);
 					}
 					else{
-						window.moveTo(w,0);
-						window.resizeTo(w,h);
+						topWin.moveTo(w,0);
+						topWin.resizeTo(w,h);
 					}
 				}
 				base_init();
