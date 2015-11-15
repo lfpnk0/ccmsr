@@ -7,6 +7,35 @@
 		</script>
 	</head>
 	<body>
+		<module id="mod_base">
+			<page class="settings">
+				<form>
+					<label>Window Height</label>
+					<input type="text" id="base_height" value=150 />
+					<label>Window Width</label>
+					<input type="text" id="base_width" value=150 />
+					<label>Window Location</label>
+					<input type="text" id="base_location" value="right" />
+				</form>
+			</page>
+			<page class="main">
+			</page>
+			<script>
+				function base_init(){
+					var w = document.getElementById('base_width');
+					var h = document.getElementById('base_height');
+					if(document.getElementById('base_location').value=='right'){
+						window.moveTo(screen.availWidth-w,0);
+						window.resizeTo(w,h);
+					}
+					else{
+						window.moveTo(w,0);
+						window.resizeTo(w,h);
+					}
+				}
+				base_init();
+			</script>
+		</module>
 		<module id="mod_qk">
 			<page class="settings">
 				<form>
