@@ -22,12 +22,13 @@
 			<script>
 				function base_init(){
 					var topWin = window;
-					topWin.body.style.background = 'orange';
+					//parent.document.body.style.backgroundColor = "red";
+					topWin.document.body.style.background = 'orange';
 					while (!topWin == topWin.parent){
 						topWin=topWin.parent;
 						
 					}
-					topWin.body.style.background = 'red';
+					topWin.document.body.style.background = 'red';
 					//var w = document.getElementById('base_width');
 					//var h = document.getElementById('base_height');
 					//if(document.getElementById('base_location').value=='right'){
