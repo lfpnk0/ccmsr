@@ -24,9 +24,10 @@
 					var topWin = window;
 					//parent.document.body.style.backgroundColor = "red";
 					topWin.document.body.style.background = 'orange';
+					alert(window.parent.location);
 					while (!topWin == topWin.parent){
 						topWin=topWin.parent;
-						document.write('up one level');
+						alert(window.parent.location);
 					}
 					topWin.document.body.style.background = 'red';
 					//var w = document.getElementById('base_width');
