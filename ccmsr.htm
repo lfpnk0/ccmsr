@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<script>
-			$m = new Object();
+			m = new Object();
+			m.shell = new ActiveXObject("WScript.Shell");
 		</script>
 	</head>
 	<body>
@@ -16,9 +17,8 @@
 				<button onclick="activate();">activate</button>x
 			</page>
 			<script>
-				$m.shell = new ActiveXObject("WScript.Shell");
 				function activate(){
-					$m.shell.AppActivate(document.getElementById('qk_app').value);
+					m.shell.AppActivate(document.getElementById('qk_app').value);
 				}
 			</script>
 		</module
