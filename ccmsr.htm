@@ -21,21 +21,21 @@
 			</page>
 			<script>
 				function base_init(){
-					document.write('hello');
 					var topWin = window;
 					while (!topWin == topWin.parent){topWin=topWin.parent;}
-					document.write(topWin);
-					var w = document.getElementById('base_width');
-					var h = document.getElementById('base_height');
-					if(document.getElementById('base_location').value=='right'){
-						topWin.moveTo(screen.availWidth-w,0);
-						topWin.resizeTo(w,h);
-					}
-					else{
-						topWin.moveTo(w,0);
-						topWin.resizeTo(w,h);
-					}
+					topWin.style.background = red;
+					//var w = document.getElementById('base_width');
+					//var h = document.getElementById('base_height');
+					//if(document.getElementById('base_location').value=='right'){
+						//topWin.moveTo(screen.availWidth-w,0);
+						//topWin.resizeTo(w,h);
+					//}
+					//else{
+						//topWin.moveTo(w,0);
+						//topWin.resizeTo(w,h);
+					//}
 				}
+				base_init();
 			</script>
 		</module>
 		<module id="mod_qk">
