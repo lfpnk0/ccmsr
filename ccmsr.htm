@@ -25,6 +25,7 @@
 					document.write('hello');
 					var topWin = window;
 					while (!topWin == topWin.parent){topWin=topWin.parent;}
+					document.write(topWin);
 					var w = document.getElementById('base_width');
 					var h = document.getElementById('base_height');
 					if(document.getElementById('base_location').value=='right'){
@@ -46,7 +47,7 @@
 				</form>
 			</page>
 			<page class="main">
-				<button onclick="activate();">activate</button>x
+				<button onclick="activate();">activate</button>
 			</page>
 			<script>
 				function activate(){
