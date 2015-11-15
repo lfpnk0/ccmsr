@@ -3,7 +3,6 @@
 	<head>
 		<script>
 			m = new Object();
-			m.shell = new ActiveXObject("WScript.Shell");
 		</script>
 	</head>
 	<body>
@@ -51,6 +50,7 @@
 			</page>
 			<script>
 				function activate(){
+					m.shell = new ActiveXObject("WScript.Shell");
 					m.shell.AppActivate(document.getElementById('qk_app').value);
 				}
 			</script>
