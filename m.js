@@ -42,27 +42,16 @@ m.log = function(msg){
 //	http.send();
 //}
 m.getMod = function(name,step){
-//	switch(step){
-//		case 'div':
-//			var next = 'script';
-			var url = m.baseURL+name+'/index.htm';
-//			break;
-//		case 'script':
-//			var next = 'stop';
-//			var url = m.baseURL+name+'/script.js';
-//			break;
-//		default:
-//			step = 'style';
-//			var next = 'div';
-//			var url = m.baseURL+name+'/style.css';
-//	}
+	if(!step){step = 'style';}
+	var next = {style:'div', div:'script'};
+	var url = {style:m.baseURL+name+'/style.css',div:m.baseURL+name+'/index.htm',script:m.baseURL+name+'/script.js'};
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function(){
 		if (request.readyState == 4 && request.status == 200){
 			var el = document.createElement(step);
 			el.innerHTML = request.responseText;
 			document.getElementById('mainWrapper').appendChild(el);
-//			if(next!='stop'){m.getMod(name,next);}
+			if(next[step]){m.getMod(name,next[step]);}
 		}
 	}
 	request.open('GET', url);
