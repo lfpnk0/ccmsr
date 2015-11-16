@@ -1,6 +1,7 @@
 (function(){
   var el = document.createElement('div');
   el.id='mainWrapper';
+  el.innerHTML = 'test';
   document.body.appendChild(el);
   el = document.createElement('div');
   el.id='console';
