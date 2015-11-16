@@ -14,7 +14,7 @@ m.base.loc = function(side){
 }
 m.init.push(m.base.loc);
 m.base.loadMods(){
-	var set = document.getElementById('base_modules');
-	var mods = set.getElementsByTagName(input).value;
+	var fieldset = document.getElementById('base_modules');
+	var mods = fieldset.getElementsByTagName(input).value;
 	alert(mods.length);
 }
