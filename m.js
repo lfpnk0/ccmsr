@@ -19,7 +19,6 @@ m.getMod = function(name){
 			var script = document.createElement('script');
 			script.src = scriptPath;
 			document.getElementById('mainWrapper').appendChild(script);
-			document.write('loaded script');
 		}
 	}
 	http.open("GET", httpPath, true);
