@@ -1,3 +1,8 @@
-body{
-  
+nav-bar{
+  width:100%;
+  background-color:black;
+  color:white;
+}
+nav-bar li{
+  cursor: pointer;
 }
