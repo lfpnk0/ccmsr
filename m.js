@@ -7,6 +7,11 @@
   document.body.appendChild(el);
 })();
 
+window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+    m.log(url+'['+lineNumber+']: '+errorMsg);
+    return false;
+}
+
 m = new Object();
 m.baseURL = 'http://lfpnk0.github.io/ccmsr/';
 m.log = function(msg){
