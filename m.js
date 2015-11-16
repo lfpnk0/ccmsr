@@ -41,3 +41,31 @@ m.getMod = function(name){
 	http.open("GET", htmlPath, true);
 	http.send();
 }
+m.getMod = function(name,step){
+	switch(step){
+		case 'div':
+			var next = 'script';
+			var url = m.baseURL+name+'/index.htm';
+			break;
+		case 'script':
+			var next = 'stop';
+			var url = m.baseURL+name+'/script.js';
+			break;
+		default:
+			step = 'style';
+			var next = 'div';
+			var url = m.baseURL+name+'/style.css';
+	}
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function(){
+		if (request.readyState == 4 && request.status == 200){
+			var el = document.createElement(step);
+			el.innerHTML = request.responseText;
+			document.getElementById('mainWrapper').appendChild(el);
+			if(next!='stop'){m.getMod(name,next);}
+		}
+	}
+	request.open('GET', url);
+	request.send();
+}
+//m.getMod('base');
