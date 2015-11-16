@@ -17,7 +17,7 @@ m.getMod = function(name){
 			style.setAttribute('rel', 'stylesheet');
 			style.setAttribute('type', 'text/css');
 			style.href = stylePath;
-			document.getElementById('mainWrapper').appendChild(script);
+			document.getElementById('mainWrapper').appendChild(style);
 			var el = document.createElement('div');
 			el.className = 'module';
 			el.innerHTML = http.responseText;
