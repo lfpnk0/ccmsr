@@ -13,11 +13,11 @@ m.getMod = function(name){
 	var http = new XMLHttpRequest();
 	http.onreadystatechange = function() {
 		if (http.readyState == 4 && http.status == 200) {
-//			var style = document.createElement('link');
-//			style.setAttribute('rel', 'stylesheet');
-//			style.setAttribute('type', 'text/css');
-//			style.href = stylePath;
-//			document.getElementById('mainWrapper').appendChild(style);
+			var style = document.createElement('link');
+			style.setAttribute('rel', 'stylesheet');
+			style.setAttribute('type', 'text/css');
+			style.href = stylePath;
+			document.getElementById('mainWrapper').appendChild(style);
 			var el = document.createElement('div');
 			el.className = 'module';
 			el.innerHTML = http.responseText;
