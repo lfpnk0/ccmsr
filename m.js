@@ -42,20 +42,20 @@ m.log = function(msg){
 //	http.send();
 //}
 m.getMod = function(name,step='style'){
-	switch(step){
-		case 'div':
-			var next = 'script';
+//	switch(step){
+//		case 'div':
+//			var next = 'script';
 			var url = m.baseURL+name+'/index.htm';
-			break;
-		case 'script':
-			var next = 'stop';
-			var url = m.baseURL+name+'/script.js';
-			break;
-		default:
-			step = 'style';
-			var next = 'div';
-			var url = m.baseURL+name+'/style.css';
-	}
+//			break;
+//		case 'script':
+//			var next = 'stop';
+//			var url = m.baseURL+name+'/script.js';
+//			break;
+//		default:
+//			step = 'style';
+//			var next = 'div';
+//			var url = m.baseURL+name+'/style.css';
+//	}
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function(){
 		if (request.readyState == 4 && request.status == 200){
@@ -68,4 +68,4 @@ m.getMod = function(name,step='style'){
 	request.open('GET', url);
 	request.send();
 }
-m.getMod('base');
+//m.getMod('base');
