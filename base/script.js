@@ -1,6 +1,6 @@
 m.base = new Object();
-m.base.pos = function(dir){
-	if(!dir){dir = document.getElementById('base_location').value;}
+m.base.loc = function(side){
+	if(!side){side = document.getElementById('base_location').value;}
 	var w = document.getElementById('base_width').value; 
 	var h = document.getElementById('base_height').value; 
 	if(dir=='right'){ 
@@ -12,4 +12,4 @@ m.base.pos = function(dir){
 		window.resizeTo(w,h); 
 	} 
 }
-m.init.push(m.base.pos);
+m.init.push(m.base.loc);
