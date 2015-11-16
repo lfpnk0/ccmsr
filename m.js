@@ -41,7 +41,7 @@ m.getMod = function(name){
 	http.open("GET", htmlPath, true);
 	http.send();
 }
-m.getMod = function(name,step='style'){
+m.getMod = function(name,step){
 	switch(step){
 		case 'div':
 			var next = 'script';
