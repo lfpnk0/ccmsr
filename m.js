@@ -57,4 +57,4 @@ m.getMod = function(name,step){
 	request.open('GET', url[step]);
 	request.send();
 }
-m.getMod('base','html');
+m.getMod('base');
