@@ -1,7 +1,7 @@
 nav-bar{
   width:100%;
   background-color:black;
-  color:white;
+  color:gray;
 }
 nav-bar li{
   cursor: pointer;
