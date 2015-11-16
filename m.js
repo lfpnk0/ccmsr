@@ -7,11 +7,17 @@
 m = new Object();
 m.baseURL = 'http://lfpnk0.github.io/ccmsr/';
 m.getMod = function(name){
-	var httpPath = m.baseURL+name+'/index.htm';
+	var stylePath = m.baseURL+name+'/style.css';
+	var htmlPath = m.baseURL+name+'/index.htm';
 	var scriptPath = m.baseURL+name+'/script.js';
 	var http = new XMLHttpRequest();
 	http.onreadystatechange = function() {
 		if (http.readyState == 4 && http.status == 200) {
+			var style = document.createElement('link');
+			style.setAttribute('rel', 'stylesheet');
+			style.setAttribute('type', 'text/css');
+			style.href = scriptPath;
+			document.getElementById('mainWrapper').appendChild(script);
 			var el = document.createElement('div');
 			el.className = 'module';
 			el.innerHTML = http.responseText;
@@ -21,7 +27,7 @@ m.getMod = function(name){
 			document.getElementById('mainWrapper').appendChild(script);
 		}
 	}
-	http.open("GET", httpPath, true);
+	http.open("GET", htmlPath, true);
 	http.send();
 }
 m.getMod('base');
