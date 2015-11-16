@@ -36,7 +36,7 @@ m.log = function(msg){
 //	http.open("GET", htmlPath, true);
 //	http.send();
 //}
-m.getMod = function(name,step){
+m.getMod = function(name,step='style'){
 	switch(step){
 		case 'div':
 			var next = 'script';
