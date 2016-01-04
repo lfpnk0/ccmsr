@@ -1,0 +1,5 @@
+---
+layout: post
+title: list of pages
+---
+{{ site.pages }}
