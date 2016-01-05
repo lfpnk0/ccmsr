@@ -51,8 +51,8 @@
       }
     }
   }
-  mod.append = function(mod, before){
-	  var url = 'http://lfpnk0.github.io/ccmsr/'+mod;
+  mod.append = function(name, before){
+	  var url = 'http://lfpnk0.github.io/ccmsr/'+name;
 	  var xhttp = new XMLHttpRequest();
 	  xhttp.onreadystatechange = function() {
   		if (xhttp.readyState == 4 && xhttp.status == 200) {
