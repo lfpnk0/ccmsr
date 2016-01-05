@@ -1,7 +1,7 @@
   mod = new Object();
   mod.options = [' none','menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
   mod.options.sort();
-  mod.defaults = ['menu_01','menu_01','survey_01','messages_01','clock_01','links_01'];
+  mod.defaults = ['menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
   mod.list = function(){
     var m = document.createElement('div');
     m.id = 'modListForm';
@@ -52,23 +52,21 @@
     }
   }
   mod.append = function(name, before){
-	  var url = 'http://lfpnk0.github.io/ccmsr/'+name;
-	  var xhttp = new XMLHttpRequest();
-	  xhttp.onreadystatechange = function() {
-  		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			  alert(xhttp.responseText);
-        var e = document.createElement('div');
-			  e.className = 'module';a
-			  e.innerHTML = xhttp.responseText;
-			  if (typeof(before)==='undefined'){
-			    document.body.appendChild(e);
-			  }
-			  else{
-          document.body.insertBefore(e, before);
-        }
-		  }
-	  };
-	  xhttp.open('GET', url, true);
-	  xhttp.send();
+	  url = 'https://api.github.com/repos/lfpnk0/ccmsr/contents/'+name+'/index.htm?ref=gh-pages';
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url);
+		xhr.setRequestHeader("Accept", "application/vnd.github.3.raw");
+		xhr.send();
+		xhr.onload = function(e){
+			var e = document.createElement('div');
+			e.className = 'module';a
+			e.innerHTML = xhr.responseText;
+			if (typeof(before)==='undefined'){
+				document.body.appendChild(e);
+			}
+			else{
+        document.body.insertBefore(e, before);
+      }
+		}
   }
   mod.list();
