@@ -1,5 +1,5 @@
   mod = new Object();
-  mod.options = ['none','menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
+  mod.options = [' none','menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
   mod.options.sort();
   mod.defaults = ['menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
   mod.list = function(){
@@ -45,7 +45,7 @@
     var m = d.getElementsByTagName('select');
     for (var i = 0; i < m.length; i++) {
       var mod = m[i].options[m[i].selectedIndex].value;
-      if(mod!='false'){
+      if(mod!=' none'){
         mod.append(mod);
       }
     }
