@@ -1,7 +1,7 @@
   mod = new Object();
   mod.options = [' none','menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
   mod.options.sort();
-  mod.defaults = ['menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
+  mod.defaults = ['menu_01','menu_01','survey_01','messages_01','clock_01','links_01'];
   mod.list = function(){
     var m = document.createElement('div');
     m.id = 'modListForm';
