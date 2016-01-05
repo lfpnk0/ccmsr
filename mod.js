@@ -14,7 +14,7 @@
     m.appendChild(ba);
     var bg = document.createElement('button');
     bg.innerHTML = 'Get';
-    bg.onclick = mod.Get;
+    bg.onclick = mod.get;
     m.appendChild(bg);
     document.body.appendChild(m);
     for (var i = 0; i < mod.defaults.length; i++) {
@@ -44,9 +44,10 @@
     var d = document.getElementById('modPicker');
     var m = d.getElementsByTagName('select');
     for (var i = 0; i < m.length; i++) {
-      var mod = m[i].options[m[i].selectedIndex].value;
-      if(mod!=' none'){
-        mod.append(mod);
+      var mval = m[i].options[m[i].selectedIndex].value;
+      if(mval!=' none'){
+      	alert(mval);
+        mod.append(mval);
       }
     }
   }
@@ -55,7 +56,8 @@
 	  var xhttp = new XMLHttpRequest();
 	  xhttp.onreadystatechange = function() {
   		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			  var e = document.createElement('div');
+			  alert(xhttp.responseText);
+        var e = document.createElement('div');
 			  e.className = 'module';a
 			  e.innerHTML = xhttp.responseText;
 			  if (typeof(before)==='undefined'){
