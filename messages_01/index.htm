@@ -1,0 +1,40 @@
+<div class="dd dd-closed" id="messagesDD">
+  <span class="dd-title">Messages</span>
+  <div class="dd-opt">
+    <script>
+      function getMessages() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var str1='<tr><th style="font-size:12pt;color:white;font-style:italic;font-weight:bold">CaptionCall Message Window</th></tr>';
+            var str2='</html>';
+            var str3='body';
+            var text = xhttp.responseText;
+            text = text.replace(str1,'');
+            text = text.replace(str2,'');
+            text = text.replace(str3,'div');
+            var pos1=text.indexOf('<body>');
+            text = text.substring(pos1, 999999999999);
+            var wrap = document.getElementById("CCMessagesText");
+            if(text != CCMessagesOld){
+              wrap.innerHTML = text;
+              CCMessagesOld = text;
+              el = document.getElementById('messagesDD');
+//              ui.dd.expand(el);
+            }
+          }
+        }
+        xhttp.open("GET", "http://slcv-cc-mw1/ccMessages/messages.asp?c=Meridian", true);
+        xhttp.send();
+      }
+      CCMessagesOld = "";
+    </script>
+    <div id="CCMessagesText" style="width:215px; margin-top:5px">
+      no text
+    </div>
+    <script>
+      getMessages();
+      setInterval(function(){ getMessages(); }, 3000);
+    </script>
+  </div>
+</div>
