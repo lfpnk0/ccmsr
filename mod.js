@@ -1,7 +1,7 @@
   mod = new Object();
   mod.options = [' none','menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
   mod.options.sort();
-  mod.defaults = ['menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
+  mod.defaults = ['menu_01','survey_01','survey_01','messages_01','clock_01','links_01'];
   mod.list = function(){
     var m = document.createElement('div');
     m.id = 'modListForm';
@@ -59,14 +59,14 @@
 		xhr.send();
 		xhr.onload = function(e){
 			var e = document.createElement('div');
-			e.className = 'module';a
+			e.className = 'module';
 			e.innerHTML = xhr.responseText;
 			if (typeof(before)==='undefined'){
 				document.body.appendChild(e);
 			}
 			else{
-        document.body.insertBefore(e, before);
-      }
+				document.body.insertBefore(e, before);
+			}
 		}
   }
   mod.list();
