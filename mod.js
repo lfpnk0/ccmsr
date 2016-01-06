@@ -46,7 +46,6 @@
     for (var i = 0; i < m.length; i++) {
       var mval = m[i].options[m[i].selectedIndex].value;
       if(mval!=' none'){
-      	alert(mval);
         mod.append(mval);
       }
     }
