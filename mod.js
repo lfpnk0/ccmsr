@@ -20,6 +20,11 @@
     for (var i = 0; i < mod.defaults.length; i++) {
       mod.listAdd(mod.defaults[i]);
     }
+    
+    var a = document.createElement('a');
+    a.href = 'http://portal.captioncall.com/sites/relaysvcs/caption/Site%20Pages/General.aspx';
+    a.innerHTML = 'portal';
+    document.body.appendChild(a);
   }
   mod.listAdd = function(opt){
     if(typeof(opt)==='undefined'){opt=false;}
