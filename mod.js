@@ -1,7 +1,7 @@
 mod = {};
 mod.options = [' none','menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
 mod.options.sort();
-mod.defaults = ['menu_01','survey_01','survey_01','messages_01','clock_01','links_01'];
+mod.defaults = ['menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
 mod.list = function(){
   var e = document.getElementsByClassName('module');
   for (var i = 0; i < e.length; i++) {
@@ -47,16 +47,17 @@ mod.listAdd = function(opt){
 mod.get = function(){
   var d = document.getElementById('modPicker');
   var m = d.getElementsByTagName('select');
+  var mval = [];
   for (i = 0; i < m.length; i++) {
-    var mval = m[i].options[m[i].selectedIndex].value;
+    mval[i] = m[i].options[m[i].selectedIndex].value;
   }
   var e = document.getElementsByClassName('module');
   for (var i = 0; i < e.length; i++) {
     e[i].parentNode.removeChild(e[i]);
   }
   for (i = 0; i < mval.length; i++) {
-    if(mval!=' none'){
-      mod.append(mval);
+    if(mval[i]!=' none'){
+      mod.append(mval[i]);
     }
   }
   mod.winDock();
