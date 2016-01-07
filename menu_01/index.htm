@@ -1,19 +1,33 @@
-<table class="menu">
-  <tr>
-    <td onclick="mod.winDock('left');">
-      L
-    </td>
-    <td onclick="mod.winDock('top');">
-      T
-    </td>
-    <td onclick="mod.winDock('bottom');">
-      B
-    </td>
-    <td onclick="mod.winDock('right');">
-      R
-    </td>
-    <td onclick="window.close();">
-      X
-    </td>
-  </tr>
-</table>
+<div class="module">
+  <table class="menu">
+    <tr>
+      <td onclick="mod.winDock('left');">
+        L
+      </td>
+      <td onclick="mod.winDock('top');">
+        T
+      </td>
+      <td onclick="mod.winDock('bottom');">
+        B
+      </td>
+      <td onclick="mod.winDock('right');">
+        R
+      </td>
+      <td onclick="window.close();">
+        X
+      </td>
+    </tr>
+  </table>
+</div>
+
+<style>
+  .menu{
+    background-color:black;
+    border-collapse: collapse;
+    border:1px solid gray;
+    color: white;
+    width:100%;
+    cursor:pointer;
+  }
+  
+</style>
