@@ -80,7 +80,7 @@ mod.winResize = function(){
   var x = (sx-dx)/2;
   var y = (sy-dy)/2;
   window.moveTo(x, y);
-  window.resizeTo(dx,dy);
+  window.resizeTo(dx+10,dy+10);
   alert('sx:'+sx+'sy:'+sy+'dx:'+dx+'dy:'+dy+'x:'+x+'y:'+y);
 }
 mod.list();
