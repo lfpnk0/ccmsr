@@ -10,7 +10,6 @@ mod.list = function(){
   var m = document.createElement('div');
   m.id = 'modListForm';
   m.className = 'module';
-  m.style.width = '300px';
   var d = document.createElement('div');
   d.id = 'modPicker';
   m.appendChild(d);
@@ -77,14 +76,13 @@ mod.append = function(name, before){
   };
 };
 mod.winResize = function(){
-  var sx = screen.availWidth;
-  var sy = screen.availHeight;
-  var dx = document.getElementById('modListForm').offsetWidth;
-  var dy = document.getElementById('modListForm').offsetHeight;
-  var x = (sx-dx)/2;
-  var y = (sy-dy)/2;
+  var w = 300;
+  var h = document.getElementById('modListForm').offsetHeight
+  document.getElementById('modListForm').style.width = w+'px';
+  var x = (screen.availWidth-(w+10))/2;
+  var y = (screen.availHeight-(h+10))/2;
   window.moveTo(x, y);
-  window.resizeTo(dx+10,dy+15);
+  window.resizeTo(w+10,y+10);
 };
 mod.winDock = function(dir){
   if(typeof(dir)==='undefined'){dir='left';}
