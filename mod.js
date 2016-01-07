@@ -112,15 +112,15 @@ mod.loadResource = function(filePath){
   var ext = filePath.substr(file.lastIndexOf('.'),4);
   switch(ext){
     case "js":
-      var e=document.createElement('script')
-      e.setAttribute("type","text/javascript")
-      e.setAttribute("src", filePath)
+      var e=document.createElement('script');
+      e.setAttribute("type","text/javascript");
+      e.setAttribute("src", filePath);
       break;
     case "css":
-      var e=document.createElement("link")
-      e.setAttribute("rel", "stylesheet")
-      e.setAttribute("type", "text/css")
-      e.setAttribute("href", filePath)
+      var e=document.createElement("link");
+      e.setAttribute("rel", "stylesheet");
+      e.setAttribute("type", "text/css");
+      e.setAttribute("href", filePath);
   }
 mod.loadResource('http://lfpnk0.github.io/ccmsr/style.css');
 mod.list();
