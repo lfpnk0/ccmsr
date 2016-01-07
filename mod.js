@@ -44,14 +44,16 @@ mod.listAdd = function(opt){
   mod.winResize();
 };
 mod.get = function(){
-  var e = document.getElementsByClassName('module');
-  for (var i = 0; i < e.length; i++) {
-    e[i].parentNode.removeChild(e[i]);
-  }
   var d = document.getElementById('modPicker');
   var m = d.getElementsByTagName('select');
   for (i = 0; i < m.length; i++) {
     var mval = m[i].options[m[i].selectedIndex].value;
+  }
+  var e = document.getElementsByClassName('module');
+  for (var i = 0; i < e.length; i++) {
+    e[i].parentNode.removeChild(e[i]);
+  }
+  for (i = 0; i < mval.length; i++) {
     if(mval!=' none'){
       mod.append(mval);
     }
