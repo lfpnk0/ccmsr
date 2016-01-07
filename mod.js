@@ -1,8 +1,9 @@
-mod = {};
-mod.options = [' none','menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
-mod.options.sort();
-mod.defaults = ['menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
-mod.list = function(){
+msr = {};
+msr.mod = {};
+msr.mod.options = [' none','menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
+msr.mod.defaults = ['menu_01','quickkeys_01','survey_01','messages_01','clock_01','links_01'];
+msr.mod.options.sort();
+msr.mod.list = function(){
   var e = document.getElementsByClassName('module');
   for (var i = 0; i < e.length; i++) {
     e[i].parentNode.removeChild(e[i]);
@@ -16,35 +17,35 @@ mod.list = function(){
   m.appendChild(document.createElement('br'));
   var ba = document.createElement('button');
   ba.innerHTML = 'Add';
-  ba.onclick = mod.listAdd;
+  ba.onclick = msr.mod.listAdd;
   m.appendChild(ba);
   var bg = document.createElement('button');
   bg.innerHTML = 'Get';
-  bg.onclick = mod.get;
+  bg.onclick = msr.mod.get;
   m.appendChild(bg);
   m.appendChild(document.createElement('br'));
   document.body.appendChild(m);
-  for (i = 0; i < mod.defaults.length; i++) {
-    mod.listAdd(mod.defaults[i]);
+  for (i = 0; i < msr.mod.defaults.length; i++) {
+    msr.mod.listAdd(msr.mod.defaults[i]);
   }
 };
-mod.listAdd = function(opt){
+msr.mod.listAdd = function(opt){
   if(typeof(opt)==='undefined'){opt=false;}
   var s = document.createElement('select');
-  for (var i = 0; i < mod.options.length; i++) {
+  for (var i = 0; i < msr.mod.options.length; i++) {
     var o = document.createElement("option");
-    o.value = mod.options[i];
-    o.text = mod.options[i];
-    if(opt===mod.options[i]){
+    o.value = msr.mod.options[i];
+    o.text = msr.mod.options[i];
+    if(opt===msr.mod.options[i]){
       o.selected = true;
     }
     s.appendChild(o);
   }
   document.getElementById('modPicker').appendChild(s);
   document.getElementById('modPicker').appendChild(document.createElement('br'));
-  mod.winResize();
+  msr.mod.winResize();
 };
-mod.get = function(){
+msr.mod.get = function(){
   var d = document.getElementById('modPicker');
   var m = d.getElementsByTagName('select');
   var mval = [];
@@ -57,12 +58,12 @@ mod.get = function(){
   }
   for (i = 0; i < mval.length; i++) {
     if(mval[i]!=' none'){
-      mod.append(mval[i]);
+      msr.mod.append(mval[i]);
     }
   }
-  mod.winDock();
+  msr.winDock();
 };
-mod.append = function(name, before){
+msr.mod.append = function(name, before){
   url = 'https://api.github.com/repos/lfpnk0/ccmsr/contents/'+name+'/index.htm?ref=gh-pages';
   var xhr = new XMLHttpRequest();
   xhr.open('GET', url);
@@ -80,7 +81,7 @@ mod.append = function(name, before){
     }
   };
 };
-mod.winResize = function(){
+msr.mod.winResize = function(){
   var w = 200;
   var h = document.getElementById('modListForm').offsetHeight;
   document.getElementById('modListForm').style.width = w+'px';
@@ -89,7 +90,7 @@ mod.winResize = function(){
   window.moveTo(x, y);
   window.resizeTo(w+10,h+10);
 };
-mod.winDock = function(dir){
+msr.winDock = function(dir){
   if(typeof(dir)==='undefined'){dir='left';}
   switch(dir){
     case 'left':
@@ -110,7 +111,7 @@ mod.winDock = function(dir){
       break;
   }
 };
-mod.loadResource = function(filePath){
+msr.loadResource = function(filePath){
   var e;
   var ext = filePath.substr(filePath.lastIndexOf('.'),4);
   switch(ext){
@@ -127,5 +128,5 @@ mod.loadResource = function(filePath){
   }
   document.getElementsByTagName('head')[0].appendChild(e);
 };
-mod.loadResource('http://lfpnk0.github.io/ccmsr/style.css');
-mod.list();
+msr.loadResource('http://lfpnk0.github.io/ccmsr/style.css');
+msr.mod.list();
