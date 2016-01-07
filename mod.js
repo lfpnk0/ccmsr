@@ -24,10 +24,10 @@ mod.list = function(){
   bg.onclick = mod.get;
   m.appendChild(bg);
   document.body.appendChild(m);
-  for (var i = 0; i < mod.defaults.length; i++) {
+  for (i = 0; i < mod.defaults.length; i++) {
     mod.listAdd(mod.defaults[i]);
   }
-}
+};
 mod.listAdd = function(opt){
   if(typeof(opt)==='undefined'){opt=false;}
   var s = document.createElement('select');
@@ -102,7 +102,7 @@ mod.winDock = function(dir){
       window.moveTo(0,0);
       window.resizeTo(screen.availWidth,250);
       break;
-    case 'bottom';
+    case 'bottom':
       window.moveTo(0,screen.availHeight-250);
       window.resizeTo(screen.availWidth,250);
       break;
