@@ -109,19 +109,19 @@ mod.winDock = function(dir){
   }
 }
 mod.loadResource = function(filePath){
-  var ext = filePath.substr(file.lastIndexOf('.'),4);
+  var ext = filePath.substr(filePath.lastIndexOf('.'),4);
   alert(ext);
   switch(ext){
-    case "js":
+    case 'js':
       var e=document.createElement('script');
-      e.setAttribute("type","text/javascript");
-      e.setAttribute("src", filePath);
+      e.setAttribute('type','text/javascript');
+      e.setAttribute('src', filePath);
       break;
-    case "css":
-      var e=document.createElement("link");
-      e.setAttribute("rel", "stylesheet");
-      e.setAttribute("type", "text/css");
-      e.setAttribute("href", filePath);
+    case 'css':
+      var e=document.createElement('link');
+      e.setAttribute('rel', 'stylesheet');
+      e.setAttribute('type', 'text/css');
+      e.setAttribute('href', filePath);
   }
 mod.loadResource('http://lfpnk0.github.io/ccmsr/style.css');
 mod.list();
