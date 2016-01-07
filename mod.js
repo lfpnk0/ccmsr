@@ -3,8 +3,13 @@ mod.options = [' none','menu_01','quickkeys_01','survey_01','messages_01','clock
 mod.options.sort();
 mod.defaults = ['menu_01','survey_01','survey_01','messages_01','clock_01','links_01'];
 mod.list = function(){
+  var e = document.getElementsByClassName('module');
+  for (var i = 0; i < e.length; i++) {
+    e[i].parentNode.removeChild(e[i]);
+  }
   var m = document.createElement('div');
   m.id = 'modListForm';
+  m.className = 'module';
   m.style.padding = '3px';
   m.style.border = '1px solid black';
   var d = document.createElement('div');
@@ -52,6 +57,7 @@ mod.get = function(){
       mod.append(mval);
     }
   }
+  mod.dock();
 }
 mod.append = function(name, before){
   url = 'https://api.github.com/repos/lfpnk0/ccmsr/contents/'+name+'/index.htm?ref=gh-pages';
@@ -80,5 +86,26 @@ mod.winResize = function(){
   var y = (sy-dy)/2;
   window.moveTo(x, y);
   window.resizeTo(dx+10,dy+15);
+}
+mod.winDock = function(dir){
+  if(typeof(dir)==='undefined'){dir='left';}
+  switch(dir){
+    case 'left':
+      window.moveTo(0,0);
+      window.resizeTo(250,screen.availHeight);
+      break;
+    case 'right':
+      window.moveTo(250-screen.availWidth,0);
+      window.resizeTo(250,screen.availHeight);
+      break;
+    case 'top':
+      window.moveTo(0,0);
+      window.resizeTo(screen.availWidth,250);
+      break;
+    case 'bottom';
+      window.moveTo(0,screen.availHeight-250);
+      window.resizeTo(screen.availWidth,250);
+      break;
+  }
 }
 mod.list();
