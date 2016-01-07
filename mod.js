@@ -76,11 +76,11 @@ mod.winResize = function(){
   var sx = screen.availWidth;
   var sy = screen.availHeight;
   var dx = document.getElementById('modListForm').offsetWidth;
-  var dy = document.getElementById('modListForm').offsetHeight ;
-  var x = (sx-dx)/2
-  var y = (sy-dy)/2
+  var dy = document.getElementById('modListForm').offsetHeight;
+  var x = (sx-dx)/2;
+  var y = (sy-dy)/2;
   window.moveTo(x, y);
   window.resizeTo(x,y);
-  //alert('sx:'+sx+'sy:'+sy+'dx:'+dx+'dy:'+dy+'x:'+x+'y:'+y);
+  alert('sx:'+sx+'sy:'+sy+'dx:'+dx+'dy:'+dy+'x:'+x+'y:'+y);
 }
 mod.list();
