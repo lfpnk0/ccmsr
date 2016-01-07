@@ -77,7 +77,7 @@ mod.append = function(name, before){
 };
 mod.winResize = function(){
   var w = 300;
-  var h = document.getElementById('modListForm').offsetHeight
+  var h = document.getElementById('modListForm').offsetHeight;
   document.getElementById('modListForm').style.width = w+'px';
   var x = (screen.availWidth-(w+10))/2;
   var y = (screen.availHeight-(h+10))/2;
