@@ -76,13 +76,13 @@ mod.append = function(name, before){
   };
 };
 mod.winResize = function(){
-  var w = 300;
+  var w = 200;
   var h = document.getElementById('modListForm').offsetHeight;
   document.getElementById('modListForm').style.width = w+'px';
   var x = (screen.availWidth-(w+10))/2;
   var y = (screen.availHeight-(h+10))/2;
   window.moveTo(x, y);
-  window.resizeTo(w+10,y+10);
+  window.resizeTo(w+10,h+10);
 };
 mod.winDock = function(dir){
   if(typeof(dir)==='undefined'){dir='left';}
