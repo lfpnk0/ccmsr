@@ -110,6 +110,7 @@ mod.winDock = function(dir){
 }
 mod.loadResource = function(filePath){
   var ext = filePath.substr(file.lastIndexOf('.'),4);
+  alert(ext);
   switch(ext){
     case "js":
       var e=document.createElement('script');
