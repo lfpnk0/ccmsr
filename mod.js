@@ -10,8 +10,6 @@ mod.list = function(){
   var m = document.createElement('div');
   m.id = 'modListForm';
   m.className = 'module';
-  m.style.padding = '3px';
-  m.style.border = '1px solid black';
   var d = document.createElement('div');
   d.id = 'modPicker';
   m.appendChild(d);
@@ -80,7 +78,7 @@ mod.append = function(name, before){
 mod.winResize = function(){
   var sx = screen.availWidth;
   var sy = screen.availHeight;
-  var dx = 300;
+  var dx = document.getElementById('modListForm').offsetWidth;
   var dy = document.getElementById('modListForm').offsetHeight;
   var x = (sx-dx)/2;
   var y = (sy-dy)/2;
