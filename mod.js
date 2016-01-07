@@ -22,6 +22,7 @@ mod.list = function(){
   bg.innerHTML = 'Get';
   bg.onclick = mod.get;
   m.appendChild(bg);
+  m.appendChild(document.createElement('br'));
   document.body.appendChild(m);
   for (i = 0; i < mod.defaults.length; i++) {
     mod.listAdd(mod.defaults[i]);
