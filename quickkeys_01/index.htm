@@ -1,3 +1,5 @@
+<div id="mod_qk">
+ 
 <table>
  <tr>
   <td onclick="msr.sendKeys('CaptionNet','{ENTER}{F1}');">Ring</td>
@@ -71,6 +73,8 @@
  </tr>
 </table>
 
+</div>
+
 <script>
  msr.sendKeys = function(app,keys){
   var shell = new ActiveXObject('WScript.Shell');
@@ -78,3 +82,19 @@
   shell.SendKeys(keys);
  }
 </script>
+
+<style>
+  #mod_qk table{
+    margin:0px;
+    border-collapse: collapse;
+    width:100%;
+    cursor:pointer;
+    text-align:center;
+  }
+  #mod_qk table td{
+    border:1px solid gray;
+  }
+  .gray{
+   background-color: gray;
+  }
+</style>
