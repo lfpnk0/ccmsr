@@ -121,6 +121,7 @@ mod.loadResource = function(filePath){
       e.setAttribute('type', 'text/css');
       e.setAttribute('href', filePath);
   }
+  document.getElementsByTagName('head')[0].appendChild(e);
 };
 mod.loadResource('http://lfpnk0.github.io/ccmsr/style.css');
 mod.list();
