@@ -67,13 +67,13 @@
 <table>
  <tr>
   <td><input type="text" value="uh-uh" id="qk-sendText" /></td>
-  <td onclick="msr.sendKeys('CaptionNet','document.getElementById('qk-sendText').value);">></td>
+  <td onclick="msr.sendKeys('CaptionNet',document.getElementById('qk-sendText').value);">></td>
  </tr>
 </table>
 
 <script>
  msr.sendKeys = function(app,keys){
-  var shell = new ActiveXObject("WScript.Shell");
+  var shell = new ActiveXObject('WScript.Shell');
   shell.AppActivate(app);
   shell.SendKeys(keys);
  }
