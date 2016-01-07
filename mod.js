@@ -79,8 +79,8 @@ mod.winResize = function(){
   var dy = document.getElementById('modListForm').offsetHeight ;
   var x = (sx-dx)/2
   var y = (sy-dy)/2
-  //window.moveTo(x, y);
-  //window.resizeTo(x,y);
-  alert('sx:'+sx+'sy:'+sy+'dx:'+dx+'dy:'+dy+'x:'+x+'y:'+y);
+  window.moveTo(x, y);
+  window.resizeTo(x,y);
+  //alert('sx:'+sx+'sy:'+sy+'dx:'+dx+'dy:'+dy+'x:'+x+'y:'+y);
 }
 mod.list();
