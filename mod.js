@@ -81,6 +81,6 @@ mod.winResize = function(){
   var y = (sy-dy)/2
   //window.moveTo(x, y);
   //window.resizeTo(x,y);
-  alert('sx:'+sx+'sy:'+sy+'dx:'+dx+'dy:'+dy+'x:'+x+'y:'+y;);
+  alert('sx:'+sx+'sy:'+sy+'dx:'+dx+'dy:'+dy+'x:'+x+'y:'+y);
 }
 mod.list();
