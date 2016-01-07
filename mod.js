@@ -10,6 +10,7 @@ mod.list = function(){
   var m = document.createElement('div');
   m.id = 'modListForm';
   m.className = 'module';
+  m.style.height = '300px';
   var d = document.createElement('div');
   d.id = 'modPicker';
   m.appendChild(d);
