@@ -1,6 +1,9 @@
+body div{
+  padding:0px;
+  margin:0px;
+}
 #modListForm{
-  background-color:gray;
-  width:300px;
+  text-align:center;
 }
 .module{
   padding: 3px;
