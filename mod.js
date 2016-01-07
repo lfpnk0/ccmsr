@@ -97,7 +97,7 @@ mod.winDock = function(dir){
       window.resizeTo(250,screen.availHeight);
       break;
     case 'right':
-      window.moveTo(250-screen.availWidth,0);
+      window.moveTo(screen.availWidth-250,0);
       window.resizeTo(250,screen.availHeight);
       break;
     case 'top':
