@@ -57,7 +57,7 @@ mod.get = function(){
       mod.append(mval);
     }
   }
-  mod.dock();
+  mod.winDock();
 }
 mod.append = function(name, before){
   url = 'https://api.github.com/repos/lfpnk0/ccmsr/contents/'+name+'/index.htm?ref=gh-pages';
@@ -80,7 +80,7 @@ mod.append = function(name, before){
 mod.winResize = function(){
   var sx = screen.availWidth;
   var sy = screen.availHeight;
-  var dx = document.getElementById('modListForm').offsetWidth;
+  var dx = 300;
   var dy = document.getElementById('modListForm').offsetHeight;
   var x = (sx-dx)/2;
   var y = (sy-dy)/2;
