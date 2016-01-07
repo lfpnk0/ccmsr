@@ -75,8 +75,8 @@ mod.append = function(name, before){
 mod.winResize = function(){
   var sx = screen.availWidth;
   var sy = screen.availHeight;
-  var dx = document.getElementById('modListForm').width;
-  var dy = document.getElementById('modListForm').height;
+  var dx = document.getElementById('modListForm').offsetWidth;
+  var dy = document.getElementById('modListForm').offsetHeight ;
   var x = (sx-dx)/2
   var y = (sy-dy)/2
   //window.moveTo(x, y);
