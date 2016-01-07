@@ -4,7 +4,5 @@ html, body, div{
 }
 #modListForm{
   text-align:center;
-}
-.module{
-  padding: 5px;
+  padding:5px;
 }
