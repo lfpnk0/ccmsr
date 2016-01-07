@@ -13,6 +13,7 @@ mod.list = function(){
   var d = document.createElement('div');
   d.id = 'modPicker';
   m.appendChild(d);
+  m.appendChild(document.createElement('br'));
   var ba = document.createElement('button');
   ba.innerHTML = 'Add';
   ba.onclick = mod.listAdd;
