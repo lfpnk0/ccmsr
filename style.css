@@ -5,6 +5,9 @@ div body{
 #modListForm{
   text-align:center;
 }
+#modPicker{
+  padding-bottom: 5px;
+}
 .module{
   padding: 5px;
 }
