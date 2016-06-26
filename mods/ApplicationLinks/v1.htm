@@ -1,0 +1,76 @@
+<html>
+<body>
+<!-- Application Links -->
+<style>
+  .al-parts a.btn{
+    display:block;
+    width:220px;
+    margin:0px;
+  }
+</style>
+<script>
+  al = new Object();
+  al.init = function(){
+    $('.al-parts').collapse({toggle: false});
+  }
+  al.run = function(path){
+      this.sh = msr.getSH();
+      this.sh.exec('"'+path+'"');
+  }
+  al.get = function(url){
+    this.ie = msr.getIE();
+    if(this.ie.visible != true){
+      this.ie.visible = true;
+    }
+    winTitle=this.ie.name;
+    this.sh = msr.getSH();
+    this.sh.appActivate(winTitle);
+    if(this.ie.LocationURL!=''){
+      OpenTab = 0x1000;
+      this.ie.Navigate(url, OpenTab);
+    }
+    else{
+      this.ie.Navigate(url);
+    }
+  }
+</script>
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="btn-group" role="group">
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" style="width:170px;" data-toggle="collapse" href="#al-panel">
+              Applications
+            </a>
+          </div>
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" data-toggle="collapse" href="#" onclick="$('.al-parts').collapse('toggle');">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+          </div>
+        </div>
+      </h4>
+    </div>
+    <div id="al-panel" class="panel-collapse collapse in">
+      <div class="panel-body al-parts collapse in">
+        <a href="#" class="btn btn-default" onclick="al.get('https://n11.ultipro.com/Login.aspx?ReturnUrl=%2f');">Time Clock</a>
+        <a href="#" class="btn btn-alt" onclick="al.run('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');">OrangeZone</a>
+        <a href="#" class="btn btn-default" onclick="al.get('http://mail.sorenson.com');">Email</a>
+        <a href="#" class="btn btn-default" onclick="al.get('http://nice.captioncall.com/');">Schedule</a>
+        <a href="#" class="btn btn-default" onclick="al.get('http://portal.captioncall.com/sites/relaysvcs/caption/Site%20Pages/General.aspx');">Portal</a>
+        <a href="#" class="btn btn-default" onclick="al.get('http://portal.captioncall.com/sites/relaysvcs/learn/tutor/default.aspx');">Training</a>
+        <a href="#" class="btn btn-default" onclick="al.run('c:/windows/system32/notepad.exe');">Notepad</a>
+      </div>
+      <div class="panel-body al-parts collapse">
+Settings
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  al.init();
+</script>
+<!-- Application Links End-->
+</body>
+</html>
