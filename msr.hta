@@ -1,0 +1,437 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Mouser</title>
+    <HTA:APPLICATION 
+      ID="msr" 
+      APPLICATIONNAME="msr" 
+      BORDER="thin"
+      BORDERSTYLE="dialog"
+      CAPTION="no"
+      CONTEXTMENU="yes"
+      INNERBORDER="no"
+      MAXIMIZEBUTTON="no"
+      MINIMIZEBUTTON="no"
+      SCROLL="no">
+    </HTA:APPLICATION>
+    <meta http-equiv="x-ua-compatible" content="IE=9">
+    <link rel="stylesheet" type="text/css" href="http://lfpnk0.github.io/ccmsr/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://lfpnk0.github.io/ccmsr/js/bootstrap.min.js"></script>
+<style>
+  .panel-group{
+    margin:0px;
+  }
+  #wrap{
+    border: 1px solid black;
+  }
+  .btn-alt{
+    background-color: #f2f2f2;
+    color:black;
+    border: 1px solid lightgray;
+  }
+</style>
+<script>
+  msr = new Object();
+  msr.init = function(){
+    document.getElementById('wrap').style.height = (screen.availHeight-1)+'px';
+    nav.winRight();
+  }
+  msr.getIE = function(show){
+    var show = typeof show !== 'undefined' ?  show : true;
+    if (typeof this.ie === "undefined") {
+      this.ie = new ActiveXObject("InternetExplorer.Application");
+      if(show == true){this.ie.Visible=true;}
+      else{this.ie.Visible=true;}
+    }
+    return this.ie;
+  }
+  msr.getSH = function(){
+    if (typeof this.sh === "undefined") {
+      this.sh = new ActiveXObject("WScript.Shell");
+    }
+    return this.sh;
+  }
+  msr.quit = function(){
+    msr.ieObj.Quit();
+    window.close();
+  }
+</script>
+</head>
+<body>
+<div id="wrap">
+
+<!-- NavBar -->
+<style>
+  #nav-wrap{
+    background-color:black;
+    color:white;
+  }
+  #nav-title{
+    margin-left:15px;
+    font-weight:bold;
+  }
+  #nav-btn{
+    background-color:black;
+    color:white;
+    border:0px;
+  }
+  #set-align .btn-alt{
+    width:78px;
+  }
+</style>
+<script>
+  nav = new Object();
+  nav.init = function(){
+    $('.main-parts').collapse({toggle: false});
+  }
+  nav.winLeft = function(){
+    window.moveTo(0, 1);
+    window.resizeTo(250, screen.availHeight-1);
+  }
+  nav.winRight = function(){
+    window.moveTo(screen.availWidth-250, 1);
+    window.resizeTo(250, screen.availHeight-1);
+  }
+</script>
+<div id="nav-wrap">
+  <div style="display:inline; float:left;">
+    <h5 id="nav-title">
+      CC Remote
+    </h5>
+  </div>
+  <div style="display:inline; float:right;">
+    <div class="btn-group">
+      <button type="button" id="nav-btn" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-option-vertical"></span>
+      </button>
+      <ul class="dropdown-menu pull-right">
+        <li>
+          <div class="btn-group" style="margin-left:1px;" role="group" id="set-align">
+            <button type="button" class="btn btn-default" onclick="nav.winLeft();">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
+            <button type="button" class="btn btn-alt">Move</button>
+            <button type="button" class="btn btn-default" onclick="nav.winRight();">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+          </div>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#" onclick="$('.main-parts').collapse('toggle');">Settings</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#" onclick="msr.quit();">Exit</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="clear:both;"></div>
+</div>
+<!-- NavBar End -->
+
+<style>
+  #set-cred .input-group{
+    margin-bottom: 3px;
+  }
+  #set-cred .input-group span {
+    width: 60px;
+  }
+  #set-go{
+    text-align: center;
+    padding-bottom: 10px;
+  }
+</style>
+<div id="set-panel" class="panel-collapse collapse in main-parts">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h4>Credentials</h4>
+      <form>
+        <fieldset class="form-group" id="set-cred">
+          <div class="input-group">
+            <span class="input-group-addon">UID</span>
+            <input type="text" class="form-control" id="set-uid">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">EID</span>
+            <input type="text" class="form-control" id="set-eid">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">PWD</span>
+            <input type="text" class="form-control" id="set-pwd">
+          </div>
+        </fieldset>
+      </form>
+      <h4>Modules</h4>
+      <form>
+          <label class="c-input c-checkbox">
+            <input type="checkbox" checked="checked" id="set-mod-qk1">
+            <span class="c-indicator"></span>
+            Quick Keys v1
+          </label>
+          <label class="c-input c-checkbox">
+            <input type="checkbox" checked="checked" id="set-mod-tc1">
+            <span class="c-indicator"></span>
+            Time Clock v1
+          </label>
+          <label class="c-input c-checkbox">
+            <input type="checkbox" checked="checked" id="set-mod-al1">
+            <span class="c-indicator"></span>
+            Application Links v1
+          </label>
+        </fieldset>
+      </form>
+    </div>
+    <div id="set-go">
+     <a class="btn btn-success" href="#" onclick="$('.main-parts').collapse('toggle');">
+       <b>Lets Go! <span class="glyphicon glyphicon-play-circle"></span></b>
+     </a>
+    </div>
+  </div>
+</div>
+
+
+<div id="content-main" class="panel-collapse collapse main-parts">
+
+
+
+<!-- QuickKeys -->
+<style>
+  .qk-parts table{
+    width:230px;
+    border-collapse: collapse;
+    margin:0px -6px 0px;
+  }
+  .qk-parts td{
+    border:1px solid lightgray;
+    padding: 5px;
+    text-align:center;
+    cursor: pointer;
+  }
+  .qk-parts table.alt{
+    background-color: #f2f2f2;
+    border-collapse: collapse;
+    color:black;
+  }
+</style>
+<script>
+  qk = new Object();
+  qk.init = function(){
+    $('.qk-parts').collapse({toggle: false});
+  }
+  qk.shell = new ActiveXObject("WScript.Shell");
+  qk.sendKeys = function(key){
+    this.shell.appActivate('CaptionNet');
+    this.shell.SendKeys(key);
+  }
+</script>
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="btn-group" role="group">
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" style="width:170px;" data-toggle="collapse" href="#qk-panel">
+              QuickKeys
+            </a>
+          </div>
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" data-toggle="collapse" href="#" onclick="$('.qk-parts').collapse('toggle');">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+          </div>
+        </div>
+      </h4>
+    </div>
+    <div id="qk-panel" class="panel-collapse collapse">
+      <div class="panel-body qk-parts collapse in">
+<table><tr>
+    <td onclick="qk.sendKeys('{ENTER}{f1}');">Ring</td>
+    <td onclick="qk.sendKeys('{ENTER}{f2}{ENTER}');">New</td>
+    <td onclick="qk.sendKeys('{ENTER}{f3}{ENTER}');">Auto</td>
+    <td onclick="qk.sendKeys('{ENTER}{f4}');">Ans</td>
+</tr></table>
+<table class="alt"><tr>
+    <td onclick="qk.sendKeys('{ENTER}bsyln');">bsyln</td>
+    <td onclick="qk.sendKeys('{ENTER}dltn');">dltn</td>
+    <td onclick="qk.sendKeys('{ENTER}fxtn');">fxtn</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys(' cryg ');">cryg</td>
+    <td onclick="qk.sendKeys(' lgh ');">lgh</td>
+    <td onclick="qk.sendKeys(' sgh ');">sgh</td>
+    <td onclick="qk.sendKeys(' gspg ');">gspg</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys(' cg ');">cg</td>
+    <td onclick="qk.sendKeys(' snz ');">snz</td>
+    <td onclick="qk.sendKeys(' ywn ');">ywn</td>
+</tr></table>
+<table class="alt"><tr>
+    <td onclick="qk.sendKeys(' interbkd ');">interbkd</td>
+    <td onclick="qk.sendKeys(' inaud  ');">inaud</td>
+    <td onclick="qk.sendKeys(' nnout ');">nnout</td>
+    <td onclick="qk.sendKeys(' sttc ');">sttc</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys('{ENTER}sln');">sln (151)</td>
+    <td onclick="qk.sendKeys('{ENTER}clhd');">clhd</td>
+    <td onclick="qk.sendKeys('{ENTER}mscply');">mscply</td>
+</tr></table>
+<table class="alt"><tr>
+    <td onclick="qk.sendKeys('{ENTER}olangcall');">lang5</td>
+    <td onclick="qk.sendKeys('{ENTER}stdby');">stdby5</td>
+    <td onclick="qk.sendKeys('{ENTER}olang');">lang</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys('{ENTER}spanotn');">spanotn</td>
+    <td onclick="qk.sendKeys('{ENTER}scapinit');">scapinit(30)</td>
+    <td onclick="qk.sendKeys('{ENTER}scaptrans');">scaptrans</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys('{ENTER}scapnot');">scapnot(60)</td>
+    <td onclick="qk.sendKeys('{ENTER}scaptrans');">scaptrans</td>
+    <td onclick="qk.sendKeys('{ENTER}scapcanc');">scapcanc</td>
+</tr></table>
+<table><tr>
+    <td><input id="qk-custom" type="text" value=" Uh-uh" /></td>
+    <td onclick="qk.sendKeys(document.getElementById('qk-custom').value);"><span class="glyphicon glyphicon-chevron-right"></span></td>
+</tr></table>
+      </div>
+      <div class="panel-body qk-parts collapse">
+Settings
+      </div>
+    </div>
+  </div>
+</div>
+<script>qk.init();</script>
+<!-- QuickKeys End -->
+
+<!-- Timeclock -->
+<script>
+  tc = new Object();
+  tc.init = function(){
+    $('.tc-parts').collapse({toggle: false});
+    tc.int = setInterval(function(){tc.run();},1000);
+  }
+  tc.run = function(){
+    datetime = new Date();
+    document.getElementById('tc-datetime').innerHTML = datetime;
+  }
+</script>
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="btn-group" role="group">
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" style="width:170px;" data-toggle="collapse" href="#tc-panel">
+              Time Clock
+            </a>
+          </div>
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" data-toggle="collapse" href="#" onclick="$('.tc-parts').collapse('toggle');">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+          </div>
+        </div>
+      </h4>
+    </div>
+    <div id="tc-panel" class="panel-collapse collapse">
+      <div class="panel-body tc-parts collapse in">
+<span id="tc-datetime"></span>
+<span id="tc-countdown"></span>
+      </div>
+      <div class="panel-body tc-parts collapse">
+<form>
+<input type="text"
+</form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  tc.init();
+</script>
+<!-- Timeclock End -->
+
+
+<!-- Application Links -->
+<style>
+  .al-parts a.btn{
+    display:block;
+    width:220px;
+    margin:0px;
+  }
+</style>
+<script>
+  al = new Object();
+  al.init = function(){
+    $('.al-parts').collapse({toggle: false});
+  }
+  al.run = function(path){
+      this.sh = msr.getSH();
+      this.sh.exec('"'+path+'"');
+  }
+  al.get = function(url){
+    this.ie = msr.getIE();
+    if(this.ie.visible != true){
+      this.ie.visible = true;
+    }
+    winTitle=this.ie.name;
+    this.sh = msr.getSH();
+    this.sh.appActivate(winTitle);
+    if(this.ie.LocationURL!=''){
+      OpenTab = 0x1000;
+      this.ie.Navigate(url, OpenTab);
+    }
+    else{
+      this.ie.Navigate(url);
+    }
+  }
+</script>
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="btn-group" role="group">
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" style="width:170px;" data-toggle="collapse" href="#al-panel">
+              Applications
+            </a>
+          </div>
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" data-toggle="collapse" href="#" onclick="$('.al-parts').collapse('toggle');">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+          </div>
+        </div>
+      </h4>
+    </div>
+    <div id="al-panel" class="panel-collapse collapse in">
+      <div class="panel-body al-parts collapse in">
+        <a href="#" class="btn btn-default" onclick="al.get('https://n11.ultipro.com/Login.aspx?ReturnUrl=%2f');">Time Clock</a>
+        <a href="#" class="btn btn-alt" onclick="al.run('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');">OrangeZone</a>
+        <a href="#" class="btn btn-default" onclick="al.get('http://mail.sorenson.com');">Email</a>
+        <a href="#" class="btn btn-default" onclick="al.get('http://nice.captioncall.com/');">Schedule</a>
+        <a href="#" class="btn btn-default" onclick="al.get('http://portal.captioncall.com/sites/relaysvcs/caption/Site%20Pages/General.aspx');">Portal</a>
+        <a href="#" class="btn btn-default" onclick="al.get('http://portal.captioncall.com/sites/relaysvcs/learn/tutor/default.aspx');">Training</a>
+        <a href="#" class="btn btn-default" onclick="al.run('c:/windows/system32/notepad.exe');">Notepad</a>
+      </div>
+      <div class="panel-body al-parts collapse">
+Settings
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  al.init();
+</script>
+<!-- Application Links End-->
+
+</div> <!-- content-main End -->
+<script>
+  nav.init();
+  msr.init();
+</script>
+</div> <!-- wrap End -->
+</body>
+</html>
