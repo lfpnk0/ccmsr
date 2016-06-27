@@ -30,6 +30,22 @@
     color:black;
     border: 1px solid lightgray;
   }
+  #nav-wrap{
+    background-color:black;
+    color:white;
+  }
+  #nav-title{
+    margin-left:15px;
+    font-weight:bold;
+  }
+  #nav-btn{
+    background-color:black;
+    color:white;
+    border:0px;
+  }
+  #set-align .btn-alt{
+    width:78px;
+  }
 </style>
 <script>
   msr = new Object();
@@ -60,31 +76,18 @@
     msr.ieObj.Quit();
     window.close();
   }
-</script>
-</head>
-<body>
-<div id="wrap">
-
-<!-- NavBar -->
-<style>
-  #nav-wrap{
-    background-color:black;
-    color:white;
+  msr.loadMods = function(){
+    var p = document.getElementById('content-main');
+    var base = document.getElementById('set-mods-baseURL').value;
+    var el = document.getElementById('set-mods');
+    var arr=el.getElementsByTagName('input');
+    for (i = 0; i < arr.length; i++) {
+      var f = document.createElement('iframe');
+      f.src = base+arr[i].value;
+      p.appendChild(f);
+    }
+    $('.main-parts').collapse('toggle');
   }
-  #nav-title{
-    margin-left:15px;
-    font-weight:bold;
-  }
-  #nav-btn{
-    background-color:black;
-    color:white;
-    border:0px;
-  }
-  #set-align .btn-alt{
-    width:78px;
-  }
-</style>
-<script>
   nav = new Object();
   nav.init = function(){
     $('.main-parts').collapse({toggle: false});
@@ -98,6 +101,13 @@
     window.resizeTo(250, screen.availHeight-1);
   }
 </script>
+</head>
+<body>
+<div id="wrap">
+
+<!-- NavBar -->
+
+
 <div id="nav-wrap">
   <div style="display:inline; float:left;">
     <h5 id="nav-title">
@@ -139,6 +149,13 @@
   #set-cred .input-group span {
     width: 60px;
   }
+  #set-mods .input-group{
+    margin-bottom: 3px;
+  }
+  #set-mods .input-group input{
+    margin-top:1px;
+    margin-bottom:-1px;
+  }
   #set-go{
     text-align: center;
     padding-bottom: 10px;
@@ -166,26 +183,20 @@
       </form>
       <h4>Modules</h4>
       <form>
-          <label class="c-input c-checkbox">
-            <input type="checkbox" checked="checked" id="set-mod-qk1">
-            <span class="c-indicator"></span>
-            Quick Keys v1
-          </label>
-          <label class="c-input c-checkbox">
-            <input type="checkbox" checked="checked" id="set-mod-tc1">
-            <span class="c-indicator"></span>
-            Time Clock v1
-          </label>
-          <label class="c-input c-checkbox">
-            <input type="checkbox" checked="checked" id="set-mod-al1">
-            <span class="c-indicator"></span>
-            Application Links v1
-          </label>
+        <div class="input-group">
+          <span class="input-group-addon">URL</span>
+          <input type="text" class="form-control" id="set-mods-baseURL" value="http://lfpnk0.github.io/ccmsr/mods/">
+        </div><br/>
+        <fieldset class="form-group" id="set-mods">
+          <div class="input-group">
+            <input type="text" class="form-control" value="ALv1.htm">
+            <span class="glyphicon glyphicon-trash input-group-addon"></span>
+          </div>
         </fieldset>
       </form>
     </div>
     <div id="set-go">
-     <a class="btn btn-success" href="#" onclick="$('.main-parts').collapse('toggle');">
+     <a class="btn btn-success" href="#" onclick="msr.loadMods();">
        <b>Lets Go! <span class="glyphicon glyphicon-play-circle"></span></b>
      </a>
     </div>
@@ -358,78 +369,7 @@ Settings
 <!-- Timeclock End -->
 
 
-<!-- Application Links -->
-<style>
-  .al-parts a.btn{
-    display:block;
-    width:220px;
-    margin:0px;
-  }
-</style>
-<script>
-  al = new Object();
-  al.init = function(){
-    $('.al-parts').collapse({toggle: false});
-  }
-  al.run = function(path){
-      this.sh = msr.getSH();
-      this.sh.exec('"'+path+'"');
-  }
-  al.get = function(url){
-    this.ie = msr.getIE();
-    if(this.ie.visible != true){
-      this.ie.visible = true;
-    }
-    winTitle=this.ie.name;
-    this.sh = msr.getSH();
-    this.sh.appActivate(winTitle);
-    if(this.ie.LocationURL!=''){
-      OpenTab = 0x1000;
-      this.ie.Navigate(url, OpenTab);
-    }
-    else{
-      this.ie.Navigate(url);
-    }
-  }
-</script>
-<div class="panel-group">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <div class="btn-group" role="group">
-          <div class="btn-group" role="group">
-            <a class="btn btn-default" style="width:170px;" data-toggle="collapse" href="#al-panel">
-              Applications
-            </a>
-          </div>
-          <div class="btn-group" role="group">
-            <a class="btn btn-default" data-toggle="collapse" href="#" onclick="$('.al-parts').collapse('toggle');">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-          </div>
-        </div>
-      </h4>
-    </div>
-    <div id="al-panel" class="panel-collapse collapse in">
-      <div class="panel-body al-parts collapse in">
-        <a href="#" class="btn btn-default" onclick="al.get('https://n11.ultipro.com/Login.aspx?ReturnUrl=%2f');">Time Clock</a>
-        <a href="#" class="btn btn-alt" onclick="al.run('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');">OrangeZone</a>
-        <a href="#" class="btn btn-default" onclick="al.get('http://mail.sorenson.com');">Email</a>
-        <a href="#" class="btn btn-default" onclick="al.get('http://nice.captioncall.com/');">Schedule</a>
-        <a href="#" class="btn btn-default" onclick="al.get('http://portal.captioncall.com/sites/relaysvcs/caption/Site%20Pages/General.aspx');">Portal</a>
-        <a href="#" class="btn btn-default" onclick="al.get('http://portal.captioncall.com/sites/relaysvcs/learn/tutor/default.aspx');">Training</a>
-        <a href="#" class="btn btn-default" onclick="al.run('c:/windows/system32/notepad.exe');">Notepad</a>
-      </div>
-      <div class="panel-body al-parts collapse">
-Settings
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  al.init();
-</script>
-<!-- Application Links End-->
+
 
 </div> <!-- content-main End -->
 <script>
