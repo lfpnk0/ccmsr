@@ -22,3 +22,4 @@
       this.ie.Navigate(url);
     }
   }
+  al.init();
