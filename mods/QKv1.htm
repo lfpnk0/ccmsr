@@ -1,0 +1,101 @@
+<html>
+<body>
+<style>
+  .qk-parts table{
+    width:230px;
+    border-collapse: collapse;
+    margin:0px -6px 0px;
+  }
+  .qk-parts td{
+    border:1px solid lightgray;
+    padding: 5px;
+    text-align:center;
+    cursor: pointer;
+  }
+  .qk-parts table.alt{
+    background-color: #f2f2f2;
+    border-collapse: collapse;
+    color:black;
+  }
+</style>
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="btn-group" role="group">
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" style="width:170px;" data-toggle="collapse" href="#qk-panel">
+              QuickKeys
+            </a>
+          </div>
+          <div class="btn-group" role="group">
+            <a class="btn btn-default" data-toggle="collapse" href="#" onclick="$('.qk-parts').collapse('toggle');">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+          </div>
+        </div>
+      </h4>
+    </div>
+    <div id="qk-panel" class="panel-collapse collapse">
+      <div class="panel-body qk-parts collapse in">
+<table><tr>
+    <td onclick="qk.sendKeys('{ENTER}{f1}');">Ring</td>
+    <td onclick="qk.sendKeys('{ENTER}{f2}{ENTER}');">New</td>
+    <td onclick="qk.sendKeys('{ENTER}{f3}{ENTER}');">Auto</td>
+    <td onclick="qk.sendKeys('{ENTER}{f4}');">Ans</td>
+</tr></table>
+<table class="alt"><tr>
+    <td onclick="qk.sendKeys('{ENTER}bsyln');">bsyln</td>
+    <td onclick="qk.sendKeys('{ENTER}dltn');">dltn</td>
+    <td onclick="qk.sendKeys('{ENTER}fxtn');">fxtn</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys(' cryg ');">cryg</td>
+    <td onclick="qk.sendKeys(' lgh ');">lgh</td>
+    <td onclick="qk.sendKeys(' sgh ');">sgh</td>
+    <td onclick="qk.sendKeys(' gspg ');">gspg</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys(' cg ');">cg</td>
+    <td onclick="qk.sendKeys(' snz ');">snz</td>
+    <td onclick="qk.sendKeys(' ywn ');">ywn</td>
+</tr></table>
+<table class="alt"><tr>
+    <td onclick="qk.sendKeys(' interbkd ');">interbkd</td>
+    <td onclick="qk.sendKeys(' inaud  ');">inaud</td>
+    <td onclick="qk.sendKeys(' nnout ');">nnout</td>
+    <td onclick="qk.sendKeys(' sttc ');">sttc</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys('{ENTER}sln');">sln (151)</td>
+    <td onclick="qk.sendKeys('{ENTER}clhd');">clhd</td>
+    <td onclick="qk.sendKeys('{ENTER}mscply');">mscply</td>
+</tr></table>
+<table class="alt"><tr>
+    <td onclick="qk.sendKeys('{ENTER}olangcall');">lang5</td>
+    <td onclick="qk.sendKeys('{ENTER}stdby');">stdby5</td>
+    <td onclick="qk.sendKeys('{ENTER}olang');">lang</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys('{ENTER}spanotn');">spanotn</td>
+    <td onclick="qk.sendKeys('{ENTER}scapinit');">scapinit(30)</td>
+    <td onclick="qk.sendKeys('{ENTER}scaptrans');">scaptrans</td>
+</tr></table>
+<table><tr>
+    <td onclick="qk.sendKeys('{ENTER}scapnot');">scapnot(60)</td>
+    <td onclick="qk.sendKeys('{ENTER}scaptrans');">scaptrans</td>
+    <td onclick="qk.sendKeys('{ENTER}scapcanc');">scapcanc</td>
+</tr></table>
+<table><tr>
+    <td><input id="qk-custom" type="text" value=" Uh-uh" /></td>
+    <td onclick="qk.sendKeys(document.getElementById('qk-custom').value);"><span class="glyphicon glyphicon-chevron-right"></span></td>
+</tr></table>
+      </div>
+      <div class="panel-body qk-parts collapse">
+No Settings Available
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
