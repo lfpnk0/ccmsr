@@ -1,6 +1,6 @@
 <html>
 <head>
-<link href='base.css' rel='stylesheet' type='text/css'>
+<link href='_base.css' rel='stylesheet' type='text/css'>
 <style>
 table{
  width:225px;
@@ -20,9 +20,9 @@ td{
 <body>
  <table class="titleBar">
   <tr>
-   <td onclick="settings()"><img class="icon" src="img/settings-6.png"></td>
+   <td onclick="settings()"><img class="icon" src="ico/settings.png"></td>
    <td class="title" onclick="collapse()">QuickKeys</td>
-   <td onclick="captionNet()"><img class="icon" src="img/CC.png"></td>
+   <td onclick="captionNet()"><img class="icon" src="ico/headset.png"></td>
   </tr>
  </table>
  <div id="content" style="display:block;">
@@ -102,6 +102,7 @@ td{
  <div id="settings" style="display:none;">
   Settings
  </div>
+ <script src="_base.js"></script>
  <script>
   window.parent.document.getElementById('qk').height = '402px';
   function send(key){
@@ -112,28 +113,6 @@ td{
   function captionNet(){
    shell = new ActiveXObject("WScript.Shell");
    shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
-  }
-  function collapse(){
-   var c = document.getElementById('content').style.display;
-   var s = document.getElementById('settings').style.display;
-   if(s == 'block' || c == 'block'){
-    document.getElementById('content').style.display = 'none';
-    document.getElementById('settings').style.display = 'none';
-   }
-   else{
-    document.getElementById('content').style.display = 'block';
-   }
-  }
-  function settings(){
-   var c = document.getElementById('content').style.display;
-   if(c == 'block'){
-    document.getElementById('content').style.display = 'none';
-    document.getElementById('settings').style.display = 'block';
-   }
-   else{
-    document.getElementById('content').style.display = 'block';
-    document.getElementById('settings').style.display = 'none';
-   }
   }
  </script>
 </body>
