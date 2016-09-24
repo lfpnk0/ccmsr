@@ -25,4 +25,5 @@ body{
 .icon{ 
  width:21px;
  margin:2px;
+ display: inline;
 } 
