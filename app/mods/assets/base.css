@@ -16,11 +16,11 @@ body{
 .titleBar td{
  border:1px solid black;
  text-align:center;
- width: 25px;
+ width: 35px;
  cursor: pointer;
 }
 .titleBar .title{
- width: 175px;
+ width: 155px;
 }
 .icon{ 
  width:21px;
