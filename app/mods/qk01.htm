@@ -131,7 +131,7 @@ td{
      qk.t.sln.s = 0;
      qk.t.sln.i = setInterval(function(){
       qk.t.sln.s++;
-      var s = ('0'+(qk.t.sln.s-(60*Math.floor(qk.t.sln.s/60)))).slice(2,2);
+      var s = ('0'+(qk.t.sln.s-(60*Math.floor(qk.t.sln.s/60)))).slice(-2);
       var m = Math.floor(qk.t.sln.s/60);
       el.innerHTML = m+':'+s;
       sln(el,'check');
