@@ -77,7 +77,7 @@ td{
    <tr>
     <td onclick="lang(this,'set')">lang</td>
     <td onclick="scap(this,'set')">scap</td>
-    <td onclick="clear(this.parent())">clear</td>
+    <td onclick="clear(this.parentNode)"><img class="icon" src="ico/del.png"></td>
    </tr>
   </table>
   <table>
@@ -153,7 +153,7 @@ td{
      var s = ('0'+(qk.t.lang.s-(60*Math.floor(qk.t.lang.s/60)))).slice(-2);
      var m = Math.floor(qk.t.lang.s/60);
      el.innerHTML = m+':'+s;
-     lang(el,'check');
+     lang(el);
     }, 1000);
    }
    else{
@@ -172,20 +172,30 @@ td{
   }
   function scap(el){
    if(pk.t.scap.i < 0){
-    send('{ENTER}scapinit1{ENTER}scapinit2');
-    el.innerHTML = '10:00';
-    qk.t.scap.s = 300;
-    qk.t.scap.i = setInterval(function(){
-     qk.t.scap.s++;
-     var s = ('0'+(qk.t.scap.s-(60*Math.floor(qk.t.scap.s/60)))).slice(-2);
-     var m = Math.floor(qk.t.scap.s/60);
-     el.innerHTML = m+':'+s;
-     scap(el,'check');
-    }, 1000);
+    switch(el.innerHTML){
+     case 'scap':
+      send('{ENTER}scapinit1{ENTER}scapinit2');
+      el.innerHTML = '10:00';
+      qk.t.scap.s = 90;
+      qk.t.scap.i = setInterval(function(){
+       qk.t.scap.s++;
+       var s = ('0'+(qk.t.scap.s-(60*Math.floor(qk.t.scap.s/60)))).slice(-2);
+       var m = Math.floor(qk.t.scap.s/60);
+       el.innerHTML = m+':'+s;
+       scap(el);
+      }, 1000);
+      break;
+     case 'not':
+      send('{ENTER}scapnot');
+      break;
+     case 'canc':
+      send('{ENTER}scapcanc');
+    }
    }
    else{
     switch(qk.t.scap.s){
-     case 300:
+     case 60:
+       el.innerHTML
       break;
      case 0:
       break;
