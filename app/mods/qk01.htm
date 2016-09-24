@@ -68,7 +68,7 @@ td{
   </table>
   <table class="alt">
    <tr>
-    <td onclick="sln(this,'click');">sln</td>
+    <td onclick="send2('{ENTER}sln ',fsln);">sln</td>
     <td onclick="send('{ENTER}clhd');">clhd</td>
     <td onclick="send('{ENTER}mscply');">mscply</td>
    </tr>
@@ -76,7 +76,13 @@ td{
   <table>
    <tr>
     <td onclick="olang(this,'click');">olangcall</td>
+    <td onclick="olang(this,'click');">stndby</td>
+    <td onclick="olang(this,'click');">olang</td>
     <td onclick="scap(this,'click');">scapinit</td>
+    <td onclick="scap(this,'click');">scaptrans</td>
+    <td onclick="scap(this,'click');">scapnot</td>
+    <td onclick="scap(this,'click');">scaptrans</td>
+    <td onclick="scap(this,'click');">scapcanc</td>
     <td width=40px onclick="clear(this.parentNode);"><img class="icon" src="ico/del.png"></td>
    </tr>
   </table>
@@ -102,12 +108,31 @@ td{
   qk.t.lang.s = -1;
   qk.t.scap = new Object();
   qk.t.scap.s = -1;
+  qk.p = new Object();
+  qk.p.sln = new Object();
+  qk.p.sln.s = 300;
+  qk.p.sln.f = function(){
+   this.s--;
+   document.getElementById('sln').innerHTML = 'sln ('+this.s+')';
+   if(this.s==240){document.getElementById('sln').style.backgroundColor = 'orange';}
+   if(this.s==0){document.getElementById('sln').style.backgroundColor = 'red';clearInterval(this.i);this.s=300;}
+  }
+  
+  function captionNet(){
+   qk.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
+  }
   function send(key){
    qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
    qk.shell.SendKeys(key);
   }
-  function captionNet(){
-   qk.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
+  function send2(key,proc=false){
+   qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
+   qk.shell.SendKeys(key);
+   if(proc){
+    qk.p[proc].i = setInterval(qk.p[proc].f,1000);
+   }
+  }
+  function fsln(){
   }
   function sln(el, method){
    if(method=='click'){
