@@ -1,0 +1,25 @@
+*{
+ padding:0px;
+ margin:0px;
+}
+body{
+ width:225px;
+ overflow:hidden;
+}
+.titleBar{
+ width:225px;
+ border-collapse: collapse;
+ text-align:center;
+ background-color:black;
+ color:white;
+ padding:0.5em;
+}
+.titleBar td{
+ border:1px solid black;
+ text-align:center;
+ width: 25px;
+ cursor: pointer;
+}
+.titleBar .title{
+ width: 175px;
+}
