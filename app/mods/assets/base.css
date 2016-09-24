@@ -14,7 +14,7 @@ body{
  padding:0.5em;
 }
 .titleBar td{
- border:1px solid black;
+ border:0px solid black;
  text-align:center;
  width: 35px;
  cursor: pointer;
