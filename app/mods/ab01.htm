@@ -1,6 +1,6 @@
 <html>
 <head>
- <link href='base.css' rel='stylesheet' type='text/css'>
+ <link href='_base.css' rel='stylesheet' type='text/css'>
  <style>
  </style>
 </head>
@@ -8,10 +8,10 @@
  <table class="titleBar">
   <tr>
    <td onclick="open(schedule)">
-    <img class="icon" src="/img/calendar-3.png">
+    <img class="icon" src="/ico/cal.png">
    </td>
    <td onclick="open(training)">
-    <img class="icon" src="/img/agenda.png">
+    <img class="icon" src="/ico.png">
    </td>
    <td onclick="open(calculator)">
     <img class="icon" src="/img/calculator-1.png">
@@ -40,32 +40,11 @@
  </div>
  <div id="settings" style="display:none;">
  </div>
+ <script src="_base.js"></script>
  <script>
   function open(path){
    shell = new ActiveXObject("WScript.Shell");
    shell.exec(path);
-  }
-  function collapse(){
-   var c = document.getElementById('content').style.display;
-   var s = document.getElementById('settings').style.display;
-   if(s == 'block' || c == 'block'){
-    document.getElementById('content').style.display = 'none';
-    document.getElementById('settings').style.display = 'none';
-   }
-   else{
-    document.getElementById('content').style.display = 'block';
-   }
-  }
-  function settings(){
-   var c = document.getElementById('content').style.display;
-   if(c == 'block'){
-    document.getElementById('content').style.display = 'none';
-    document.getElementById('settings').style.display = 'block';
-   }
-   else{
-    document.getElementById('content').style.display = 'block';
-    document.getElementById('settings').style.display = 'none';
-   }
   }
  </script>
 </html>
