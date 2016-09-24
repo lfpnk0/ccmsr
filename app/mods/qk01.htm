@@ -33,7 +33,7 @@ td{
     <td onclick="send('{ENTER}{f1}')">Ring</td>
     <td onclick="send('{ENTER}{f2}{ENTER}')">New</td>
     <td onclick="send('{ENTER}{f3}{ENTER}')">Auto</td>
-    <td onclick="send('{ENTER}{f4}{ENTER}')">Ans</td>
+    <td onclick="send('{ENTER}{f4}')">Ans</td>
    </tr>
   </table>
   <table class="alt">
@@ -68,7 +68,7 @@ td{
   </table>
   <table class="alt">
    <tr>
-    <td onclick="send('{ENTER}sln')">sln (151)</td>
+    <td onclick="sln(this,'set');">sln (151)</td>
     <td onclick="send('{ENTER}clhd')">clhd</td>
     <td onclick="send('{ENTER}mscply')">mscply</td>
    </tr>
@@ -107,14 +107,51 @@ td{
  <script src="assets/base.js"></script>
  <script>
   window.parent.document.getElementById('qk').height = '420px'; //402 px
+  qk = new Object();
+  qk.shell = new ActiveXObject("WScript.Shell");
+  qk.t = new Object();
+  qk.t.sln = new Object();
+  qk.t.sln.s = -1;
+  qk.t.lang = new Object();
+  qk.t.lang.s = -1;
+  qk.t.span = new Object();
+  qk.t.span.s = -1;
   function send(key){
-   shell = new ActiveXObject("WScript.Shell");
-   shell.AppActivate('CaptionNet');
-   shell.SendKeys(key);
+   qk.shell.AppActivate('CaptionNet');
+   qk.shell.SendKeys(key);
   }
   function captionNet(){
-   shell = new ActiveXObject("WScript.Shell");
-   shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
+   qk.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
+  }
+  function sln(el, action){
+   if(action=='set'){
+    if(qk.t.sln.s < 0){
+     send('{ENTER}sln');
+     el.innerHTML = '0:00';
+     qk.t.sln.s = 0;
+     qk.t.sln.i = setInterval(function(){
+      qk.t.sln.s++;
+      el.innerHTML = Math.floor(qk.t.sln.s/60)+':'+(qk.t.sln.s-Math.floor(qk.t.sln.s/60));
+      sln(el,'check');
+     }, 1000);
+    }
+    else{
+     clearInterval(qk.t.sln.i)
+     el.innerHTML = 'sln';
+     qk.t.sln.s = -1;
+     el.style.backgroundColor = transparent;
+    }
+   }
+   else{
+    switch(qk.t.sln.s){
+     case 60:
+      el.style.backgroundColor = 'orange';
+      break;
+     case 300:
+      el.style.backgroundColor = 'red';
+      break;
+    }
+   }
   }
  </script>
 </body>
