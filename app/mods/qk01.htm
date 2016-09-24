@@ -75,8 +75,8 @@ td{
   </table>
   <table>
    <tr>
-    <td onclick="lang(this,'set')">lang</td>
-    <td onclick="scap(this,'set')">scap</td>
+    <td onclick="lang(this,'set')">olangcall</td>
+    <td onclick="scap(this,'set')">scapinit</td>
     <td width=40px onclick="clear(this.parentNode)"><img class="icon" src="ico/del.png"></td>
    </tr>
   </table>
@@ -172,7 +172,7 @@ td{
   }
   function scap(el){
    if(pk.t.scap.i < 0){
-    switch(el.innerHTML){
+    switch(el.innerHTML.splice(4)){
      case 'scap':
       send('{ENTER}scapinit1{ENTER}scapinit2');
       el.innerHTML = '10:00';
@@ -181,11 +181,14 @@ td{
        qk.t.scap.s++;
        var s = ('0'+(qk.t.scap.s-(60*Math.floor(qk.t.scap.s/60)))).slice(-2);
        var m = Math.floor(qk.t.scap.s/60);
-       el.innerHTML = m+':'+s;
+       el.innerHTML = 'tran '+m+':'+s;
        scap(el);
       }, 1000);
       break;
-     case 'not':
+     case 'tran':
+      send('{ENTER}scaptrans');
+      break;
+     case 'not ':
       send('{ENTER}scapnot');
       break;
      case 'canc':
