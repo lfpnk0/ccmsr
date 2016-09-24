@@ -145,7 +145,7 @@ td{
   }
   function olang(el, method){
    if(method=='click' || qk.t.lang.s==0){
-    switch(el.innerHTML.splice(6)){
+    switch(el.innerHTML.slice(6)){
      case 'olangc':
       send('{ENTER}olangcall');
       el.innerHTML = 'stndby 300';
@@ -175,7 +175,7 @@ td{
   }
   function scap(el,method){
    if(method == 'click' || qk.t.scap.s==0){
-    switch(el.innerHTML.splice(5)){
+    switch(el.innerHTML.slice(5)){
      case 'scapi':
       send('{ENTER}scapinit1{ENTER}scapinit2');
       el.innerHTML = 'scaptrans 30';
@@ -183,7 +183,7 @@ td{
       qk.t.scap.txt = 'scaptrans';
       qk.t.scap.i = setInterval(function(){
        qk.t.scap.s--;
-       var s = ('0'+s).splice(-2);
+       var s = ('0'+s).slice(-2);
        el.innerHTML = qk.t.scap.txt+' '+s;
        scap(el);
       }, 1000);
@@ -201,7 +201,7 @@ td{
       qk.t.scap.txt = '2-scaptrans';
       qk.t.scap.i = setInterval(function(){
        qk.t.scap.s--;
-       var s = ('0'+s).splice(-2);
+       var s = ('0'+s).slice(-2);
        el.innerHTML = qk.t.scap.txt+' '+s;
        scap(el);
       }, 1000);
