@@ -68,7 +68,7 @@ td{
   </table>
   <table class="alt">
    <tr>
-    <td id="sln" onclick="send2('{ENTER}sln ',sln);">sln</td>
+    <td onclick="send2('{ENTER}sln ',this);">sln</td>
     <td onclick="send('{ENTER}clhd');">clhd</td>
     <td onclick="send('{ENTER}mscply');">mscply</td>
    </tr>
@@ -125,12 +125,11 @@ td{
    qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
    qk.shell.SendKeys(key);
   }
-  function send2(key, a){
-   var proc = (typeof a !== 'undefined')?  proc : false;
-   alert(proc);
+  function send2(key, el){
    qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
    qk.shell.SendKeys(key);
-   if(proc){
+   if(typeof el !== 'undefined'){
+    var proc = el.innerHTML;
     qk.p[proc].i = setInterval(qk.p[proc].f,1000);
    }
   }
