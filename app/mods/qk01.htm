@@ -75,7 +75,7 @@ td{
   </table>
   <table>
    <tr>
-    <td onclick="lang(this,'click');">olangcall</td>
+    <td onclick="olang(this,'click');">olangcall</td>
     <td onclick="scap(this,'click');">scapinit</td>
     <td width=40px onclick="clear(this.parentNode);"><img class="icon" src="ico/del.png"></td>
    </tr>
@@ -143,7 +143,7 @@ td{
     }
    }
   }
-  function lang(el, method){
+  function olang(el, method){
    if(method=='click' || qk.t.lang.s==0){
     switch(el.innerHTML.splice(6)){
      case 'olangc':
@@ -155,7 +155,7 @@ td{
        qk.t.lang.s--;
        var s = ('0'+qk.t.lang.s).slice(-2);
        el.innerHTML = qk.t.lang.txt+' '+s;
-       lang(el, 'check');
+       olang(el, 'check');
       }, 1000);
       break;
      case 'stndby':
