@@ -12,10 +12,11 @@ body{
  text-align:center;
  background-color:LightSteelBlue;
  padding:0.5em;
+ border: 1px solid black;
 }
 .titleBar td{
  border:0px solid black;
- border-bottom: 1px solid black;
+ 
  text-align:center;
  width: 40px;
  cursor: pointer;
