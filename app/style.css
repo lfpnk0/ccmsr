@@ -1,0 +1,8 @@
+*{ 
+ margin: 0px; 
+ padding: 0px; 
+}   
+iframe{ 
+ border: 1px solid red; 
+ width: 200px; 
+} 
