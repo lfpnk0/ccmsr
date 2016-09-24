@@ -68,15 +68,15 @@ td{
   </table>
   <table class="alt">
    <tr>
-    <td onclick="sln(this,'set');">sln</td>
+    <td onclick="sln(this,'click');">sln</td>
     <td onclick="send('{ENTER}clhd')">clhd</td>
     <td onclick="send('{ENTER}mscply')">mscply</td>
    </tr>
   </table>
   <table>
    <tr>
-    <td onclick="lang(this,'set')">olangcall</td>
-    <td onclick="scap(this,'set')">scapinit</td>
+    <td onclick="lang(this,'click')">olangcall</td>
+    <td onclick="scap(this,'click')">scapinit</td>
     <td width=40px onclick="clear(this.parentNode)"><img class="icon" src="ico/del.png"></td>
    </tr>
   </table>
@@ -109,8 +109,8 @@ td{
   function captionNet(){
    qk.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
   }
-  function sln(el, action){
-   if(action=='set'){
+  function sln(el, method){
+   if(method=='set'){
     if(qk.t.sln.s < 0){
      send('{ENTER}sln');
      el.innerHTML = '5:00';
@@ -137,13 +137,14 @@ td{
       break;
      case 0:
       el.style.backgroundColor = 'red';
+      pk.shell.SendKeys("%c");
       clearInterval(qk.t.sln.i);
       qk.t.sln.i = -1;
       break;
     }
    }
   }
-  function lang(el){
+  function lang(el, method){
    if(pk.t.lang.i < 0){
     send('{ENTER}olangcall');
     el.innerHTML = '10:00';
@@ -170,8 +171,8 @@ td{
     }
    }
   }
-  function scap(el,action){
-   if(action == 'click'){
+  function scap(el,method){
+   if(method == 'click'){
     switch(el.innerHTML.splice(4)){
      case 'scap':
       send('{ENTER}scapinit1{ENTER}scapinit2');
