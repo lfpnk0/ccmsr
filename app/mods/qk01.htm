@@ -68,30 +68,16 @@ td{
   </table>
   <table class="alt">
    <tr>
-    <td onclick="sln(this,'set');">sln2</td>
+    <td onclick="sln(this,'set');">sln</td>
     <td onclick="send('{ENTER}clhd')">clhd</td>
     <td onclick="send('{ENTER}mscply')">mscply</td>
    </tr>
   </table>
   <table>
    <tr>
-    <td onclick="send('{ENTER}olangcall')">Lang5</td>
-    <td onclick="send('{ENTER}stndby')">Stdby5</td>
-    <td onclick="send('{ENTER}olang')">Lang</td>
-   </tr>
-  </table>
-  <table class="alt">
-   <tr>
-    <td onclick="send('{ENTER}spanotn')">spanotn</td>
-    <td onclick="send('{ENTER}scapinit1{ENTER}scapinit2')">scapinit (30)</td>
-    <td onclick="send('{ENTER}scaptrans')">scaptrans</td>
-   </tr>
-  </table>
-  <table>
-   <tr>
-    <td onclick="send('{ENTER}scapnot')">scapnot (60)</td>
-    <td onclick="send('{ENTER}scaptrans')">scaptrans</td>
-    <td onclick="send('{ENTER}scapcanc')">scapcanc</td>
+    <td onclick="lang(this,'set')">lang</td>
+    <td onclick="scap(this,'set')">scap</td>
+    <td onclick="clear(this.parent())">clear</td>
    </tr>
   </table>
   <table>
@@ -114,8 +100,8 @@ td{
   qk.t.sln.s = -1;
   qk.t.lang = new Object();
   qk.t.lang.s = -1;
-  qk.t.span = new Object();
-  qk.t.span.s = -1;
+  qk.t.scap = new Object();
+  qk.t.scap.s = -1;
   function send(key){
    qk.shell.AppActivate('CaptionNet');
    qk.shell.SendKeys(key);
@@ -127,8 +113,8 @@ td{
    if(action=='set'){
     if(qk.t.sln.s < 0){
      send('{ENTER}sln');
-     el.innerHTML = '0:00';
-     qk.t.sln.s = 0;
+     el.innerHTML = '5:00';
+     qk.t.sln.s = 300;
      qk.t.sln.i = setInterval(function(){
       qk.t.sln.s++;
       var s = ('0'+(qk.t.sln.s-(60*Math.floor(qk.t.sln.s/60)))).slice(-2);
@@ -138,7 +124,7 @@ td{
      }, 1000);
     }
     else{
-     clearInterval(qk.t.sln.i)
+     if(qk.t.sln.i > 0){clearInterval(qk.t.sln.i);}
      el.innerHTML = 'sln';
      qk.t.sln.s = -1;
      el.style.backgroundColor = 'transparent';
@@ -146,11 +132,62 @@ td{
    }
    else{
     switch(qk.t.sln.s){
-     case 60:
+     case 240:
       el.style.backgroundColor = 'orange';
       break;
-     case 300:
+     case 0:
       el.style.backgroundColor = 'red';
+      clearInterval(qk.t.sln.i);
+      qk.t.sln.i = -1;
+      break;
+    }
+   }
+  }
+  function lang(el){
+   if(pk.t.lang.i < 0){
+    send('{ENTER}olangcall');
+    el.innerHTML = '10:00';
+    qk.t.lang.s = 300;
+    qk.t.lang.i = setInterval(function(){
+     qk.t.lang.s++;
+     var s = ('0'+(qk.t.lang.s-(60*Math.floor(qk.t.lang.s/60)))).slice(-2);
+     var m = Math.floor(qk.t.lang.s/60);
+     el.innerHTML = m+':'+s;
+     lang(el,'check');
+    }, 1000);
+   }
+   else{
+    switch(qk.t.lang.s){
+     case 300:
+      send('{ENTER}stndby');
+      break;
+     case 0:
+      send('{ENTER}olang');
+      el.style.backgroundColor = 'red';
+      clearInterval(qk.t.lang.i);
+      qk.t.sln.i = -1;
+      break;
+    }
+   }
+  }
+  function scap(el){
+   if(pk.t.scap.i < 0){
+    send('{ENTER}scapinit1{ENTER}scapinit2');
+    el.innerHTML = '10:00';
+    qk.t.scap.s = 300;
+    qk.t.scap.i = setInterval(function(){
+     qk.t.scap.s++;
+     var s = ('0'+(qk.t.scap.s-(60*Math.floor(qk.t.scap.s/60)))).slice(-2);
+     var m = Math.floor(qk.t.scap.s/60);
+     el.innerHTML = m+':'+s;
+     scap(el,'check');
+    }, 1000);
+   }
+   else{
+    switch(qk.t.scap.s){
+     case 300:
+      break;
+     case 0:
       break;
     }
    }
