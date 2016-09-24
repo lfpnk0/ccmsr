@@ -125,7 +125,8 @@ td{
    qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
    qk.shell.SendKeys(key);
   }
-  function send2(key,proc=false){
+  function send2(key, a){
+   var proc = (typeof a !== 'undefined')?  proc : false;
    qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
    qk.shell.SendKeys(key);
    if(proc){
