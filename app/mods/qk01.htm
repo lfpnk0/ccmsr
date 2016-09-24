@@ -1,14 +1,7 @@
 <html>
 <head>
+<link href='base.css' rel='stylesheet' type='text/css'>
 <style>
-*{
- padding:0px;
- margin:0px;
-}
-body{
- width:225px;
- overflow:hidden;
-}
 table{
  width:225px;
  border-collapse: collapse;
@@ -22,26 +15,13 @@ td{
 .alt{
  background-color:gray;
 }
-.titleBar{
- text-align:center;
- background-color:black;
- color:white;
- padding:0.5em;
-}
-.titleBar td{
- width: 25px;
- cursor: pointer;
-}
-.titleBar .nth-child(2){
- width: 175px;
-}
 </style>
 </head>
 <body>
  <table class="titleBar">
   <tr>
-   <td onclick="settings()">S</td>
-   <td onclick="collapse()">QuickKeys</td>
+   <td onclick="settings()"><img class="icon" src="settings-6"></td>
+   <td class="title" onclick="collapse()">QuickKeys</td>
    <td onclick="captionNet()">C</td>
   </tr>
  </table>
