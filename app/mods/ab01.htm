@@ -1,0 +1,85 @@
+<html>
+<head>
+<style>
+@font-face {
+     font-family: icon;
+     src: url('http://lfpnk0.github.io/ccmsr/fonts/glyphicons-halflings-regular.woff');
+}
+.icon{
+  font-family: icon;
+}
+*{
+ padding:0px;
+ margin:0px;
+}
+body{
+ width:225px;
+ overflow:hidden;
+}
+table{
+ width:225px;
+ border-collapse: collapse;
+}
+td{
+ border:1px solid black;
+ text-align:center;
+ padding-top: 0.5em;
+ padding-bottom: 0.5em;
+}
+.titleBar{
+ text-align:center;
+ background-color:black;
+ color:white;
+ padding:0.5em;
+}
+.titleBar td{
+ width: 25px;
+ cursor: pointer;
+}
+.titleBar .nth-child(2){
+ width: 175px;
+}
+</style>
+</head>
+<body>
+ <table class="titleBar">
+  <tr>
+   <!-- row of icons to open apps, 1 icon to collapse content -->
+   <td class="icon" onclick="open()">A</td>
+   <td class="icon" onclick="open()">B</td>
+   <td class="icon" onclick="open()">C</td>
+  </tr>
+ </table>
+ <div id="content" style="display:block;">
+ </div>
+ <div id="settings" style="display:none;">
+ </div>
+ <script>
+  function open(path){
+   shell = new ActiveXObject("WScript.Shell");
+   shell.exec(path);
+  }
+  function collapse(){
+   var c = document.getElementById('content').style.display;
+   var s = document.getElementById('settings').style.display;
+   if(s == 'block' || c == 'block'){
+    document.getElementById('content').style.display = 'none';
+    document.getElementById('settings').style.display = 'none';
+   }
+   else{
+    document.getElementById('content').style.display = 'block';
+   }
+  }
+  function settings(){
+   var c = document.getElementById('content').style.display;
+   if(c == 'block'){
+    document.getElementById('content').style.display = 'none';
+    document.getElementById('settings').style.display = 'block';
+   }
+   else{
+    document.getElementById('content').style.display = 'block';
+    document.getElementById('settings').style.display = 'none';
+   }
+  }
+ </script>
+</html>
