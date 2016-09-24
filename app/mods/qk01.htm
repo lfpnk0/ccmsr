@@ -110,7 +110,7 @@ td{
    qk.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
   }
   function sln(el, method){
-   if(method=='set'){
+   if(method=='click'){
     if(qk.t.sln.s < 0){
      send('{ENTER}sln');
      el.innerHTML = '5:00';
@@ -222,10 +222,16 @@ td{
    }
   }
   function clear(p){
-   clearInterval(pk.t.lang.i);
+   if(pk.t.lang.i > 0){
+    clearInterval(pk.t.lang.i);
+    pk.t.lang.i = -1
+   }
    p.children[0].backgroundColor = 'transparent';
    p.children[0].innerHTML = 'lang';
-   clearInterval(pk.t.scap.i);
+   if(pk.t.scap.i > 0){
+    clearInterval(pk.t.scap.i);
+    pk.t.scap.i = -1;
+   }
    p.children[1].backgroundColor = 'transparent';
    p.children[1].innerHTML = 'scapinit';
   }
