@@ -131,7 +131,7 @@ td{
      qk.t.sln.s = 0;
      qk.t.sln.i = setInterval(function(){
       qk.t.sln.s++;
-      el.innerHTML = Math.floor(qk.t.sln.s/60)+':'+(qk.t.sln.s-Math.floor(qk.t.sln.s/60));
+      el.innerHTML = Math.floor(qk.t.sln.s/60)+':'+(qk.t.sln.s-(60*Math.floor(qk.t.sln.s/60)));
       sln(el,'check');
      }, 1000);
     }
