@@ -68,14 +68,14 @@ td{
   </table>
   <table class="alt">
    <tr>
-    <td id="sln" onclick="send('{ENTER}sln ',this);">sln</td>
+    <td id="sln" onclick="send('{ENTER}sln ',this.id);">sln</td>
     <td onclick="send('{ENTER}clhd');">clhd</td>
     <td onclick="send('{ENTER}mscply');">mscply</td>
    </tr>
   </table>
   <table>
    <tr>
-    <td id="olangcall" onclick="olang(this,'click');">olangcall</td>
+    <td id="lang1" onclick="send('{ENTER}olangcall ',this.id);">olangcall</td>
     <td id="stndby" onclick="olang(this,'click');">stndby</td>
     <td id="olang" onclick="olang(this,'click');">olang</td>
     <td id="scapinit" onclick="scap(this,'click');">scapinit</td>
@@ -118,19 +118,18 @@ td{
    if(qk.p.sln.s==240){document.getElementById('sln').style.backgroundColor = 'orange';}
    if(qk.p.sln.s==0){document.getElementById('sln').style.backgroundColor = 'red';clearInterval(qk.p.sln.i);qk.p.sln.s=300;}
   }
-  qk.p.olangcall = new Object();
+  qk.p.lang1 = new Object();
   
   
   function captionNet(){
    qk.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
   }
 
-  function send(key, el){
+  function send(key, id){
    qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
    qk.shell.SendKeys(key);
-   if(typeof el !== 'undefined'){
-    var proc = el.innerHTML;
-    qk.p[proc].i = setInterval(qk.p[proc].f,1000);
+   if(typeof id !== 'undefined'){
+    qk.p[id].i = setInterval(qk.p[id].f,1000);
    }
   }
   function fsln(){
