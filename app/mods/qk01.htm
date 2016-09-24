@@ -108,24 +108,24 @@ td{
   qk.t.lang.s = -1;
   qk.t.scap = new Object();
   qk.t.scap.s = -1;
+  
   qk.p = new Object();
   qk.p.sln = new Object();
-  qk.p.sln.s = 245;
+  qk.p.sln.s = 300;
   qk.p.sln.f = function(){
    qk.p.sln.s--;
    document.getElementById('sln').innerHTML = 'sln ('+qk.p.sln.s+')';
    if(qk.p.sln.s==240){document.getElementById('sln').style.backgroundColor = 'orange';}
    if(qk.p.sln.s==0){document.getElementById('sln').style.backgroundColor = 'red';clearInterval(qk.p.sln.i);qk.p.sln.s=300;}
   }
+  pk.p.olangcall = new Object();
+  
   
   function captionNet(){
    qk.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
   }
-  function send(key){
-   qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
-   qk.shell.SendKeys(key);
-  }
-  function send2(key, el){
+
+  function send(key, el){
    qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
    qk.shell.SendKeys(key);
    if(typeof el !== 'undefined'){
