@@ -10,12 +10,11 @@ body{
  width:225px;
  border-collapse: collapse;
  text-align:center;
- background-color:black;
- color:white;
+ background-color:#396DA6;
  padding:0.5em;
 }
 .titleBar td{
- border:1px solid black;
+ border:0px solid black;
  text-align:center;
  width: 25px;
  cursor: pointer;
