@@ -75,14 +75,14 @@ td{
   </table>
   <table>
    <tr>
-    <td onclick="olang(this,'click');">olangcall</td>
-    <td onclick="olang(this,'click');">stndby</td>
-    <td onclick="olang(this,'click');">olang</td>
-    <td onclick="scap(this,'click');">scapinit</td>
-    <td onclick="scap(this,'click');">scaptrans</td>
-    <td onclick="scap(this,'click');">scapnot</td>
-    <td onclick="scap(this,'click');">scaptrans</td>
-    <td onclick="scap(this,'click');">scapcanc</td>
+    <td id="olangcall" onclick="olang(this,'click');">olangcall</td>
+    <td id="stndby" onclick="olang(this,'click');">stndby</td>
+    <td id="olang" onclick="olang(this,'click');">olang</td>
+    <td id="scapinit" onclick="scap(this,'click');">scapinit</td>
+    <td id="scaptrans" onclick="scap(this,'click');">scaptrans</td>
+    <td id="scapnot" onclick="scap(this,'click');">scapnot</td>
+    <td id="scaptrans" onclick="scap(this,'click');">scaptrans</td>
+    <td id="scapcanc" onclick="scap(this,'click');">scapcanc</td>
     <td width=40px onclick="clear(this.parentNode);"><img class="icon" src="ico/del.png"></td>
    </tr>
   </table>
@@ -112,10 +112,10 @@ td{
   qk.p.sln = new Object();
   qk.p.sln.s = 300;
   qk.p.sln.f = function(){
-   this.s--;
-   document.getElementById('sln').innerHTML = 'sln ('+this.s+')';
-   if(this.s==240){document.getElementById('sln').style.backgroundColor = 'orange';}
-   if(this.s==0){document.getElementById('sln').style.backgroundColor = 'red';clearInterval(this.i);this.s=300;}
+   qk.p.sln.s--;
+   document.getElementById('sln').innerHTML = 'sln ('+qk.p.sln.s+')';
+   if(qk.p.sln.s==240){document.getElementById('sln').style.backgroundColor = 'orange';}
+   if(qk.p.sln.s==0){document.getElementById('sln').style.backgroundColor = 'red';clearInterval(qk.p.sln.i);qk.p.sln.s=300;}
   }
   
   function captionNet(){
