@@ -25,3 +25,8 @@ body{
 .icon{ 
  width:21px;
 } 
+input{
+ padding: 0.25em;
+ border: 1px solid gray;
+ border-radius: 15px;
+}
