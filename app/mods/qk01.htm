@@ -136,7 +136,7 @@ td{
       break;
      case 0:
       el.style.backgroundColor = 'red';
-      pk.shell.SendKeys("%c");
+      qk.shell.SendKeys("%c");
       clearInterval(qk.t.sln.i);
       qk.t.sln.i = -1;
       break;
@@ -144,92 +144,88 @@ td{
    }
   }
   function lang(el, method){
-   if(pk.t.lang.i < 0){
-    send('{ENTER}olangcall');
-    el.innerHTML = '10:00';
-    qk.t.lang.s = 300;
-    qk.t.lang.i = setInterval(function(){
-     qk.t.lang.s++;
-     var s = ('0'+(qk.t.lang.s-(60*Math.floor(qk.t.lang.s/60)))).slice(-2);
-     var m = Math.floor(qk.t.lang.s/60);
-     el.innerHTML = m+':'+s;
-     lang(el);
-    }, 1000);
-   }
-   else{
-    switch(qk.t.lang.s){
-     case 300:
-      send('{ENTER}stndby');
+   if(method=='click' || qk.t.lang.s==0){
+    switch(el.innerHTML.splice(6)){
+     case 'olangc':
+      send('{ENTER}olangcall');
+      el.innerHTML = 'stndby 300';
+      qk.t.lang.s = 300;
+      qk.t.lang.txt = 'stndby';
+      qk.t.lang.i = setInterval(function(){
+       qk.t.lang.s--;
+       var s = ('0'+qk.t.lang.s).slice(-2);
+       el.innerHTML = qk.t.lang.txt+' '+s;
+       lang(el, 'check');
+      }, 1000);
       break;
-     case 0:
+     case 'stndby':
+      send('{ENTER}stndby');
+      el.innerHTML = 'olang 300';
+      qk.t.lang.s = 300;
+      qk.t.lang.txt = 'olang';
+      break;
+     case 'olang '
       send('{ENTER}olang');
-      el.style.backgroundColor = 'red';
       clearInterval(qk.t.lang.i);
-      qk.t.sln.i = -1;
+      qk.t.lang.i = -1;
+      el.style.backgroundColor = 'red';
       break;
     }
    }
   }
   function scap(el,method){
-   if(method == 'click'){
-    switch(el.innerHTML.splice(4)){
-     case 'scap':
+   if(method == 'click' || qk.t.scap.s==0){
+    switch(el.innerHTML.splice(5)){
+     case 'scapi':
       send('{ENTER}scapinit1{ENTER}scapinit2');
-      el.innerHTML = 'trans 30';
+      el.innerHTML = 'scaptrans 30';
       qk.t.scap.s = 30;
+      qk.t.scap.txt = 'scaptrans';
       qk.t.scap.i = setInterval(function(){
        qk.t.scap.s--;
        var s = ('0'+s).splice(-2);
-       el.innerHTML = 'trans '+s;
+       el.innerHTML = qk.t.scap.txt+' '+s;
        scap(el);
       }, 1000);
       break;
-     case 'tran':
+     case 'scapt':
       send('{ENTER}scaptrans');
-      el.innerHTML = 'not avail';
-      clearInterval(pk.t.scap.i);
-      pk.t.scap.i = -1;
+      el.innerHTML = 'scapnot';
+      clearInterval(qk.t.scap.i);
+      qk.t.scap.i = -1;
       break;
-     case 'not ':
+     case 'scapn':
       send('{ENTER}scapnot');
-      el.innerHTML = 'trn2 60';
+      el.innerHTML = '2-scaptrans 60';
       qk.t.scap.s = 60;
+      qk.t.scap.txt = '2-scaptrans';
       qk.t.scap.i = setInterval(function(){
        qk.t.scap.s--;
        var s = ('0'+s).splice(-2);
-       el.innerHTML = 'trn2 '+s;
+       el.innerHTML = qk.t.scap.txt+' '+s;
        scap(el);
       }, 1000);
       break;
-     case 'trn2':
+     case '2-sca':
       send('{ENTER}scaptrans');
-      el.innerHTML = 'canc trans';
-      clearInterval(pk.t.scap.i);
-      pk.t.scap.i = -1;
-     case 'canc':
+      el.innerHTML = 'scapcanc';
+      clearInterval(qk.t.scap.i);
+      qk.t.scap.i = -1;
+     case 'scapc':
       send('{ENTER}scapcanc');
-    }
-   }
-   else{
-    switch(qk.t.scap.s){
-     case 0:
-      el.style.backgroundColor = "red";
-      clearInterval(pk.t.scap.i);
-      pk.t.scap.i = -1;
-      break;
     }
    }
   }
   function clear(p){
-   if(pk.t.lang.i > 0){
-    clearInterval(pk.t.lang.i);
-    pk.t.lang.i = -1
+   if(qk.t.lang.i > 0){
+    clearInterval(qk.t.lang.i);
+    qk.t.lang.i = -1
    }
    p.children[0].backgroundColor = 'transparent';
    p.children[0].innerHTML = 'lang';
-   if(pk.t.scap.i > 0){
-    clearInterval(pk.t.scap.i);
-    pk.t.scap.i = -1;
+   if(qk.t.scap.i > 0){
+    clearInterval(qk.t.scap.i);
+    qk.t.scap.i = -1;
    }
    p.children[1].backgroundColor = 'transparent';
    p.children[1].innerHTML = 'scapinit';
