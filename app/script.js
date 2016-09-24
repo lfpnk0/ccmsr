@@ -1,2 +1,2 @@
 window.moveTo(0, 0);
-window.resizeTo(200, screen.availHeight);
+window.resizeTo(201, screen.availHeight);
