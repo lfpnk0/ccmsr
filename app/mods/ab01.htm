@@ -1,13 +1,6 @@
 <html>
 <head>
 <style>
-@font-face {
-     font-family: icon;
-     src: url('http://lfpnk0.github.io/ccmsr/fonts/glyphicons-halflings-regular.woff');
-}
-.icon{
-  font-family: icon;
-}
 *{
  padding:0px;
  margin:0px;
@@ -16,17 +9,9 @@ body{
  width:225px;
  overflow:hidden;
 }
-table{
+.titleBar{
  width:225px;
  border-collapse: collapse;
-}
-td{
- border:1px solid black;
- text-align:center;
- padding-top: 0.5em;
- padding-bottom: 0.5em;
-}
-.titleBar{
  text-align:center;
  background-color:black;
  color:white;
@@ -35,19 +20,43 @@ td{
 .titleBar td{
  width: 25px;
  cursor: pointer;
+ text-align:center;
 }
-.titleBar .nth-child(2){
- width: 175px;
+.icon{
+ width:25px;
 }
 </style>
 </head>
 <body>
  <table class="titleBar">
   <tr>
-   <!-- row of icons to open apps, 1 icon to collapse content -->
-   <td class="icon" onclick="open()">A</td>
-   <td class="icon" onclick="open()">B</td>
-   <td class="icon" onclick="open()">C</td>
+   <td onclick="open(schedule)">
+    <img class="icon" src="/img/calendar-3.png">
+   </td>
+   <td onclick="open(training)">
+    <img class="icon" src="/img/agenda.png">
+   </td>
+   <td onclick="open(calculator)">
+    <img class="icon" src="/img/calculator-1.png">
+   </td>
+   <td onclick="open(portal)">
+    <img class="icon" src="/img/home1.png">
+   </td>
+   <td onclick="open()">
+    <img class="icon" src="/img/agenda.png">
+   </td>
+   <td onclick="open()">
+    <img class="icon" src="/img/agenda.png">
+   </td>
+   <td onclick="open()">
+    <img class="icon" src="/img/agenda.png">
+   </td>
+   <td onclick="open()">
+    <img class="icon" src="/img/agenda.png">
+   </td>
+   <td onclick="open()">
+    <img class="icon" src="/img/settings-6.png">
+   </td>
   </tr>
  </table>
  <div id="content" style="display:block;">
