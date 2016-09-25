@@ -68,7 +68,7 @@ td{
   </table>
   <table class="alt">
    <tr>
-    <td id="sln" onclick="send('{ENTER}sln ',this.id);">sln</td>
+    <td id="sln" onclick="send(this.id);">sln</td>
     <td onclick="send('{ENTER}clhd');">clhd</td>
     <td onclick="send('{ENTER}mscply');">mscply</td>
    </tr>
@@ -76,13 +76,13 @@ td{
   <table>
    <tr>
     <td id="lang1" onclick="send('{ENTER}olangcall ',this.id);">olangcall</td>
-    <td id="stndby" onclick="olang(this,'click');">stndby</td>
-    <td id="olang" onclick="olang(this,'click');">olang</td>
-    <td id="scapinit" onclick="scap(this,'click');">scapinit</td>
-    <td id="scaptrans" onclick="scap(this,'click');">scaptrans</td>
-    <td id="scapnot" onclick="scap(this,'click');">scapnot</td>
-    <td id="scaptrans" onclick="scap(this,'click');">scaptrans</td>
-    <td id="scapcanc" onclick="scap(this,'click');">scapcanc</td>
+    <td id="lang2" style="display:none" onclick="send('{ENTER}stndby ',this.id);">stndby</td>
+    <td id="lang3" style="display:none" onclick="send('{ENTER}olang ',this.id);">olang</td>
+    <td id="scap1" onclick="scap(this,'click');">scapinit</td>
+    <td id="scap2" onclick="scap(this,'click');">scaptrans</td>
+    <td id="scap3" onclick="scap(this,'click');">scapnot</td>
+    <td id="scap4" onclick="scap(this,'click');">scaptrans</td>
+    <td id="scap5" onclick="scap(this,'click');">scapcanc</td>
     <td width=40px onclick="clear(this.parentNode);"><img class="icon" src="ico/del.png"></td>
    </tr>
   </table>
@@ -101,103 +101,118 @@ td{
   window.parent.document.getElementById('qk').height = '420px'; //402 px
   qk = new Object();
   qk.shell = new ActiveXObject("WScript.Shell");
-  qk.t = new Object();
-  qk.t.sln = new Object();
-  qk.t.sln.s = -1;
-  qk.t.lang = new Object();
-  qk.t.lang.s = -1;
-  qk.t.scap = new Object();
-  qk.t.scap.s = -1;
   
   qk.p = new Object();
   qk.p.sln = new Object();
   qk.p.sln.s = 300;
   qk.p.sln.f = function(){
+   send('{ENTER}sln ');
    qk.p.sln.s--;
    document.getElementById('sln').innerHTML = 'sln ('+qk.p.sln.s+')';
    if(qk.p.sln.s==240){document.getElementById('sln').style.backgroundColor = 'orange';}
    if(qk.p.sln.s==0){document.getElementById('sln').style.backgroundColor = 'red';clearInterval(qk.p.sln.i);qk.p.sln.s=300;}
   }
   qk.p.lang1 = new Object();
+  qk.p.lang1.s = 300;
+  qk.p.lang1.f = function(){
+   send('{ENTER}olangcall ');
+   document.getElementById('lang1').style.display = 'none';
+   document.getElementById('lang2').style.display = 'table-cell';
+   document.getElementById('lang2').innerHTML = 'stndby ('+qk.p.lang1.s+')';
+   if(qk.p.lang1.s==0){
+    qk.p.lang2.f();
+   }
+  }
+  qk.p.lang2 = new Object();
+  qk.p.lang2.s = 300;
+  qk.p.lang2.f = function(){
+   clearInterval(qk.p.lang1.i);
+   qk.p.lang1.s=300;
+   document.getElementById('lang2').innerHTML = 'stndby';
+   send('{ENTER}stndby ');
+   document.getElementById('lang2').style.display = 'none';
+   document.getElementById('lang3').style.display = 'table-cell';
+   document.getElementById('lang3').innerHTML = 'olang ('+qk.p.lang2.s+')';
+   if(qk.p.lang2.s==0){
+    send('{ENTER}olang ');
+    document.getElementById('lang3').style.backgroundColor = 'red';
+    clearInterval(qk.p.lang2.i);
+    qk.p.lang2.s=300;
+   }
+  }
+  qk.p.lang3 = new Object();
+  qk.p.lang3.f = function(){
+   document.getElementById('lang3').innerHTML = 'olang';
+   document.getElementById('lang3').style.backgroundColor = 'transparent';
+   document.getElementById('lang3').style.display = 'none';
+   document.getElementById('lang1').style.display = 'table-cell';
+   clearInterval(qk.p.lang3.i);
+   }
+  }
   
-  
+  qk.p.scap1 = new Object();
+  qk.p.scap1.s = 30;
+  qk.p.scap1.f = function(){
+   send('{ENTER}scapinit1 {ENTER}scapinit2 ');
+   document.getElementById('scap1').style.display = 'none';
+   document.getElementById('scap2').style.display = 'table-cell';
+   document.getElementById('scap2').innerHTML = 'scaptrans ('+qk.p.scap1.s+')';
+   if(qk.p.scap1.s==0){
+    document.getElementById('scap2').style.backgroundColor = 'red';
+    clearInterval(qk.p.scap1.i);
+    qk.p.scap1.s=30;
+   }
+  }
+  qk.p.scap2 = new Object();
+  qk.p.scap2.f = function(){
+   send('{ENTER}scaptrans ');
+   document.getElementById('scap2').style.backgroundColor = 'transparent';
+   document.getElementById('scap2').style.display = 'none';
+   document.getElementById('scap3').style.display = 'table-cell';
+   clearInterval(qk.p.scap2.i);
+  }
+  qk.p.scap3 = new Object();
+  qk.p.scap3.s = 60;
+  qk.p.scap3.f = function(){
+   send('{ENTER}scapnot ');
+   document.getElementById('scap3').style.display = 'none';
+   document.getElementById('scap4').style.display = 'table-cell';
+   document.getElementById('scap4').innerHTML = 'scaptrans ('+qk.p.scap1.s+')';
+   if(qk.p.scap3.s==0){
+    document.getElementById('scap4').style.backgroundColor = 'red';
+    clearInterval(qk.p.scap3.i);
+    qk.p.scap3.s=60;
+   }
+  }
+  qk.p.scap4 = new Object();
+  qk.p.scap4.f = function(){
+   send('{ENTER}scaptrans ');
+   document.getElementById('scap4').style.backgroundColor = 'transparent';
+   document.getElementById('scap4').style.display = 'none';
+   document.getElementById('scap5').style.display = 'table-cell';
+   clearInterval(qk.p.scap4.i);
+  }
+  qk.p.scap5 = new Object();
+  qk.p.scap5.f = function(){
+   send('{ENTER}scapcanc ');
+   document.getElementById('scap5').style.display = 'none';
+   document.getElementById('scap1').style.display = 'table-cell';
+   clearInterval(qk.p.scap4.i);
+  }
   function captionNet(){
    qk.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
   }
 
-  function send(key, id){
-   qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
-   qk.shell.SendKeys(key);
-   if(typeof id !== 'undefined'){
-    qk.p[id].i = setInterval(qk.p[id].f,1000);
-   }
-  }
-  function fsln(){
-  }
-  function sln(el, method){
-   if(method=='click'){
-    if(qk.t.sln.s < 0){
-     send('{ENTER}sln');
-     el.innerHTML = '5:00';
-     qk.t.sln.s = 300;
-     qk.t.sln.i = setInterval(function(){
-      qk.t.sln.s--;
-      var s = ('0'+qk.t.sln.s).slice(-2)
-      el.innerHTML = 'sln '+s;
-      sln(el,'check');
-     }, 1000);
-    }
-    else{
-     if(qk.t.sln.i > 0){clearInterval(qk.t.sln.i);}
-     qk.t.sln.s = -1;
-     el.innerHTML = 'sln';
-     el.style.backgroundColor = 'transparent';
-    }
+  function send(key){
+   if(typeof qk.p[key].f !== 'undefined'){
+    qk.p[id].i = setInterval(qk.p[key].f,1000);
    }
    else{
-    switch(qk.t.sln.s){
-     case 240:
-      el.style.backgroundColor = 'orange';
-      break;
-     case 0:
-      el.style.backgroundColor = 'red';
-      qk.shell.SendKeys("%c");
-      clearInterval(qk.t.sln.i);
-      qk.t.sln.i = -1;
-      break;
-    }
+    qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
+    qk.shell.SendKeys(key);
    }
   }
-  function olang(el, method){
-   if(method=='click' || qk.t.lang.s==0){
-    switch(el.innerHTML.slice(6)){
-     case 'olangc':
-      send('{ENTER}olangcall');
-      el.innerHTML = 'stndby 300';
-      qk.t.lang.s = 300;
-      qk.t.lang.txt = 'stndby';
-      qk.t.lang.i = setInterval(function(){
-       qk.t.lang.s--;
-       var s = ('0'+qk.t.lang.s).slice(-2);
-       el.innerHTML = qk.t.lang.txt+' '+s;
-       olang(el, 'check');
-      }, 1000);
-      break;
-     case 'stndby':
-      send('{ENTER}stndby');
-      el.innerHTML = 'olang 300';
-      qk.t.lang.s = 300;
-      qk.t.lang.txt = 'olang';
-      break;
-     case 'olang ':
-      send('{ENTER}olang');
-      clearInterval(qk.t.lang.i);
-      qk.t.lang.i = -1;
-      el.style.backgroundColor = 'red';
-      break;
-    }
-   }
-  }
+
   function scap(el,method){
    if(method == 'click' || qk.t.scap.s==0){
     switch(el.innerHTML.slice(5)){
