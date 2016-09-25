@@ -130,7 +130,7 @@ td{
    clearInterval(qk.p.lang1.i);
    qk.p.lang1.s=300;
    document.getElementById('lang2').innerHTML = 'stndby';
-   if(qk.p.lang2.s){send('{ENTER}stndby ');}
+   if(qk.p.lang2.s==300){send('{ENTER}stndby ');}
    document.getElementById('lang2').style.display = 'none';
    document.getElementById('lang3').style.display = 'table-cell';
    document.getElementById('lang3').innerHTML = 'olang ('+qk.p.lang2.s+')';
