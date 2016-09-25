@@ -143,6 +143,8 @@ td{
   }
   qk.p.lang3 = new Object();
   qk.p.lang3.f = function(){
+   clearInterval(qk.p.lang2.i);
+   qk.p.lang2.s=300;
    document.getElementById('lang3').innerHTML = 'olang';
    document.getElementById('lang3').style.backgroundColor = 'transparent';
    document.getElementById('lang3').style.display = 'none';
