@@ -154,6 +154,7 @@ td{
   qk.p.scap1.s = 30;
   qk.p.scap1.f = function(){
    if(qk.p.scap1.s==30){send('{ENTER}scapinit1 {ENTER}scapinit2 ');}
+   qk.p.scap1.s--;
    document.getElementById('scap1').style.display = 'none';
    document.getElementById('scap2').style.display = 'table-cell';
    document.getElementById('scap2').innerHTML = 'scaptrans ('+qk.p.scap1.s+')';
@@ -165,6 +166,8 @@ td{
   }
   qk.p.scap2 = new Object();
   qk.p.scap2.f = function(){
+   clearInterval(qk.p.scap1.i);
+   qk.p.scap1.s=30;
    send('{ENTER}scaptrans ');
    document.getElementById('scap2').style.backgroundColor = 'transparent';
    document.getElementById('scap2').style.display = 'none';
@@ -175,6 +178,7 @@ td{
   qk.p.scap3.s = 60;
   qk.p.scap3.f = function(){
    if(qk.p.scap3.s==60){send('{ENTER}scapnot ');}
+   qk.p.scap3.s--;
    document.getElementById('scap3').style.display = 'none';
    document.getElementById('scap4').style.display = 'table-cell';
    document.getElementById('scap4').innerHTML = 'scaptrans ('+qk.p.scap1.s+')';
@@ -186,6 +190,8 @@ td{
   }
   qk.p.scap4 = new Object();
   qk.p.scap4.f = function(){
+   clearInterval(qk.p.scap3.i);
+   qk.p.scap3.s=60;
    send('{ENTER}scaptrans ');
    document.getElementById('scap4').style.backgroundColor = 'transparent';
    document.getElementById('scap4').style.display = 'none';
