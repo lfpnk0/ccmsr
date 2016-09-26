@@ -167,13 +167,12 @@ td{
   
   qk.p.scap1 = new Object(); //scapinit button
   qk.p.scap1.s = 30;
-  qk.p.scap1.s = 3;
   qk.p.scap1.f = function(){
    //first run
    if(qk.p.scap1.s==30){
     send('{ENTER}scapinit1 {ENTER}scapinit2 ');
     document.getElementById('scap1').style.display = 'none';
-   document.getElementById('scap2').style.display = 'table-cell';
+    document.getElementById('scap2').style.display = 'table-cell';
    }
    //iterations
    qk.p.scap1.s--;
@@ -195,7 +194,6 @@ td{
   }
   qk.p.scap3 = new Object(); //scapnot button
   qk.p.scap3.s = 60;
-  qk.p.scap3.s = 6;
   qk.p.scap3.f = function(){
    //first run
    if(qk.p.scap3.s==60){
