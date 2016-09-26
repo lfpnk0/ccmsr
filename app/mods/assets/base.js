@@ -8,7 +8,7 @@
    }
    else{
     document.getElementById('content').style.display = 'block';
-    window.parent.document.getElementById(mod).height = mod.height;
+    window.parent.document.getElementById(mod.id).height = mod.height;
    }
   }
   function settings(mod){
