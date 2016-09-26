@@ -1,3 +1,28 @@
 <html>
- clock with alarms and links to schedule & timeclock
+<head>
+ <link href='assets/base.css' rel='stylesheet' type='text/css'>
+ <style>
+ </style>
+</head>
+<body>
+ <table class="titleBar">
+  <tr>
+   <td onclick=""><img class="icon" src="ico/cal.png"></td> <!--link to schedule -->
+   <td class="title" onclick="collapse();">Meeting 0:06:00</td>
+   <td onclick=""><img class="icon" src="ico/clock.png"></td> <!--link to timeclock -->
+  </tr>
+ </table>
+ <div id="content" style="display:none;">
+  Form for entering breaks and reminders
+ </div>
+ <div id="settings" style="display:none;">
+  There are currently no settings for this module.
+ </div>
+ <script src="assets/base.js"></script>
+ <script>
+  function open(path){
+   shell = new ActiveXObject('WScript.Shell');
+   shell.exec(path);
+  }
+ </script>
 </html>
