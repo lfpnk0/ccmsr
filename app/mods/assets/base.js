@@ -4,11 +4,11 @@
    if(s == 'block' || c == 'block'){
     document.getElementById('content').style.display = 'none';
     document.getElementById('settings').style.display = 'none';
-    window.parent.document.getElementById(mod).height = '31 px';
+    window.parent.document.getElementById(mod.id).height = '31 px';
    }
    else{
     document.getElementById('content').style.display = 'block';
-    window.parent.document.getElementById(mod).height = [mod].height;
+    window.parent.document.getElementById(mod).height = mod.height;
    }
   }
   function settings(mod){
