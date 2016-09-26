@@ -109,14 +109,20 @@ td{
    if(qk.p.sln.s==300){send('{ENTER}sln ');}
    qk.p.sln.s--;
    document.getElementById('sln').innerHTML = 'sln ('+qk.p.sln.s+')';
-   if(qk.p.sln.s==240){document.getElementById('sln').style.backgroundColor = 'orange';}
-   if(qk.p.sln.s==0){document.getElementById('sln').style.backgroundColor = 'red';clearInterval(qk.p.sln.i);qk.p.sln.s=300;}
+   if(qk.p.sln.s==240){
+    document.getElementById('sln').style.backgroundColor = 'orange';
+   }
+   if(qk.p.sln.s==0){
+    document.getElementById('sln').style.backgroundColor = 'red';
+    clearInterval(qk.p.sln.i);
+    clear();
+   }
   }
   qk.p.lang1 = new Object(); //olangcall button
-  qk.p.lang1.s = 300;
+  qk.p.lang1.s = 30; //300
   qk.p.lang1.f = function(){
    //first run
-   if(qk.p.lang1.s==300){
+   if(qk.p.lang1.s==30){ //300
     send('{ENTER}olangcall ');
     document.getElementById('lang1').style.display = 'none';
     document.getElementById('lang2').style.display = 'table-cell';
@@ -130,10 +136,10 @@ td{
    }
   }
   qk.p.lang2 = new Object(); //stndby button
-  qk.p.lang2.s = 300;
+  qk.p.lang2.s = 30; //300
   qk.p.lang2.f = function(){
    //first run
-   if(qk.p.lang2.s==300){
+   if(qk.p.lang2.s==30){ //300
     clearInterval(qk.p.lang1.i);
     document.getElementById('lang2').innerHTML = 'stndby';
     send('{ENTER}stndby ');
@@ -226,6 +232,8 @@ td{
    }
   }
   function clear(){
+   clearInterval(qk.p.sln.i);
+   qk.p.sln.s=300;
    clearInterval(qk.p.lang1.i);
    qk.p.lang1.s=300;
    document.getElementById('lang1').style.display = 'table-cell';
