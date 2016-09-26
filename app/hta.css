@@ -4,4 +4,6 @@
 }  
 iframe{
   width: 227px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
