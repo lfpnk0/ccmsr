@@ -1,3 +1,30 @@
 <html>
- check gmail and CC messages
+<head>
+ <link href='assets/base.css' rel='stylesheet' type='text/css'>
+ <style>
+ </style>
+</head>
+<body>
+ <table class="titleBar">
+  <tr>
+   <td onclick="settings"><img class="icon" src="ico/settings.png"></td>
+   <td class="title" onclick="collapse();">3 Messages</td>
+   <td onclick=""><img class="icon" src="ico/refresh.png"></td> <!-- manually refresh -->
+  </tr>
+ </table>
+ <div id="content" style="display:none;">
+  Link Gmail with number of new messages <br/>
+  Link to Outlook with number of new messages <br/>
+  Messages Window
+ </div>
+ <div id="settings" style="display:none;">
+  There are currently no settings for this module. But there needs to be for gmail and outlook credentials.
+ </div>
+ <script src="assets/base.js"></script>
+ <script>
+  function open(path){
+   shell = new ActiveXObject('WScript.Shell');
+   shell.exec(path);
+  }
+ </script>
 </html>
