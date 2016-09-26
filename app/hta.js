@@ -5,3 +5,4 @@ function init(){
   document.getElementsByTagName('iframe')[0].height = h;
   document.getElementsByTagName('iframe')[0].contentWindow.document.body = h;
 }
+init();
