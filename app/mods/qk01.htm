@@ -138,10 +138,10 @@ td{
    }
   }
   qk.p.lang2 = new Object(); //stndby button
-  qk.p.lang2.s = 30; //300
+  qk.p.lang2.s = 300; 
   qk.p.lang2.f = function(){
    //first run
-   if(qk.p.lang2.s==30){ //300
+   if(qk.p.lang2.s==300){ 
     clearInterval(qk.p.lang1.i);
     document.getElementById('lang2').innerHTML = 'stndby';
     send('{ENTER}stndby ');
@@ -167,6 +167,7 @@ td{
   
   qk.p.scap1 = new Object(); //scapinit button
   qk.p.scap1.s = 30;
+  qk.p.scap1.s = 3;
   qk.p.scap1.f = function(){
    //first run
    if(qk.p.scap1.s==30){
@@ -194,6 +195,7 @@ td{
   }
   qk.p.scap3 = new Object(); //scapnot button
   qk.p.scap3.s = 60;
+  qk.p.scap3.s = 6;
   qk.p.scap3.f = function(){
    //first run
    if(qk.p.scap3.s==60){
