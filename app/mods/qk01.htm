@@ -131,6 +131,7 @@ td{
    qk.p.lang1.s=300;
    document.getElementById('lang2').innerHTML = 'stndby';
    if(qk.p.lang2.s==300){send('{ENTER}stndby ');}
+   qk.p.lang2.s--;
    document.getElementById('lang2').style.display = 'none';
    document.getElementById('lang3').style.display = 'table-cell';
    document.getElementById('lang3').innerHTML = 'olang ('+qk.p.lang2.s+')';
@@ -183,7 +184,7 @@ td{
    qk.p.scap3.s--;
    document.getElementById('scap3').style.display = 'none';
    document.getElementById('scap4').style.display = 'table-cell';
-   document.getElementById('scap4').innerHTML = 'scaptrans ('+qk.p.scap3.s+')';
+   document.getElementById('scap4').innerHTML = 'scaptrans ('+qk.p.scap3.s+')'; //not incrementing ???
    if(qk.p.scap3.s==0){
     document.getElementById('scap4').style.backgroundColor = 'red';
     clearInterval(qk.p.scap3.i);
@@ -198,7 +199,7 @@ td{
    document.getElementById('scap4').style.backgroundColor = 'transparent';
    document.getElementById('scap4').style.display = 'none';
    document.getElementById('scap5').style.display = 'table-cell';
-   clearInterval(qk.p.scap4.i);
+   clearInterval(qk.p.scap4.i); //keeps looping???
   }
   qk.p.scap5 = new Object();
   qk.p.scap5.f = function(){
