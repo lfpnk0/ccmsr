@@ -1,6 +1,7 @@
 <html>
 <head>
  <link href='assets/base.css' rel='stylesheet' type='text/css'>
+ <embed src="success.wav" autostart="false" width="0" height="0" id="alert" enablejavascript="true">
 <style>
 table{
  width:225px;
@@ -167,10 +168,14 @@ td{
   qk.p.scap1 = new Object(); //scapinit button
   qk.p.scap1.s = 30;
   qk.p.scap1.f = function(){
-   if(qk.p.scap1.s==30){send('{ENTER}scapinit1 {ENTER}scapinit2 ');}
-   qk.p.scap1.s--;
-   document.getElementById('scap1').style.display = 'none';
+   //first run
+   if(qk.p.scap1.s==30){
+    send('{ENTER}scapinit1 {ENTER}scapinit2 ');
+    document.getElementById('scap1').style.display = 'none';
    document.getElementById('scap2').style.display = 'table-cell';
+   }
+   qk.p.scap1.s--;
+   
    document.getElementById('scap2').innerHTML = 'scaptrans ('+qk.p.scap1.s+')';
    if(qk.p.scap1.s==0){
     document.getElementById('scap2').style.backgroundColor = 'red';
@@ -250,7 +255,8 @@ td{
    document.getElementById('lang1').style.display = 'none';
   }
   function bell(){
-   qk.shell.Run('sndrec32 /play /close C:\Windows\Media\Notify.wav');
+   var sound = document.getElementById('alert');
+   sound.Play();
   }
  </script>
 </body>
