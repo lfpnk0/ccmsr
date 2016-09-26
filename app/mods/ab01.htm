@@ -10,9 +10,6 @@
    <td onclick="open(timeclock)">
     <img class="icon" src="ico/clock.png">
    </td>
-   <td onclick="open(captionNet)">
-    <img class="icon" src="ico/headset.png">
-   </td>
    <td onclick="open(schedule)">
     <img class="icon" src="ico/cal.png">
    </td>
@@ -25,6 +22,9 @@
    <td onclick="open(portal)">
     <img class="icon" src="ico/home.png">
    </td>
+   <td onclick="collapse();">
+    <img class="icon" src="ico/menu.png">
+   </td>
   </tr>
  </table>
  <div id="content" style="display:block;">
@@ -34,7 +34,7 @@
  <script src="assets/base.js"></script>
  <script>
   function open(path){
-   shell = new ActiveXObject("WScript.Shell");
+   shell = new ActiveXObject('WScript.Shell');
    shell.exec(path);
   }
  </script>
