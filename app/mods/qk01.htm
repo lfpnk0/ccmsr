@@ -23,8 +23,8 @@ td{
 <body>
  <table class="titleBar">
   <tr>
-   <td onclick="settings();"><img class="icon" src="ico/settings.png"></td>
-   <td class="title" onclick="collapse();">QuickKeys</td>
+   <td onclick="settings(qk);"><img class="icon" src="ico/settings.png"></td>
+   <td class="title" onclick="collapse(qk);">QuickKeys</td>
    <td onclick="captionNet();"><img class="icon" src="ico/headset.png"></td>
   </tr>
  </table>
@@ -99,8 +99,10 @@ td{
  </div>
  <script src="assets/base.js"></script>
  <script>
-  window.parent.document.getElementById('qk').height = '402px';
   qk = new Object();
+  qk.id = 'qk';
+  qk.height = '300px';
+  window.parent.document.getElementById('qk').height = qk.height;
   qk.shell = new ActiveXObject("WScript.Shell");
   
   qk.p = new Object();
