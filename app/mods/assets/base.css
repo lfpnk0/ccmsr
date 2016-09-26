@@ -24,6 +24,10 @@ body{
 .titleBar .title{
  width: 145px;
 }
+td{
+ padding-top: 5px;
+ padding-bottom: 5px;
+}
 .icon{ 
  width:21px;
 } 
