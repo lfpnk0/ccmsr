@@ -30,6 +30,7 @@ td{
 }
 .icon{ 
  width:21px;
+ height:21px;
 } 
 input{
  padding: 0.25em;
