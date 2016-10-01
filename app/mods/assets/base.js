@@ -44,7 +44,6 @@ function saveSettings(){
  var form = document.getElementById('settingsForm');
  for ( var i = 0; i < form.elements.length; i++ ) {
   var el = form.elements[i];
-  alert(el.tagName);
   if(el.tagName == 'SELECT'){
    obj[el.name] = el.options[el.selectedIndex].value;
   }
@@ -52,9 +51,23 @@ function saveSettings(){
    obj[el.name] = el.value;
   }
  }
- alert(form.elements.length);
- alert(JSON.stringify(obj));
- //save file
+ var str = JSON.stringify(obj);
+ alert(window.location.href);
+ /*
+ var github = new Github({
+   username: 'YOUR_USERNAME',
+   password: 'YOUR_PASSWORD',
+   auth: 'basic'
+ });
+ var repository = github.getRepo('A_USERNAME', 'A_REPOSITORY_NAME');
+ repository.write(
+    'BRANCH_NAME', // e.g. 'master'
+    'path/to/file', // e.g. 'blog/index.md'
+    'THE_CONTENT', // e.g. 'Hello world, this is my new content'
+    'YOUR_COMMIT_MESSAGE', // e.g. 'Created new index'
+    function(err) {}
+ );
+ */
 }
 
   
