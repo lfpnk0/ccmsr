@@ -51,7 +51,6 @@ function saveSettings(){
    obj[el.name] = el.value;
   }
  }
- var str = JSON.stringify(obj);
  var url = window.location.href.split('/');
  var user = url[2].split('.')[0];
  var pwd = prompt('Password:',''); // I know this is horribly insecure but I don't want to code the popup right now.
@@ -60,7 +59,8 @@ function saveSettings(){
  var file = url[6].split('.')[0];
  var path = 'ccmsr/app/mods/'+file+'.set';
  alert(user+' '+path);
- 
+ var content = JSON.stringify(obj);
+ var comment = 'updated settings';
  
  /*
  var github = new Github({
