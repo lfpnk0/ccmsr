@@ -52,11 +52,11 @@ function saveSettings(){
   }
  }
  var str = JSON.stringify(obj);
- var path = window.location.href;
- var user = window.location.href.slice(7,window.location.href.find('.'));
- alert(user);
+ var url = window.location.href.split('/');
+ var user = url[2].split('.')[0];
  var branch = 'gh-pages';
- var path = 'ccmsr/app/mods/filename.js';
+ var path = 'ccmsr/app/mods/'+window.location.href.split('/').pop();
+ alert(user+' '+path);
  
  
  /*
