@@ -30,6 +30,7 @@
     window.parent.document.getElementById('qk').height = h+'px';
     var arr = document.getElementsByClassName('scrollable');
     for (i = 0; i < arr.length; i++) { 
-      arr[i].height = (h-100)+'px';
+      arr[i].style.height = (h-100)+'px';
+      arr[i].style.backgroundColor = 'red';
     }
   }
