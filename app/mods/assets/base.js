@@ -26,3 +26,7 @@
     document.getElementById('settings').style.display = 'block';
    }
   }
+  function height(h){
+    window.parent.document.getElementById('qk').height = h+'px';;
+    document.getElementsByClassName('scrollable').height = (h-50)+'px';
+  }
