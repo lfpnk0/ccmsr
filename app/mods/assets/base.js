@@ -52,7 +52,13 @@ function saveSettings(){
   }
  }
  var str = JSON.stringify(obj);
- alert(window.location.href);
+ var path = window.location.href;
+ var user = window.location.href.slice(7,window.location.href.find('.'));
+ alert(user);
+ var branch = 'gh-pages';
+ var path = 'ccmsr/app/mods/filename.js';
+ 
+ 
  /*
  var github = new Github({
    username: 'YOUR_USERNAME',
