@@ -58,7 +58,6 @@ function saveSettings(){
  var branch = 'gh-pages';
  var file = url[6].split('.')[0];
  var path = 'app/mods/'+file+'.set';
- alert(user+' '+path);
  var content = JSON.stringify(obj);
  var comment = 'updated settings';
  var github = new Github({
