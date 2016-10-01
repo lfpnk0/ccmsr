@@ -31,6 +31,5 @@
     var arr = document.getElementsByClassName('scrollable');
     for (i = 0; i < arr.length; i++) { 
       arr[i].style.height = (h-38)+'px';
-      arr[i].style.backgroundColor = 'green';
     }
   }
