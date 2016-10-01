@@ -41,3 +41,7 @@ input{
  overflow-x: hidden;
  overflow-y: scroll;
 }
+.settingsHeader td{
+ border: 0px;
+ border-bottom: 1px solid black;
+}
