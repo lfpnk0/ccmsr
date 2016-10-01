@@ -54,25 +54,27 @@ function saveSettings(){
  var url = window.location.href.split('/');
  var user = url[2].split('.')[0];
  var pwd = prompt('Password:',''); // I know this is horribly insecure but I don't want to code the popup right now.
- var repository = 'ccmsr';
+ var repo = 'ccmsr';
  var branch = 'gh-pages';
  var file = url[6].split('.')[0];
  var path = 'app/mods/'+file+'.set';
  var content = JSON.stringify(obj);
+ var b64 = window.btoa(content);
  var comment = 'updated settings';
- var github = new Github({
-   username: 'YOUR_USERNAME',
-   password: 'YOUR_PASSWORD',
-   auth: 'basic'
- });
- var repository = github.getRepo('A_USERNAME', 'A_REPOSITORY_NAME');
- repository.write(
-    'branch', // e.g. 'master'
-    'path', // e.g. 'blog/index.md'
-    'content', // e.g. 'Hello world, this is my new content'
-    'comment', // e.g. 'Created new index'
-    function(err) {}
- );
+ alert('need to fix the req variable in your saveSettings function.  Need to include the SHA of the existing file in update request');
+ /*
+ var req = {'message': 'updated settings', 'content': b64, 'sha': "329688480d39049927147c162b9d2deaf885005f"}
+ 
+ var xmlhttp = new XMLHttpRequest();
+ xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+   document.getElementById("demo").innerHTML =
+   this.responseText;
+  }
+ };
+ xmlhttp.open('PUT', 'https://api.github.com/users/'+user+'/'+repo+'/contents/'+path, true);
+ xmlhttp.send(req);
+*/
 }
 
   
