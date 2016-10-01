@@ -36,22 +36,22 @@ function height(h){
   el.getElementsByClassName('scrollable')[0].style.height = (h-76)+'px';
  }
 function getSettings(){
-  //var str = get file contents;
-  var obj = JSON.parse(str);
-  
+ //var str = get file contents;
+ var obj = JSON.parse(str);
 }
 function saveSettings(){
  var obj = new Object();
  var form = document.getElementById('settingsForm');
  for ( var i = 0; i < form.elements.length; i++ ) {
-  var e = form.elements[i];
-  if(e.tagName == 'select'){
-   obj[e.name] = e.options[e.selectedIndex].value;
+  var el = form.elements[i];
+  if(el.tagName == 'select'){
+   obj[el.name] = el.options[el.selectedIndex].value;
   }
-  if(e.tagName == 'input'){
-   obj[e.name] = e.value;
+  if(el.tagName == 'input'){
+   obj[el.name] = el.value;
   }
  }
+ alert(form.elements.length);
  alert(JSON.stringify(obj));
  //save file
 }
