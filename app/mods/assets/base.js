@@ -44,11 +44,11 @@ function saveSettings(){
  var form = document.getElementById('settingsForm');
  for ( var i = 0; i < form.elements.length; i++ ) {
   var el = form.elements[i];
+  alert(el.tagName);
   if(el.tagName == 'select'){
    obj[el.name] = el.options[el.selectedIndex].value;
   }
   if(el.tagName == 'input'){
-   alert(obj.length);
    obj[el.name] = el.value;
   }
  }
