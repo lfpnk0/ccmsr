@@ -37,6 +37,10 @@ input{
  border: 1px solid gray;
  border-radius: 5px;
 }
+fieldset{
+ border:1px solid black;
+ margin:1px;
+}
 .scrollable{
  overflow-x: hidden;
  overflow-y: scroll;
@@ -50,4 +54,8 @@ input{
  border: 0px;
  border-bottom: 1px solid black;
  margin-bottom: 2px;
+}
+#settings label{
+ display:block;
+ margin:1px;
 }
