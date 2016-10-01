@@ -48,6 +48,7 @@ function saveSettings(){
    obj[el.name] = el.options[el.selectedIndex].value;
   }
   if(el.tagName == 'input'){
+   alert(obj.length);
    obj[el.name] = el.value;
   }
  }
