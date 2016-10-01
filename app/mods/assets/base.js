@@ -27,6 +27,9 @@
    }
   }
   function height(h){
-    window.parent.document.getElementById('qk').height = h+'px';;
-    document.getElementsByClassName('scrollable').height = (h-50)+'px';
+    window.parent.document.getElementById('qk').height = h+'px';
+    var arr = document.getElementsByClassName('scrollable');
+    for (i = 0; i < arr.length; i++) { 
+      arr[i].height = (h-100)+'px';
+    }
   }
