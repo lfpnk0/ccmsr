@@ -101,7 +101,7 @@ td{
  <script>
   qk = new Object();
   qk.id = 'qk';
-  qk.height = '275px';
+  qk.height = '278px';
   window.parent.document.getElementById('qk').height = qk.height;
   qk.shell = new ActiveXObject("WScript.Shell");
   
@@ -119,6 +119,7 @@ td{
    if(qk.p.sln.s==0){
     document.getElementById('sln').style.backgroundColor = 'red';
     clearInterval(qk.p.sln.i);
+    qk.p.sln.i = -1;
     bell();
    }
   }
@@ -145,6 +146,7 @@ td{
    //first run
    if(qk.p.lang2.s==300){ 
     clearInterval(qk.p.lang1.i);
+    qk.p.lang1.i = -1;
     document.getElementById('lang2').innerHTML = 'stndby';
     send('{ENTER}stndby ');
     document.getElementById('lang2').style.display = 'none';
@@ -156,6 +158,7 @@ td{
    //last run
    if(qk.p.lang2.s==0){
     clearInterval(qk.p.lang2.i);
+    qk.p.lang2.i = -1;
     document.getElementById('lang3').innerHTML = 'olang';
     document.getElementById('lang3').style.backgroundColor = 'red';
     bell();
@@ -184,6 +187,7 @@ td{
     document.getElementById('scap2').style.backgroundColor = 'red';
     bell();
     clearInterval(qk.p.scap1.i);
+    qk.p.scap1.i = -1;
    }
   }
   qk.p.scap2 = new Object(); //scaptrans button
@@ -193,6 +197,7 @@ td{
    document.getElementById('scap2').style.display = 'none';
    document.getElementById('scap3').style.display = 'table-cell';
    clearInterval(qk.p.scap2.i);
+   qk.p.scap2.i = -1;
   }
   qk.p.scap3 = new Object(); //scapnot button
   qk.p.scap3.s = 60;
@@ -210,6 +215,7 @@ td{
    if(qk.p.scap3.s==0){
     document.getElementById('scap4').style.backgroundColor = 'red';
     clearInterval(qk.p.scap3.i);
+    qk.p.scap3.i = -1;
    }
   }
   qk.p.scap4 = new Object(); //scaptrans (2) button
@@ -220,6 +226,7 @@ td{
    document.getElementById('scap4').style.display = 'none';
    document.getElementById('scap5').style.display = 'table-cell';
    clearInterval(qk.p.scap4.i);
+   qk.p.scap4.i = -1;
   }
   qk.p.scap5 = new Object(); //scapcanc button
   qk.p.scap5.f = function(){
@@ -232,6 +239,7 @@ td{
   }
   function send(key){
    if(typeof qk.p[key] !== 'undefined'){
+    if(qk.p[key].i > 0){clearInterval(qk.p[key].i);}
     qk.p[key].i = setInterval(qk.p[key].f,1000);
    }
    else{
@@ -241,35 +249,44 @@ td{
   }
   function clear(){
    clearInterval(qk.p.sln.i);
+    qk.p.sln.i = -1;
     qk.p.sln.s=300;
     document.getElementById('sln').innerHTML = 'sln';
     document.getElementById('sln').style.backgroundColor = 'transparent';
    clearInterval(qk.p.lang1.i);
+    qk.p.lang1.i = -1;
     qk.p.lang1.s=300;
     document.getElementById('lang1').style.display = 'table-cell';
    clearInterval(qk.p.lang2.i);
+    qk.p.lang2.i = -1;
     qk.p.lang2.s=300;
     document.getElementById('lang2').innerHTML = 'stndby';
     document.getElementById('lang2').style.display = 'none';
    clearInterval(qk.p.lang3.i);
+    qk.p.lang3.i = -1;
     document.getElementById('lang3').innerHTML = 'olang';
     document.getElementById('lang3').style.backgroundColor = 'transparent';
     document.getElementById('lang3').style.display = 'none';
    clearInterval(qk.p.scap1.i);
+    qk.p.scap1.i = -1;
     qk.p.scap1.s = 30;
     document.getElementById('scap1').style.display = 'table-cell';
    clearInterval(qk.p.scap2.i);
+    qk.p.scap2.i = -1;
     document.getElementById('scap2').innerHTML = 'scaptrans';
     document.getElementById('scap2').style.backgroundColor = 'transparent';
     document.getElementById('scap2').style.display = 'none';
    clearInterval(qk.p.scap3.i);
+    qk.p.scap3.i = -1;
     qk.p.scap3.s = 60;
     document.getElementById('scap3').style.display = 'none';
    clearInterval(qk.p.scap4.i);
+    qk.p.scap4.i = -1;
     document.getElementById('scap4').innerHTML = 'scaptrans';
     document.getElementById('scap4').style.backgroundColor = 'transparent';
     document.getElementById('scap4').style.display = 'none';
    clearInterval(qk.p.scap5.i);
+    qk.p.scap5.i = -1;
     document.getElementById('scap5').style.display = 'none';
   }
   function bell(){
