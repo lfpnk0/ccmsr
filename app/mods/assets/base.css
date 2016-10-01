@@ -33,14 +33,14 @@ td{
  height:21px;
 } 
 input{
- padding: 0.25em;
+ padding: 4px;
  border: 1px solid gray;
  border-radius: 5px;
 }
 fieldset{
  border:1px solid LightSteelBlue;
  margin:1px;
- padding: 2px;
+ padding: 4px;
  border-radius: 5px;
 }
 .scrollable{
