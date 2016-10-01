@@ -54,6 +54,7 @@ function saveSettings(){
  var str = JSON.stringify(obj);
  var url = window.location.href.split('/');
  var user = url[2].split('.')[0];
+ var pwd = prompt('Password:',''); // I know this is horribly insecure but I don't want to code the popup right now.
  var branch = 'gh-pages';
  var path = 'ccmsr/app/mods/'+window.location.href.split('/').pop();
  alert(user+' '+path);
