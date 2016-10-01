@@ -38,8 +38,9 @@ input{
  border-radius: 5px;
 }
 fieldset{
- border:1px solid black;
+ border:1px solid gray;
  margin:1px;
+ padding: 2px
 }
 .scrollable{
  overflow-x: hidden;
