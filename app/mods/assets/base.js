@@ -57,12 +57,10 @@ function saveSettings(){
  var repository = 'ccmsr';
  var branch = 'gh-pages';
  var file = url[6].split('.')[0];
- var path = 'ccmsr/app/mods/'+file+'.set';
+ var path = 'app/mods/'+file+'.set';
  alert(user+' '+path);
  var content = JSON.stringify(obj);
  var comment = 'updated settings';
- 
- /*
  var github = new Github({
    username: 'YOUR_USERNAME',
    password: 'YOUR_PASSWORD',
@@ -70,13 +68,12 @@ function saveSettings(){
  });
  var repository = github.getRepo('A_USERNAME', 'A_REPOSITORY_NAME');
  repository.write(
-    'BRANCH_NAME', // e.g. 'master'
-    'path/to/file', // e.g. 'blog/index.md'
-    'THE_CONTENT', // e.g. 'Hello world, this is my new content'
-    'YOUR_COMMIT_MESSAGE', // e.g. 'Created new index'
+    'branch', // e.g. 'master'
+    'path', // e.g. 'blog/index.md'
+    'content', // e.g. 'Hello world, this is my new content'
+    'comment', // e.g. 'Created new index'
     function(err) {}
  );
- */
 }
 
   
