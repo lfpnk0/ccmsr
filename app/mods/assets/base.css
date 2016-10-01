@@ -43,6 +43,9 @@ fieldset{
  padding: 4px;
  border-radius: 5px;
 }
+legend{
+ color:LightSteelBlue;
+}
 .scrollable{
  overflow-x: hidden;
  overflow-y: scroll;
