@@ -64,3 +64,6 @@ legend{
  display:block;
  margin:1px;
 }
+#settins input{
+ margin-bottom: 2px;
+}
