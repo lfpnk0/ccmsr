@@ -40,7 +40,8 @@ input{
 fieldset{
  border:1px solid gray;
  margin:1px;
- padding: 2px
+ padding: 2px;
+ border-radius: 5px;
 }
 .scrollable{
  overflow-x: hidden;
