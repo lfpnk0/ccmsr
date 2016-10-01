@@ -94,20 +94,39 @@ td{
    </tr>
   </table>
  </div>
- <div id="settings" style="display:none;">
-  <div class="scrollable">
-   <table class="settingsHeader">
-    <td width=40px onclick="saveSettings();"><img class="icon" src="ico/save.png"></td>
-    <td>Settings</td>
-   </table>
-   Target <input type="text" value="Untitled - Notepad" />
+ <div id="settings">
+ <table class="titleBar">
+  <tr>
+   <td onclick="saveSettings();"><img class="icon" src="ico/save.png"></td>
+   <td class="title" onclick="collapse(qk);">Settings</td>
+   <td>&nbsp;</td>
+  </tr>
+ </table>
+ <div class="scrollable">
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
+  Target <input type="text" value="Untitled - Notepad" />
  </div>
  <script src="assets/base.js"></script>
  <script>
   qk = new Object();
   qk.id = 'qk';
   qk.height = '278';
-  //window.parent.document.getElementById('qk').height = qk.height;
   height(qk.height);
   qk.shell = new ActiveXObject("WScript.Shell");
   
