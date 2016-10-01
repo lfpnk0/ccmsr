@@ -121,8 +121,9 @@ td{
  <script>
   qk = new Object();
   qk.id = 'qk';
-  qk.height = '278px';
-  window.parent.document.getElementById('qk').height = qk.height;
+  qk.height = '278';
+  //window.parent.document.getElementById('qk').height = qk.height;
+  height(qk.height);
   qk.shell = new ActiveXObject("WScript.Shell");
   
   qk.p = new Object();
