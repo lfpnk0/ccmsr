@@ -32,4 +32,6 @@
     for (i = 0; i < arr.length; i++) { 
       arr[i].style.height = (h-38)+'px';
     }
+    var el = document.getElementById('settings');
+    el.getElementsByClassName('scrollable')[0].style.height = (h-76)+'px';
   }
