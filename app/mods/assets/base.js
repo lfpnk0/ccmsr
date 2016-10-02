@@ -38,18 +38,15 @@ function height(h){
  }
 
 function getSettings(obj){
- alert(window.location.href);
  var urlArr = window.location.href.split('/');
- alert(JSON.stringify(urlArr));
- var user = urlArr[3].split('.')[0];
- var repo = urlArr[4];
- var path = urlArr[5]+'/'+urlArr[6]+'/'+urlArr[7];
+ var user = urlArr[2].split('.')[0];
+ var repo = urlArr[3];
+ var path = urlArr[4]+'/'+urlArr[5]+'/'+urlArr[6];
  getFileData(user, repo, 'gh-pages', path, obj, 'processData');
 }
 
 function getFileData(user, repo, branch, path, fileObj, callback){ //JSONP Method
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch+'&callback='+callback;
- alert(url);
  var scriptTag = document.createElement("SCRIPT");
  scriptTag.src = url;
  document.getElementsByTagName('BODY')[0].appendChild(scriptTag);
