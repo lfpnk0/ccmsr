@@ -46,7 +46,7 @@ function getSettings(){
  xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
    var obj = JSON.parse(this.responseText);
-   alert(obj[0]);
+   alert(obj[0][0]);
   }
  };
  xmlhttp.open('GET', url, true);
