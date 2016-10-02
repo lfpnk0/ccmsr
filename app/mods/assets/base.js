@@ -62,11 +62,10 @@ function getSettings(obj){
 }
 
 function getFileData(user, repo, branch, path, fileObj, callback){
- alert('getting it');
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
  //var xmlhttp = new XMLHttpRequest();
  var xmlhttp = new XDomainRequest();
- xmlhttp.onreadystatechange = function() {
+ //xmlhttp.onreadystatechange = function() {
   //if (this.readyState == 4 && this.status == 200) {
   xmlhttp.onprogress = function () { };
   xmlhttp.ontimeout = function () { };
@@ -81,7 +80,7 @@ function getFileData(user, repo, branch, path, fileObj, callback){
    if(typeof callback === 'function'){
     callback(fileObj);
    }
-  }
+//  }
  };
  //xmlhttp.open('GET', url, true);
  xmlhttp.open('GET', url);
@@ -91,13 +90,17 @@ function getFileData(user, repo, branch, path, fileObj, callback){
 
 function getFileContent(fileObj){
  var url = fileObj.download_url;
- var xmlhttp = new XMLHttpRequest();
-   xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+ //var xmlhttp = new XMLHttpRequest();
+ var xmlhttp = new XDomainRequest();
+//   xmlhttp.onreadystatechange = function() {
+//    if (this.readyState == 4 && this.status == 200) {
+    xmlhttp.onprogress = function () { };
+    xmlhttp.ontimeout = function () { };
+    xmlhttp.onload = function(){
      fileObj.content = this.responseText;
-    }
+//    }
    };
-   xmlhttp.open('GET', url, true);
+   xmlhttp.open('GET', url);
    xmlhttp.send();
 }
 
