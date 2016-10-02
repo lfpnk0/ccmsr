@@ -73,7 +73,9 @@ function getFileData(user, repo, branch, path, fileObj, callback){
    fileObj.path = path;
    fileObj.sha = obj.sha;
    fileObj.download_url = obj.
-   if(typeof callback === 'function'){callback(fileObj);}
+   if(typeof callback === 'function'){
+    callback(fileObj);
+   }
   }
  };
  xmlhttp.open('GET', url, true);
