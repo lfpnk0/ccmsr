@@ -66,7 +66,10 @@ function getFileData(user, repo, branch, path, fileObj, callback){
  //var xmlhttp = new XMLHttpRequest();
  var xmlhttp = new XDomainRequest();
  xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
+  //if (this.readyState == 4 && this.status == 200) {
+  xmlhttp.onprogress = function () { };
+  xmlhttp.ontimeout = function () { };
+  xmlhttp.onload = function(){
    var obj = JSON.parse(this.responseText);
    fileObj.user = user;
    fileObj.repo = repo;
@@ -80,7 +83,8 @@ function getFileData(user, repo, branch, path, fileObj, callback){
   }
  };
  xmlhttp.open('GET', url, true);
- xmlhttp.send();
+ //xmlhttp.send();
+ setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
 }
 
 function getFileContent(fileObj){
