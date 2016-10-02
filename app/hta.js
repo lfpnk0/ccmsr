@@ -15,9 +15,9 @@ function getFileData(user, repo, branch, path, fileObj, callback){
    fileObj.sha = obj.sha;
    fileObj.download_url = obj.download_url;
    if(typeof callback === 'function'){
-    callback(fileObj); */
+    callback(fileObj);
+   } */
    alert(this.responseText);
-   }
   }
  };
  xmlhttp.open('GET', url, true);
