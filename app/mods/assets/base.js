@@ -68,7 +68,9 @@ function getFileData(user, repo, branch, path, fileObj, callback){
  //xmlhttp.onreadystatechange = function() {
   //if (this.readyState == 4 && this.status == 200) {
   xmlhttp.onprogress = function () { };
-  xmlhttp.ontimeout = function () { };
+  xmlhttp.timeout = 10000;
+  xmlhttp.ontimeout = function () {alert('xmlhttp timed out');};
+  xmlhttp.onerror = function(err){alert(err);};
   xmlhttp.onload = function(){
    var obj = JSON.parse(this.responseText);
    fileObj.user = user;
