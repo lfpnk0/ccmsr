@@ -47,6 +47,7 @@ function getSettings(obj){
 
 function getFileData(user, repo, branch, path, fileObj, callback){ //JSONP Method
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch+'&callback='+callback;
+ alert(url);
  var scriptTag = document.createElement("SCRIPT");
  scriptTag.src = url;
  document.getElementsByTagName('BODY')[0].appendChild(scriptTag);
