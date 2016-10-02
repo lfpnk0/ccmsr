@@ -63,7 +63,8 @@ function getSettings(obj){
 
 function getFileData(user, repo, branch, path, fileObj, callback){
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
- var xmlhttp = new XMLHttpRequest();
+ //var xmlhttp = new XMLHttpRequest();
+ var xmlhttp = new XDomainRequest();
  xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
    var obj = JSON.parse(this.responseText);
