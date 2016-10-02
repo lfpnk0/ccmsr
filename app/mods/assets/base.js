@@ -55,7 +55,10 @@ function getSettings(obj){
 
 function getSettings(obj){
  var urlArr = window.location.href.split('/');
- getFileData(urlArr[3]split('.')[0], urlArr[4], 'gh-pages', urlArr[5]+'/'+urlArr[6]+'/'+urlArr[7], obj, getFileData);
+ var user = urlArr[3]split('.')[0];
+ var repo = urlArr[4];
+ var path = urlArr[5]+'/'+urlArr[6]+'/'+urlArr[7];
+ getFileData(user, repo, 'gh-pages', path, obj, getFileContent);
 }
 
 function getFileData(user, repo, branch, path, fileObj, callback){
