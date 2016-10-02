@@ -37,7 +37,7 @@ function height(h){
   el.getElementsByClassName('scrollable')[0].style.height = (h-76)+'px';
  }
 
-function getSettings(){
+function getSettings(obj){
  //var str = get file contents;
  var urlArr = window.location.href.split('.');
  urlArr[urlArr.length-1] = 'set';
@@ -45,7 +45,7 @@ function getSettings(){
  var xmlhttp = new XMLHttpRequest();
  xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-   return this.responseText;
+   window[obj].settings = JSON.parse(this.responseText);
   }
  };
  xmlhttp.open('GET', url, true);
