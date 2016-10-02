@@ -26,6 +26,7 @@ function settings(mod){
   document.getElementById('settings').style.display = 'block';
  }
 }
+
 function height(h){
  window.parent.document.getElementById('qk').height = h+'px';
  var arr = document.getElementsByClassName('scrollable');
@@ -35,10 +36,23 @@ function height(h){
  var el = document.getElementById('settings');
   el.getElementsByClassName('scrollable')[0].style.height = (h-76)+'px';
  }
+
 function getSettings(){
  //var str = get file contents;
- var obj = JSON.parse(str);
+ var urlArr = window.location.href.split('.');
+ urlArr[urlArr.length-1] = 'set';
+ var url = urlArr.join('.');
+ var xmlhttp = new XMLHttpRequest();
+ xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+   var obj = JSON.parse(this.responseText);
+   alert(obj[0]);
+  }
+ };
+ xmlhttp.open('GET', url, true);
+ xmlhttp.send(req);
 }
+
 function saveSettings(){
  var obj = new Object();
  var form = document.getElementById('settingsForm');
