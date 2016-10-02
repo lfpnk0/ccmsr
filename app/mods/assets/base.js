@@ -86,7 +86,7 @@ function getFileData(user, repo, branch, path, fileObj, callback){
  xhr.onprogress = function () { };
  xhr.timeout = 10000;
  xhr.ontimeout = function () {alert('XDomainRequest timed out');};
- xhr.onerror = function(err){alert('XDomainRequest Error'};
+ xhr.onerror = function(err){alert('XDomainRequest Error');};
  xhr.onload = function(){
   var obj = JSON.parse(this.responseText);
   fileObj.user = user;
