@@ -45,6 +45,7 @@ function getSettings(obj){
  getFileData(user, repo, 'gh-pages', path, obj, getFileContent);
 }
 
+/* ---ACCESS DENIED ERROR ---
 function getFileData(user, repo, branch, path, fileObj, callback){
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
  var xmlhttp = new XMLHttpRequest();
@@ -77,8 +78,8 @@ function getFileContent(fileObj){
    xmlhttp.open('GET', url);
    xmlhttp.send();
 }
+*/
 
-/*
 function getFileData(user, repo, branch, path, fileObj, callback){
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
  var xhr = new XDomainRequest();
@@ -114,7 +115,6 @@ function getFileContent(fileObj){
  setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
 }
 
-*/
 
 
 function saveSettings(){
