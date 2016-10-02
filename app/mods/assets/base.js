@@ -40,6 +40,7 @@ function height(h){
 function getSettings(obj){
  alert(window.location.href);
  var urlArr = window.location.href.split('/');
+ alert(JSON.stringify(urlArr);
  var user = urlArr[3].split('.')[0];
  var repo = urlArr[4];
  var path = urlArr[5]+'/'+urlArr[6]+'/'+urlArr[7];
