@@ -52,8 +52,8 @@ function getFileData(user, repo, branch, path, fileObj, callback){
  document.getElementsByTagName('HEAD')[0].appendChild(scriptTag);
 }
 
-function processData(json){
- alert(JSON.stringify(json));
+function processData(data){
+ alert(data);
 }
 /* ---ACCESS DENIED ERROR ---
 function getFileData(user, repo, branch, path, fileObj, callback){
