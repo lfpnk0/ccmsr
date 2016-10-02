@@ -45,7 +45,7 @@ function getSettings(obj){
  getFileData(user, repo, 'gh-pages', path, obj, processData);
 }
 
-function getFileData(user, repo, branch, path, fileObj, callback){
+function getFileData(user, repo, branch, path, fileObj, callback){ //JSONP Method
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch+'&callback='+callback;
  var scriptTag = document.createElement("SCRIPT");
  scriptTag.src = url;
@@ -56,7 +56,7 @@ function processData(data){
  alert(data);
 }
 /* ---ACCESS DENIED ERROR ---
-function getFileData(user, repo, branch, path, fileObj, callback){
+function getFileData(user, repo, branch, path, fileObj, callback){ //XMLHttpRequest mehod
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
  var xmlhttp = new XMLHttpRequest();
  xmlhttp.onreadystatechange = function() {
@@ -91,7 +91,7 @@ function getFileContent(fileObj){
 */
 
 /* ---ERROR ??? ---
-function getFileData(user, repo, branch, path, fileObj, callback){
+function getFileData(user, repo, branch, path, fileObj, callback){ //XDomainRequest method
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
  var xhr = new XDomainRequest();
  xhr.onprogress = function () { };
