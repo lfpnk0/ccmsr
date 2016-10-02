@@ -39,10 +39,11 @@ function height(h){
 
 function getSettings(obj){
  var urlArr = window.location.href.split('/');
- var user = urlArr[2].split('.')[0];
- var repo = urlArr[3];
- var path = urlArr[4]+'/'+urlArr[5]+'/'+urlArr[6];
- getFileData(user, repo, 'gh-pages', path, obj, 'processData');
+ var obj.settings.user = urlArr[2].split('.')[0];
+ var obj.settings.repo = urlArr[3];
+ var obj.settings.branch = 'gh-pages';
+ var obj.settings.path = urlArr[4]+'/'+urlArr[5]+'/'+urlArr[6];
+ getFileData(obj.settings.user, obj.settings.repo, obj.settings.branch, obj.settings.path, obj.settings, 'processData');
 }
 
 function getFileData(user, repo, branch, path, fileObj, callback){ //JSONP Method
@@ -52,8 +53,11 @@ function getFileData(user, repo, branch, path, fileObj, callback){ //JSONP Metho
  document.getElementsByTagName('BODY')[0].appendChild(scriptTag);
 }
 
-function processData(data){
- alert(JSON.stringify(data));
+function processData(obj){
+ /* callback function only has object from github ... need to know which module it is for
+ obj.sha = obj.data.sha;
+ obj.download_url = obj.download_url;
+ */
 }
 /* ---ACCESS DENIED ERROR ---
 function getFileData(user, repo, branch, path, fileObj, callback){ //XMLHttpRequest mehod
