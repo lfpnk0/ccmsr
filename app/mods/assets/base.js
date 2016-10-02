@@ -70,7 +70,7 @@ function getFileData(user, repo, branch, path, fileObj, callback){
   xmlhttp.onprogress = function () { };
   xmlhttp.timeout = 10000;
   xmlhttp.ontimeout = function () {alert('xmlhttp timed out');};
-  xmlhttp.onerror = function(err){alert(err);};
+  xmlhttp.onerror = function(err){alert(err.name + "\n" + err.message);};
   xmlhttp.onload = function(){
    var obj = JSON.parse(this.responseText);
    fileObj.user = user;
