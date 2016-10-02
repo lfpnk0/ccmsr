@@ -46,6 +46,7 @@ function getSettings(){
  xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
    return JSON.parse(this.responseText);
+   alert(JSON.stringify(qk.settings));
   }
  };
  xmlhttp.open('GET', url, true);
