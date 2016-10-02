@@ -62,6 +62,7 @@ function getSettings(obj){
 }
 
 function getFileData(user, repo, branch, path, fileObj, callback){
+ alert('getting it');
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
  //var xmlhttp = new XMLHttpRequest();
  var xmlhttp = new XDomainRequest();
@@ -82,7 +83,8 @@ function getFileData(user, repo, branch, path, fileObj, callback){
    }
   }
  };
- xmlhttp.open('GET', url, true);
+ //xmlhttp.open('GET', url, true);
+ xmlhttp.open('GET', url);
  //xmlhttp.send();
  setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
 }
