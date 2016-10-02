@@ -72,7 +72,7 @@ function getFileData(user, repo, branch, path, fileObj, callback){
    fileObj.branch = branch;
    fileObj.path = path;
    fileObj.sha = obj.sha;
-   fileObj.download_url = obj.
+   fileObj.download_url = obj.download_url;
    if(typeof callback === 'function'){
     callback(fileObj);
    }
