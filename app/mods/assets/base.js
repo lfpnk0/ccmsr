@@ -49,7 +49,7 @@ function getFileData(user, repo, branch, path, fileObj, callback){
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch+'&callback='+callback;
  var scriptTag = document.createElement("SCRIPT");
  scriptTag.src = url;
- document.getElementsByTagName('HEAD')[0].appendChild(scriptTag);
+ document.getElementsByTagName('BODY')[0].appendChild(scriptTag);
 }
 
 function processData(data){
