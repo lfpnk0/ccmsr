@@ -37,6 +37,7 @@ function height(h){
   el.getElementsByClassName('scrollable')[0].style.height = (h-76)+'px';
  }
 
+/*
 function getSettings(obj){
  var urlArr = window.location.href.split('.');
  urlArr[urlArr.length-1] = 'set';
@@ -45,25 +46,47 @@ function getSettings(obj){
  xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
    obj.settings = JSON.parse(this.responseText);
-   //updateSHA(
+  }
+ };
+ xmlhttp.open('GET', url, true);
+ xmlhttp.send();
+}
+*/
+
+function getSettings(obj){
+ var urlArr = window.location.href.split('/');
+ getFileData(urlArr[3]split('.')[0], urlArr[4], 'gh-pages', urlArr[5]+'/'+urlArr[6]+'/'+urlArr[7], obj, getFileData);
+}
+
+function getFileData(user, repo, branch, path, fileObj, callback){
+ var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
+ var xmlhttp = new XMLHttpRequest();
+ xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+   var obj = JSON.parse(this.responseText);
+   fileObj.user = user;
+   fileObj.repo = repo;
+   fileObj.branch = branch;
+   fileObj.path = path;
+   fileObj.sha = obj.sha;
+   fileObj.download_url = obj.
+   if(typeof callback === 'function'){callback(fileObj);}
   }
  };
  xmlhttp.open('GET', url, true);
  xmlhttp.send();
 }
 
-function updateSHA(key){
- var urlArr = window.location.href.split('.');
- urlArr[urlArr.length-1] = 'set';
- var url = urlArr.join('.');
+function getFileContent(fileObj){
+ var url = fileObj.download_url;
  var xmlhttp = new XMLHttpRequest();
- xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-   window[obj].settings = JSON.parse(this.responseText);
-  }
- };
- xmlhttp.open('GET', url, true);
- xmlhttp.send();
+   xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     fileObj.content = this.responseText;
+    }
+   };
+   xmlhttp.open('GET', url, true);
+   xmlhttp.send();
 }
 
 function saveSettings(){
