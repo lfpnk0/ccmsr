@@ -38,7 +38,21 @@ function height(h){
  }
 
 function getSettings(obj){
- //var str = get file contents;
+ var urlArr = window.location.href.split('.');
+ urlArr[urlArr.length-1] = 'set';
+ var url = urlArr.join('.');
+ var xmlhttp = new XMLHttpRequest();
+ xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+   obj.settings = JSON.parse(this.responseText);
+   //updateSHA(
+  }
+ };
+ xmlhttp.open('GET', url, true);
+ xmlhttp.send();
+}
+
+function updateSHA(key){
  var urlArr = window.location.href.split('.');
  urlArr[urlArr.length-1] = 'set';
  var url = urlArr.join('.');
