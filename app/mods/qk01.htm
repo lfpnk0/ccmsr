@@ -132,8 +132,9 @@ td{
   qk.id = 'qk';
   qk.height = '278';
   height(qk.height);
+  qk.settings = getSettings();
   qk.shell = new ActiveXObject("WScript.Shell");
-  getSettings();
+  alert(JSON.stringify(qk.settings));
   
   qk.p = new Object();
   qk.p.sln = new Object();
