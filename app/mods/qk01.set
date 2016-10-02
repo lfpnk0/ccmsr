@@ -1,1 +1,6 @@
-{key1=val1, key2=val2}
+{
+  "settings": {
+    "key1": "value1",
+    "key2": "value2"
+  }
+}
