@@ -37,22 +37,6 @@ function height(h){
   el.getElementsByClassName('scrollable')[0].style.height = (h-76)+'px';
  }
 
-/*
-function getSettings(obj){
- var urlArr = window.location.href.split('.');
- urlArr[urlArr.length-1] = 'set';
- var url = urlArr.join('.');
- var xmlhttp = new XMLHttpRequest();
- xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-   obj.settings = JSON.parse(this.responseText);
-  }
- };
- xmlhttp.open('GET', url, true);
- xmlhttp.send();
-}
-*/
-
 function getSettings(obj){
  var urlArr = window.location.href.split('/');
  var user = urlArr[3].split('.')[0];
@@ -64,14 +48,8 @@ function getSettings(obj){
 function getFileData(user, repo, branch, path, fileObj, callback){
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
  var xmlhttp = new XMLHttpRequest();
- //var xmlhttp = new XDomainRequest();
  xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-  //xmlhttp.onprogress = function () { };
-  //xmlhttp.timeout = 10000;
-  //xmlhttp.ontimeout = function () {alert('xmlhttp timed out');};
-  //xmlhttp.onerror = function(err){alert(JSON.stringify(err));};
-  xmlhttp.onload = function(){
    var obj = JSON.parse(this.responseText);
    fileObj.user = user;
    fileObj.repo = repo;
@@ -85,26 +63,59 @@ function getFileData(user, repo, branch, path, fileObj, callback){
   }
  };
  xmlhttp.open('GET', url, true);
- //xmlhttp.open('GET', url);
  xmlhttp.send();
- //setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
 }
 
 function getFileContent(fileObj){
  var url = fileObj.download_url;
- //var xmlhttp = new XMLHttpRequest();
- var xmlhttp = new XDomainRequest();
-//   xmlhttp.onreadystatechange = function() {
-//    if (this.readyState == 4 && this.status == 200) {
-    xmlhttp.onprogress = function () { };
-    xmlhttp.ontimeout = function () { };
-    xmlhttp.onload = function(){
+ var xmlhttp = new XMLHttpRequest();
+   xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
      fileObj.content = this.responseText;
-//    }
+    }
    };
    xmlhttp.open('GET', url);
    xmlhttp.send();
 }
+
+/*
+function getFileData(user, repo, branch, path, fileObj, callback){
+ var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
+ var xhr = new XDomainRequest();
+ xhr.onprogress = function () { };
+ xhr.timeout = 10000;
+ xhr.ontimeout = function () {alert('XDomainRequest timed out');};
+ xhr.onerror = function(err){alert('XDomainRequest Error'};
+ xhr.onload = function(){
+  var obj = JSON.parse(this.responseText);
+  fileObj.user = user;
+  fileObj.repo = repo;
+  fileObj.branch = branch;
+  fileObj.path = path;
+  fileObj.sha = obj.sha;
+  fileObj.download_url = obj.download_url;
+  //if(typeof callback === 'function'){
+   //callback(fileObj);
+  //}
+ };
+ xmlhttp.open('GET', url);
+ setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
+}
+ 
+function getFileContent(fileObj){
+ var url = fileObj.download_url;
+ var xmlhttp = new XDomainRequest();
+ xmlhttp.onprogress = function () { };
+ xmlhttp.ontimeout = function () { };
+ xmlhttp.onload = function(){
+  fileObj.content = this.responseText;
+ };
+ xmlhttp.open('GET', url);
+ setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
+}
+
+*/
+
 
 function saveSettings(){
  var obj = new Object();
