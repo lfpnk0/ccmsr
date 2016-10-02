@@ -42,17 +42,17 @@ function getSettings(obj){
  var user = urlArr[3].split('.')[0];
  var repo = urlArr[4];
  var path = urlArr[5]+'/'+urlArr[6]+'/'+urlArr[7];
- getFileData(user, repo, 'gh-pages', path, obj, getFileContent);
+ getFileData(user, repo, 'gh-pages', path, obj, processData);
 }
 
 function getFileData(user, repo, branch, path, fileObj, callback){
- var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch+'&callback=cb';
+ var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch+'&callback='+callback;
  var scriptTag = document.createElement("SCRIPT");
  scriptTag.src = url;
  document.getElementsByTagName('HEAD')[0].appendChild(scriptTag);
 }
 
-function cb(json){
+function processData(json){
  alert(JSON.stringify(json));
 }
 /* ---ACCESS DENIED ERROR ---
