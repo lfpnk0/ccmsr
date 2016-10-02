@@ -63,14 +63,14 @@ function getSettings(obj){
 
 function getFileData(user, repo, branch, path, fileObj, callback){
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
- //var xmlhttp = new XMLHttpRequest();
- var xmlhttp = new XDomainRequest();
- //xmlhttp.onreadystatechange = function() {
-  //if (this.readyState == 4 && this.status == 200) {
-  xmlhttp.onprogress = function () { };
-  xmlhttp.timeout = 10000;
-  xmlhttp.ontimeout = function () {alert('xmlhttp timed out');};
-  xmlhttp.onerror = function(err){alert(JSON.stringify(err));};
+ var xmlhttp = new XMLHttpRequest();
+ //var xmlhttp = new XDomainRequest();
+ xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+  //xmlhttp.onprogress = function () { };
+  //xmlhttp.timeout = 10000;
+  //xmlhttp.ontimeout = function () {alert('xmlhttp timed out');};
+  //xmlhttp.onerror = function(err){alert(JSON.stringify(err));};
   xmlhttp.onload = function(){
    var obj = JSON.parse(this.responseText);
    fileObj.user = user;
@@ -82,12 +82,12 @@ function getFileData(user, repo, branch, path, fileObj, callback){
    if(typeof callback === 'function'){
     callback(fileObj);
    }
-//  }
+  }
  };
- //xmlhttp.open('GET', url, true);
- xmlhttp.open('GET', url);
- //xmlhttp.send();
- setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
+ xmlhttp.open('GET', url, true);
+ //xmlhttp.open('GET', url);
+ xmlhttp.send();
+ //setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
 }
 
 function getFileContent(fileObj){
