@@ -99,8 +99,8 @@ function getFileData(user, repo, branch, path, fileObj, callback){
    //callback(fileObj);
   //}
  };
- xmlhttp.open('GET', url);
- setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
+ xhr.open('GET', url);
+ setTimeout(function () {xhr.send();}, 0); //wrap in timeout for ie9?
 }
  
 function getFileContent(fileObj){
