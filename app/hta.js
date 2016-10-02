@@ -3,6 +3,7 @@ window.resizeTo(225, screen.availHeight);
 document.getElementsByTagName('iframe')[0].height = screen.availHeight-40;
 
 function getFileData(user, repo, branch, path, fileObj, callback){
+ /*
  var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
  var xmlhttp = new XMLHttpRequest();
  xmlhttp.onreadystatechange = function() {
@@ -21,4 +22,6 @@ function getFileData(user, repo, branch, path, fileObj, callback){
  };
  xmlhttp.open('GET', url, true);
  xmlhttp.send();
+ */
+ alert('yes');
 }
