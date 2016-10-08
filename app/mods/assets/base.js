@@ -52,7 +52,7 @@ function file(user, repo, branch, path){
   var shell = new ActiveXObject("WScript.Shell");
   var UP = shell.ExpandEnvironmentStrings("%UserProfile%")
   var fs = new ActiveXObject("Scripting.FileSystemObject");
-  if(!fs.FileExists(UP+'/Downloads/http.vbs)){
+  if(!fs.FileExists(UP+'/Downloads/http.vbs')){
    var f = fso.CreateTextFile(UP+'/Downloads/http.vbs', true);    
    f.WriteLine('args = Split(Wscript.Arguments(0),",")');
    f.WriteLine('method = args(0)');
