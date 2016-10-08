@@ -128,195 +128,195 @@ td{
  <script src="assets/base.js"></script>
  <script src="assets/json2.js"></script>
  <script>
-  qk = new Object();
-  qk.id = 'qk';
-  qk.height = '278';
-  height(qk.height);
-  getSettings(qk);
-  qk.shell = new ActiveXObject("WScript.Shell");
+  mod = new Object();
+  mod.id = 'qk01';
+  mod.height = '278';
+  height(mod.height);
+  getSettings(mod.id);
+  mod.shell = new ActiveXObject("WScript.Shell");
   
-  qk.p = new Object();
-  qk.p.sln = new Object();
-  qk.p.sln.s = 300;
-  qk.p.sln.f = function(){
-   if(qk.p.sln.s==300){send('{ENTER}sln ');}
-   qk.p.sln.s--;
-   document.getElementById('sln').innerHTML = 'sln ('+qk.p.sln.s+')';
-   if(qk.p.sln.s==240){
+  mod.p = new Object();
+  mod.p.sln = new Object();
+  mod.p.sln.s = 300;
+  mod.p.sln.f = function(){
+   if(mod.p.sln.s==300){send('{ENTER}sln ');}
+   mod.p.sln.s--;
+   document.getElementById('sln').innerHTML = 'sln ('+mod.p.sln.s+')';
+   if(mod.p.sln.s==240){
     document.getElementById('sln').style.backgroundColor = 'orange';
     bell();
    }
-   if(qk.p.sln.s==0){
+   if(mod.p.sln.s==0){
     document.getElementById('sln').style.backgroundColor = 'red';
-    clearInterval(qk.p.sln.i);
-    qk.p.sln.i = -1;
+    clearInterval(mod.p.sln.i);
+    mod.p.sln.i = -1;
     bell();
    }
   }
-  qk.p.lang1 = new Object(); //olangcall button
-  qk.p.lang1.s = 300;
-  qk.p.lang1.f = function(){
+  mod.p.lang1 = new Object(); //olangcall button
+  mod.p.lang1.s = 300;
+  mod.p.lang1.f = function(){
    //first run
-   if(qk.p.lang1.s==300){
+   if(mod.p.lang1.s==300){
     send('{ENTER}olangcall ');
     document.getElementById('lang1').style.display = 'none';
     document.getElementById('lang2').style.display = 'table-cell';
    }
    //iterations
-   qk.p.lang1.s--;
-   document.getElementById('lang2').innerHTML = 'stndby ('+qk.p.lang1.s+')';
+   mod.p.lang1.s--;
+   document.getElementById('lang2').innerHTML = 'stndby ('+mod.p.lang1.s+')';
    //last run
-   if(qk.p.lang1.s==0){
-    qk.p.lang2.i = setInterval(qk.p.lang2.f,1000);
+   if(mod.p.lang1.s==0){
+    mod.p.lang2.i = setInterval(mod.p.lang2.f,1000);
    }
   }
-  qk.p.lang2 = new Object(); //stndby button
-  qk.p.lang2.s = 300; 
-  qk.p.lang2.f = function(){
+  mod.p.lang2 = new Object(); //stndby button
+  mod.p.lang2.s = 300; 
+  mod.p.lang2.f = function(){
    //first run
-   if(qk.p.lang2.s==300){ 
-    clearInterval(qk.p.lang1.i);
-    qk.p.lang1.i = -1;
+   if(mod.p.lang2.s==300){ 
+    clearInterval(mod.p.lang1.i);
+    mod.p.lang1.i = -1;
     document.getElementById('lang2').innerHTML = 'stndby';
     send('{ENTER}stndby ');
     document.getElementById('lang2').style.display = 'none';
     document.getElementById('lang3').style.display = 'table-cell';
    }
    //iterations
-   qk.p.lang2.s--;
-   document.getElementById('lang3').innerHTML = 'olang ('+qk.p.lang2.s+')';
+   mod.p.lang2.s--;
+   document.getElementById('lang3').innerHTML = 'olang ('+mod.p.lang2.s+')';
    //last run
-   if(qk.p.lang2.s==0){
-    clearInterval(qk.p.lang2.i);
-    qk.p.lang2.i = -1;
+   if(mod.p.lang2.s==0){
+    clearInterval(mod.p.lang2.i);
+    mod.p.lang2.i = -1;
     document.getElementById('lang3').innerHTML = 'olang';
     document.getElementById('lang3').style.backgroundColor = 'red';
     bell();
    }
   }
-  qk.p.lang3 = new Object(); //olang button
-  qk.p.lang3.f = function(){
+  mod.p.lang3 = new Object(); //olang button
+  mod.p.lang3.f = function(){
    clear();
    send('{ENTER}olang ');
   }
   
-  qk.p.scap1 = new Object(); //scapinit button
-  qk.p.scap1.s = 30;
-  qk.p.scap1.f = function(){
+  mod.p.scap1 = new Object(); //scapinit button
+  mod.p.scap1.s = 30;
+  mod.p.scap1.f = function(){
    //first run
-   if(qk.p.scap1.s==30){
+   if(mod.p.scap1.s==30){
     send('{ENTER}scapinit1 {ENTER}scapinit2 ');
     document.getElementById('scap1').style.display = 'none';
     document.getElementById('scap2').style.display = 'table-cell';
    }
    //iterations
-   qk.p.scap1.s--;
-   document.getElementById('scap2').innerHTML = 'scaptrans ('+qk.p.scap1.s+')';
+   mod.p.scap1.s--;
+   document.getElementById('scap2').innerHTML = 'scaptrans ('+mod.p.scap1.s+')';
    //last run
-   if(qk.p.scap1.s==0){
+   if(mod.p.scap1.s==0){
     document.getElementById('scap2').style.backgroundColor = 'red';
     bell();
-    clearInterval(qk.p.scap1.i);
-    qk.p.scap1.i = -1;
+    clearInterval(mod.p.scap1.i);
+    mod.p.scap1.i = -1;
    }
   }
-  qk.p.scap2 = new Object(); //scaptrans button
-  qk.p.scap2.f = function(){
-   clearInterval(qk.p.scap1.i);
+  mod.p.scap2 = new Object(); //scaptrans button
+  mod.p.scap2.f = function(){
+   clearInterval(mod.p.scap1.i);
    send('{ENTER}scaptrans ');
    document.getElementById('scap2').style.display = 'none';
    document.getElementById('scap3').style.display = 'table-cell';
-   clearInterval(qk.p.scap2.i);
-   qk.p.scap2.i = -1;
+   clearInterval(mod.p.scap2.i);
+   mod.p.scap2.i = -1;
   }
-  qk.p.scap3 = new Object(); //scapnot button
-  qk.p.scap3.s = 60;
-  qk.p.scap3.f = function(){
+  mod.p.scap3 = new Object(); //scapnot button
+  mod.p.scap3.s = 60;
+  mod.p.scap3.f = function(){
    //first run
-   if(qk.p.scap3.s==60){
+   if(mod.p.scap3.s==60){
     send('{ENTER}scapnot ');
     document.getElementById('scap3').style.display = 'none';
     document.getElementById('scap4').style.display = 'table-cell';
    }
    //iterations
-   qk.p.scap3.s--;
-   document.getElementById('scap4').innerHTML = 'scaptrans ('+qk.p.scap3.s+')';
+   mod.p.scap3.s--;
+   document.getElementById('scap4').innerHTML = 'scaptrans ('+mod.p.scap3.s+')';
    //last run
-   if(qk.p.scap3.s==0){
+   if(mod.p.scap3.s==0){
     document.getElementById('scap4').style.backgroundColor = 'red';
-    clearInterval(qk.p.scap3.i);
-    qk.p.scap3.i = -1;
+    clearInterval(mod.p.scap3.i);
+    mod.p.scap3.i = -1;
    }
   }
-  qk.p.scap4 = new Object(); //scaptrans (2) button
-  qk.p.scap4.f = function(){
-   clearInterval(qk.p.scap3.i);
+  mod.p.scap4 = new Object(); //scaptrans (2) button
+  mod.p.scap4.f = function(){
+   clearInterval(mod.p.scap3.i);
    send('{ENTER}scaptrans ');
    document.getElementById('scap4').style.backgroundColor = 'transparent';
    document.getElementById('scap4').style.display = 'none';
    document.getElementById('scap5').style.display = 'table-cell';
-   clearInterval(qk.p.scap4.i);
-   qk.p.scap4.i = -1;
+   clearInterval(mod.p.scap4.i);
+   mod.p.scap4.i = -1;
   }
-  qk.p.scap5 = new Object(); //scapcanc button
-  qk.p.scap5.f = function(){
+  mod.p.scap5 = new Object(); //scapcanc button
+  mod.p.scap5.f = function(){
    send('{ENTER}scapcanc ');
    clear();
   }
   
   function captionNet(){
-   qk.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
+   mod.shell.exec('C:/Program Files/CaptionCall/CaptionNet/2.2.53/CaptionNet.exe');
   }
   function send(key){
-   if(typeof qk.p[key] !== 'undefined'){
-    if(qk.p[key].i > 0){clear();}
-    qk.p[key].i = setInterval(qk.p[key].f,1000);
+   if(typeof mod.p[key] !== 'undefined'){
+    if(mod.p[key].i > 0){clear();}
+    mod.p[key].i = setInterval(mod.p[key].f,1000);
    }
    else{
-    qk.shell.AppActivate('Untitled - Notepad'); //CaptionNet
-    qk.shell.SendKeys(key);
+    mod.shell.AppActivate('Untitled - Notepad'); //CaptionNet
+    mod.shell.SendKeys(key);
    }
   }
   function clear(){
-   clearInterval(qk.p.sln.i);
-    qk.p.sln.i = -1;
-    qk.p.sln.s=300;
+   clearInterval(mod.p.sln.i);
+    mod.p.sln.i = -1;
+    mod.p.sln.s=300;
     document.getElementById('sln').innerHTML = 'sln';
     document.getElementById('sln').style.backgroundColor = 'transparent';
-   clearInterval(qk.p.lang1.i);
-    qk.p.lang1.i = -1;
-    qk.p.lang1.s=300;
+   clearInterval(mod.p.lang1.i);
+    mod.p.lang1.i = -1;
+    mod.p.lang1.s=300;
     document.getElementById('lang1').style.display = 'table-cell';
-   clearInterval(qk.p.lang2.i);
-    qk.p.lang2.i = -1;
-    qk.p.lang2.s=300;
+   clearInterval(mod.p.lang2.i);
+    mod.p.lang2.i = -1;
+    mod.p.lang2.s=300;
     document.getElementById('lang2').innerHTML = 'stndby';
     document.getElementById('lang2').style.display = 'none';
-   clearInterval(qk.p.lang3.i);
-    qk.p.lang3.i = -1;
+   clearInterval(mod.p.lang3.i);
+    mod.p.lang3.i = -1;
     document.getElementById('lang3').innerHTML = 'olang';
     document.getElementById('lang3').style.backgroundColor = 'transparent';
     document.getElementById('lang3').style.display = 'none';
-   clearInterval(qk.p.scap1.i);
-    qk.p.scap1.i = -1;
-    qk.p.scap1.s = 30;
+   clearInterval(mod.p.scap1.i);
+    mod.p.scap1.i = -1;
+    mod.p.scap1.s = 30;
     document.getElementById('scap1').style.display = 'table-cell';
-   clearInterval(qk.p.scap2.i);
-    qk.p.scap2.i = -1;
+   clearInterval(mod.p.scap2.i);
+    mod.p.scap2.i = -1;
     document.getElementById('scap2').innerHTML = 'scaptrans';
     document.getElementById('scap2').style.backgroundColor = 'transparent';
     document.getElementById('scap2').style.display = 'none';
-   clearInterval(qk.p.scap3.i);
-    qk.p.scap3.i = -1;
-    qk.p.scap3.s = 60;
+   clearInterval(mod.p.scap3.i);
+    mod.p.scap3.i = -1;
+    mod.p.scap3.s = 60;
     document.getElementById('scap3').style.display = 'none';
-   clearInterval(qk.p.scap4.i);
-    qk.p.scap4.i = -1;
+   clearInterval(mod.p.scap4.i);
+    mod.p.scap4.i = -1;
     document.getElementById('scap4').innerHTML = 'scaptrans';
     document.getElementById('scap4').style.backgroundColor = 'transparent';
     document.getElementById('scap4').style.display = 'none';
-   clearInterval(qk.p.scap5.i);
-    qk.p.scap5.i = -1;
+   clearInterval(mod.p.scap5.i);
+    mod.p.scap5.i = -1;
     document.getElementById('scap5').style.display = 'none';
   }
   function bell(){
