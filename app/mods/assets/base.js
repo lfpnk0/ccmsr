@@ -37,100 +37,90 @@ function height(h){
   el.getElementsByClassName('scrollable')[0].style.height = (h-76)+'px';
  }
 
-function getSettings(obj){
+function getSettings(){
  var urlArr = window.location.href.split('/');
- var obj.settings.user = urlArr[2].split('.')[0];
- var obj.settings.repo = urlArr[3];
- var obj.settings.branch = 'gh-pages';
- var obj.settings.path = urlArr[4]+'/'+urlArr[5]+'/'+urlArr[6];
- getFileData(obj.settings.user, obj.settings.repo, obj.settings.branch, obj.settings.path, obj.settings, 'processData');
+ var user = urlArr[2].split('.')[0];
+ var repo = urlArr[3];
+ var branch = 'gh-pages';
+ urlArr[6] = urlArr[6].replace(".htm", ".set");
+ var path = urlArr[4]+'/'+urlArr[5]+'/'+urlArr[6];
+ mod.settings = file(user, repo, branch, path);
 }
 
-function getFileData(user, repo, branch, path, fileObj, callback){ //JSONP Method
- var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch+'&callback='+callback;
- var scriptTag = document.createElement("SCRIPT");
- scriptTag.src = url;
- document.getElementsByTagName('BODY')[0].appendChild(scriptTag);
-}
-
-function processData(obj){
- /* callback function only has object from github ... need to know which module it is for
- obj.sha = obj.data.sha;
- obj.download_url = obj.download_url;
- */
-}
-/* ---ACCESS DENIED ERROR ---
-function getFileData(user, repo, branch, path, fileObj, callback){ //XMLHttpRequest mehod
- var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
- var xmlhttp = new XMLHttpRequest();
- xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-   var obj = JSON.parse(this.responseText);
-   fileObj.user = user;
-   fileObj.repo = repo;
-   fileObj.branch = branch;
-   fileObj.path = path;
-   fileObj.sha = obj.sha;
-   fileObj.download_url = obj.download_url;
-   //if(typeof callback === 'function'){
-    //callback(fileObj);
-   //}
+function file(user, repo, branch, path){
+ this.requireVBA = function(){
+  var shell = new ActiveXObject("WScript.Shell");
+  var UP = shell.ExpandEnvironmentStrings("%UserProfile%")
+  var fs = new ActiveXObject("Scripting.FileSystemObject");
+  if(!fs.FileExists(UP+'/Downloads/http.vbs)){
+   var f = fso.CreateTextFile(UP+'/Downloads/http.vbs', true);    
+   f.WriteLine('args = Split(Wscript.Arguments(0),",")');
+   f.WriteLine('method = args(0)');
+   f.WriteLine('auth = args(1)');
+   f.WriteLine('url = args(2)');
+   f.WriteLine('branch = args(3)');
+   f.WriteLine('sha = args(4)');
+   f.WriteLine('file = args(5)');
+   f.WriteLine('Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP")');
+   f.WriteLine('objHTTP.Open method, URL, False');
+   f.WriteLine('objHTTP.setRequestHeader "Authorization", "Basic " & auth');
+   f.WriteLine('If method = "PUT" Then');
+   f.WriteLine(' json = "{" &_');
+   f.WriteLine('  chr(34) & "message" & chr(34) & ": " & chr(34) & "updated via app" & chr(34) & "," & _');
+   f.WriteLine('  chr(34) & "content" & chr(34) & ": " & chr(34) & file & chr(34) & ", " & _');
+   f.WriteLine('  chr(34) & "branch" & chr(34) & ": " & chr(34) & branch & chr(34) & ", " & _');
+   f.WriteLine('  chr(34) & "sha" & chr(34) & ": " & chr(34) & sha & chr(34) & "}"');
+   f.WriteLine(' objHTTP.send (json)');
+   f.WriteLine('Else');
+   f.WriteLine(' objHTTP.send ()');
+   f.WriteLine('If objHTTP.Status >= 400 And objHTTP.Status <= 599 Then');
+   f.WriteLine(' Wscript.Echo "{\'error\':{\'code\':" & objHTTP.status & "},\'response\':{" & objHTTP.ResponseText & "}"');
+   f.WriteLine('Else');
+   f.WriteLine(' Wscript.Echo objHTTP.ResponseText');
+   f.WriteLine('End If');
+   f.Close();
   }
- };
- xmlhttp.open('GET', url, true);
- xmlhttp.send();
+ }
+ var arr = path.split('/')
+ this.name = arr[arr.length-1];
+ this.user = user;
+ this.repo = repo;
+ this.branch = branch;
+ this.path = path;
+ this.getDetails = function(){
+  var url = 'https://api.github.com/repos/'+this.user+'/'+this.repo+'/contents/'+this.path+'?ref='+this.branch+'&callback='+this.storeDetails;
+  var scriptTag = document.createElement("SCRIPT");
+  scriptTag.src = url;
+  document.getElementsByTagName('BODY')[0].appendChild(scriptTag);
+ }
+ this.storeDetails = function(ghObj){
+  this.sha = ghObj.data.sha;
+  this.download_url = ghObj.download_url;
+ }
+ this.getContent = function(){
+  this.requireVBA();
+  var method = 'GET';
+  var auth = 'dXNlcjpwYXNz'; //user:pass
+  var file = 'bnVsbA=='; //null
+  var cmd = 'cscript //nologo %USERPROFILE%/Downloads/http.vbs "'+method+','+auth+','+this.download_url+','+this.branch+','+this.sha+','+file+'"';
+  var shell = new ActiveXObject("WScript.Shell");
+  var com = shell.exec(cmd);
+  this.content = StdOut.ReadAll();
+ }
+ this.updateContent = function(txt){
+  this.requireVBA();
+  var method = 'PUT';
+  var usr = prompt('Username');
+  var pwd = prompt('Password');
+  var auth = btoa(usr+':'+pwd);
+  var url = 'https://api.github.com/repos/'+this.user+'/'+this.repo+'/contents/'+this.path;
+  var path = btoa(txt);
+  var cmd = 'cscript //nologo %USERPROFILE%/Downloads/http.vbs "'+method+','+auth+','+url+','+this.branch+','+this.sha+','+file+'"';
+  var com = shell.exec(cmd);
+  var ghObj = StdOut.ReadAll();
+  this.getDetails();
+ }
 }
-
-function getFileContent(fileObj){
- var url = fileObj.download_url;
- var xmlhttp = new XMLHttpRequest();
-   xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-     fileObj.content = this.responseText;
-    }
-   };
-   xmlhttp.open('GET', url);
-   xmlhttp.send();
-}
-*/
-
-/* ---ERROR ??? ---
-function getFileData(user, repo, branch, path, fileObj, callback){ //XDomainRequest method
- var url = 'https://api.github.com/repos/'+user+'/'+repo+'/contents/'+path+'?ref='+branch;
- var xhr = new XDomainRequest();
- xhr.onprogress = function () { };
- xhr.timeout = 10000;
- xhr.ontimeout = function () {alert('XDomainRequest timed out');};
- xhr.onerror = function(err){alert('XDomainRequest Error');};
- xhr.onload = function(){
-  var obj = JSON.parse(this.responseText);
-  fileObj.user = user;
-  fileObj.repo = repo;
-  fileObj.branch = branch;
-  fileObj.path = path;
-  fileObj.sha = obj.sha;
-  fileObj.download_url = obj.download_url;
-  //if(typeof callback === 'function'){
-   //callback(fileObj);
-  //}
- };
- xhr.open('GET', url);
- setTimeout(function () {xhr.send();}, 0); //wrap in timeout for ie9?
-}
- 
-function getFileContent(fileObj){
- var url = fileObj.download_url;
- var xmlhttp = new XDomainRequest();
- xmlhttp.onprogress = function () { };
- xmlhttp.ontimeout = function () { };
- xmlhttp.onload = function(){
-  fileObj.content = this.responseText;
- };
- xmlhttp.open('GET', url);
- setTimeout(function () {xmlhttp.send();}, 0); //wrap in timeout for ie9?
-}
-*/
-
 
 function saveSettings(){
  var obj = new Object();
@@ -144,28 +134,7 @@ function saveSettings(){
    obj[el.name] = el.value;
   }
  }
- var url = window.location.href.split('/');
- var user = url[2].split('.')[0];
- var pwd = prompt('Password:',''); // I know this is horribly insecure but I don't want to code the popup right now.
- var repo = 'ccmsr';
- var branch = 'gh-pages';
- var file = url[6].split('.')[0];
- var path = 'app/mods/'+file+'.set';
  var content = JSON.stringify(obj);
  var b64 = window.btoa(content);
- var comment = 'updated settings';
- alert('need to fix the req variable in your saveSettings function.  Need to include the SHA of the existing file in update request');
- /*
- var req = {'message': 'updated settings', 'content': b64, 'sha': "329688480d39049927147c162b9d2deaf885005f"}
- 
- var xmlhttp = new XMLHttpRequest();
- xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-   document.getElementById("demo").innerHTML =
-   this.responseText;
-  }
- };
- xmlhttp.open('PUT', 'https://api.github.com/users/'+user+'/'+repo+'/contents/'+path, true);
- xmlhttp.send(req);
-*/
+ mod.settings.updateContent(b64);
 }
