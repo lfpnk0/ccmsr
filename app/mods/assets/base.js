@@ -174,15 +174,15 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
       f.WriteLine(' objHTTP.send ()');
     }
     f.WriteLine('If objHTTP.Status >= 400 And objHTTP.Status <= 599 Then'); 
-    f.WriteLine(' Wscript.Echo "{\'error\':{\'code\':" & objHTTP.status & "},\'response\':" & objHTTP.ResponseText & "}"'); 
+    f.WriteLine(' WScript.Echo "{\'error\':{\'code\':" & objHTTP.status & "},\'response\':" & objHTTP.ResponseText & "}"'); 
     f.WriteLine('Else'); 
-    f.WriteLine(' Wscript.Echo objHTTP.ResponseText'); 
+    f.WriteLine(' WScript.Echo objHTTP.ResponseText'); 
     f.WriteLine('End If'); 
     f.Close(); 
     var cmd = 'cscript //nologo %TEMP%/'+filename+'.vbs'; 
     var shell = new ActiveXObject("WScript.Shell"); 
     var com = shell.exec(cmd); 
-    responseObj = StdOut.ReadAll();
+    responseObj = WScript.StdOut.ReadAll();
     fso.DeleteFile(TEMP+'/'+filename+'.vbs');
   }
   callback(responseObj);
