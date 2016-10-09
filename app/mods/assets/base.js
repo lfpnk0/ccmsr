@@ -9,7 +9,7 @@ function init(){
     el.src='/assets/'+arr[i];
     document.getElementsByTagName('body')[0].appendChild(el);
   }
-	setReqData();
+  setReqData();
 }
 
 
