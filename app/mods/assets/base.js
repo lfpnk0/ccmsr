@@ -3,13 +3,13 @@
 /*************/
 function init(){
   var arr = ['base64.js','json2.js'];
-	var el;
+  var el;
   for (var i = 0; i < arr.length; i++) {
     el = document.createElement('script')
     el.src='assets/'+arr[i];
     document.getElementsByTagName('body')[0].appendChild(el);
   }
-	setTimeout(function(){ setReqData(); }, 1000);
+  setTimeout(function(){ setReqData(); }, 1000);
 }
 
 
