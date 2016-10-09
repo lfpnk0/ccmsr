@@ -6,7 +6,7 @@ function loadJS(arr){
   for (var i = 0; i < arr.length; i++) {
     el = document.createElement('script')
     el.src='/assets/'+arr[i];
-    document.getElementsByTagName('body)[0].appendChild(el);
+    document.getElementsByTagName('body')[0].appendChild(el);
   }
 }
 loadJS(['base64.min.js','json2.js']);
