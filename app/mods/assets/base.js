@@ -92,7 +92,7 @@ function setUpdate(auth){
 	var json = new Object();
 	var frm = document.getElementById('settingsForm');
 	var fs = frm.getElementsByTagName('fieldset');
-	var lgd lab el obj;
+	var lgd, lab, el, obj;
 	for (var i=0; i < fs.length; i++) {
 	  lgd = fs[i].document.getElementsByTagName('legend')[0].innerHTML;
 	  json[lgd] = [];
