@@ -2,7 +2,7 @@
 // Initialize Module
 /*************/
 function init(){
-  var arr = ['base64.min.js','json2.js'];
+  var arr = ['base64.js','json2.js'];
 	var el;
   for (var i = 0; i < arr.length; i++) {
     el = document.createElement('script')
