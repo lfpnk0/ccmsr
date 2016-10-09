@@ -1,15 +1,16 @@
 /*************/
-// Load Dependancies
+// Initialize Module
 /*************/
-function loadJS(arr){
-  var el;
+function init(){
+  var arr = ['base64.min.js','json2.js'];
+	var el;
   for (var i = 0; i < arr.length; i++) {
     el = document.createElement('script')
     el.src='/assets/'+arr[i];
     document.getElementsByTagName('body')[0].appendChild(el);
   }
+	setReqData();
 }
-loadJS(['base64.min.js','json2.js']);
 
 
 /*************/
