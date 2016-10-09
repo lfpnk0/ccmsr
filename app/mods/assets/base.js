@@ -45,6 +45,7 @@ function height(h){
 /*************/
 function setReqData(){
   var urlArr = window.location.href.split('/'); 
+  mod.set = new Object();
   mod.set.owner = urlArr[2].split('.')[0]; 
   mod.set.repo = urlArr[3]; 
   urlArr[6] = urlArr[6].replace(".htm", ".set"); 
