@@ -9,7 +9,8 @@ function init(){
     el.src='/app/mods/assets/'+arr[i];
     document.getElementsByTagName('body')[0].appendChild(el);
   }
-  setReqData();
+  //setReqData();
+	alert(el.src);
 }
 
 
