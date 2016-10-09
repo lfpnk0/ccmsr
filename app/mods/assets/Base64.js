@@ -1,4 +1,4 @@
-  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+  
 
   function InvalidCharacterError(message) {
     this.message = message;
@@ -7,6 +7,7 @@
   InvalidCharacterError.prototype.name = 'InvalidCharacterError';
 
   window.btoa = function (input) {
+	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     var str = String(input);
     for (
       // initialize result and counter
@@ -25,10 +26,11 @@
       block = block << 8 | charCode;
     }
     return output;
-  });
+  }
 
 
   window.atob = function (input) {
+	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     var str = String(input).replace(/=+$/, '');
     if (str.length % 4 == 1) {
       throw new InvalidCharacterError("'atob' failed: The string to be decoded is not correctly encoded.");
@@ -48,4 +50,4 @@
       buffer = chars.indexOf(buffer);
     }
     return output;
-  });
+  }
