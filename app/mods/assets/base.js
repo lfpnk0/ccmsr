@@ -1,3 +1,6 @@
+/*************/
+// UI Functions
+/*************/
 function collapse(mod){
  var c = document.getElementById('content').style.display;
  var s = document.getElementById('settings').style.display;
@@ -37,104 +40,147 @@ function height(h){
   el.getElementsByClassName('scrollable')[0].style.height = (h-76)+'px';
  }
 
-function getSettings(){
- var urlArr = window.location.href.split('/');
- var user = urlArr[2].split('.')[0];
- var repo = urlArr[3];
- var branch = 'gh-pages';
- urlArr[6] = urlArr[6].replace(".htm", ".set");
- var path = urlArr[4]+'/'+urlArr[5]+'/'+urlArr[6];
- mod.settings = file(user, repo, branch, path);
+/*************/
+// Get/Save Settings
+/*************/
+function setReqData(){
+  var urlArr = window.location.href.split('/'); 
+  mod.set.owner = urlArr[2].split('.')[0]; 
+  mod.set.repo = urlArr[3]; 
+  urlArr[6] = urlArr[6].replace(".htm", ".set"); 
+  mod.set.path = urlArr[4]+'/'+urlArr[5]+'/'+urlArr[6];
+  var url = 'https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+path+'?ref=gh-pages';
+  var params = {'method':'GET', 'url':url, 'callback':setReqContent};
+  httpReq(params);
 }
 
-function file(user, repo, branch, path){
- this.requireVBA = function(){
-  var shell = new ActiveXObject("WScript.Shell");
-  var UP = shell.ExpandEnvironmentStrings("%UserProfile%")
-  var fs = new ActiveXObject("Scripting.FileSystemObject");
-  if(!fs.FileExists(UP+'/Downloads/http.vbs')){
-   var f = fso.CreateTextFile(UP+'/Downloads/http.vbs', true);    
-   f.WriteLine('args = Split(Wscript.Arguments(0),",")');
-   f.WriteLine('method = args(0)');
-   f.WriteLine('auth = args(1)');
-   f.WriteLine('url = args(2)');
-   f.WriteLine('branch = args(3)');
-   f.WriteLine('sha = args(4)');
-   f.WriteLine('file = args(5)');
-   f.WriteLine('Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP")');
-   f.WriteLine('objHTTP.Open method, URL, False');
-   f.WriteLine('objHTTP.setRequestHeader "Authorization", "Basic " & auth');
-   f.WriteLine('If method = "PUT" Then');
-   f.WriteLine(' json = "{" &_');
-   f.WriteLine('  chr(34) & "message" & chr(34) & ": " & chr(34) & "updated via app" & chr(34) & "," & _');
-   f.WriteLine('  chr(34) & "content" & chr(34) & ": " & chr(34) & file & chr(34) & ", " & _');
-   f.WriteLine('  chr(34) & "branch" & chr(34) & ": " & chr(34) & branch & chr(34) & ", " & _');
-   f.WriteLine('  chr(34) & "sha" & chr(34) & ": " & chr(34) & sha & chr(34) & "}"');
-   f.WriteLine(' objHTTP.send (json)');
-   f.WriteLine('Else');
-   f.WriteLine(' objHTTP.send ()');
-   f.WriteLine('If objHTTP.Status >= 400 And objHTTP.Status <= 599 Then');
-   f.WriteLine(' Wscript.Echo "{\'error\':{\'code\':" & objHTTP.status & "},\'response\':{" & objHTTP.ResponseText & "}"');
-   f.WriteLine('Else');
-   f.WriteLine(' Wscript.Echo objHTTP.ResponseText');
-   f.WriteLine('End If');
-   f.Close();
+function setReqContent(responseObj){
+  if (!responseObj.hasOwnProperty('error')){
+    mod.set.sha = responseObj.sha;
+    var url = responseObj.download_url;
+    var params = {'method':'GET', 'url':url, 'callback':setProcFile};
+    httpReq(params);
   }
- }
- var arr = path.split('/')
- this.name = arr[arr.length-1];
- this.user = user;
- this.repo = repo;
- this.branch = branch;
- this.path = path;
- this.getDetails = function(){
-  var url = 'https://api.github.com/repos/'+this.user+'/'+this.repo+'/contents/'+this.path+'?ref='+this.branch+'&callback='+this.storeDetails;
-  var scriptTag = document.createElement("SCRIPT");
-  scriptTag.src = url;
-  document.getElementsByTagName('BODY')[0].appendChild(scriptTag);
- }
- this.storeDetails = function(ghObj){
-  this.sha = ghObj.data.sha;
-  this.download_url = ghObj.download_url;
- }
- this.getContent = function(){
-  this.requireVBA();
-  var method = 'GET';
-  var auth = 'dXNlcjpwYXNz'; //user:pass
-  var file = 'bnVsbA=='; //null
-  var cmd = 'cscript //nologo %USERPROFILE%/Downloads/http.vbs "'+method+','+auth+','+this.download_url+','+this.branch+','+this.sha+','+file+'"';
-  var shell = new ActiveXObject("WScript.Shell");
-  var com = shell.exec(cmd);
-  this.content = StdOut.ReadAll();
- }
- this.updateContent = function(txt){
-  this.requireVBA();
-  var method = 'PUT';
-  var usr = prompt('Username');
-  var pwd = prompt('Password');
-  var auth = btoa(usr+':'+pwd);
-  var url = 'https://api.github.com/repos/'+this.user+'/'+this.repo+'/contents/'+this.path;
-  var path = btoa(txt);
-  var cmd = 'cscript //nologo %USERPROFILE%/Downloads/http.vbs "'+method+','+auth+','+url+','+this.branch+','+this.sha+','+file+'"';
-  var com = shell.exec(cmd);
-  var ghObj = StdOut.ReadAll();
-  this.getDetails();
- }
+  else{log('reqSettings2: 'JSON.stringify(responseObj));}
 }
 
-function saveSettings(){
- var obj = new Object();
- var form = document.getElementById('settingsForm');
- for ( var i = 0; i < form.elements.length; i++ ) {
-  var el = form.elements[i];
-  if(el.tagName == 'SELECT'){
-   obj[el.name] = el.options[el.selectedIndex].value;
+function setProcFile(responseObj){
+  if (!responseObj.hasOwnProperty('error')){
+    mod.set.content = JSON.parse(window.atob(responseObj));
+	var html = '';
+	var o = mod.set.content
+	for (var l in o) {
+	  html = html+'<fieldset><legend>'+l+'</legend>';
+	  for (var i = 0; i < o[l].length; i++) { 
+	    //if(o[l][i].type == 'text'){
+	    html = html+'<label for="'+o[l][i].name+'">'+o[l][i].label+"</label><input type="'+o[l][i].type+'" id="'+o[l][i].name+'" name="'+o[l][i].name+'" value="'+o[l][i].value+'" />';
+	  }
+	  html = html+'</fieldset>';
+	}
+	document.getElementById('settingsForm').innerHTML = html;
   }
-  if(el.tagName == 'INPUT'){
-   obj[el.name] = el.value;
+  else{log('reqSettings3: 'JSON.stringify(responseObj));}
+}
+
+function setUpdate(auth){
+  if (typeof auth === 'undefined'){authPrompt(setUpdate);}
+  else{
+    var url = 'https://api.github.com/repos/'+mod.set.owner+'/'+mod.set.repo+'/contents/'+path;
+    var req = {'path':mod.set.path, 'message':'Updated from App', 'content':content, 'sha':mod.set.sha, 'branch':'gh-pages'};
+	var json = new Object();
+	var frm = document.getElementById('settingsForm');
+	var fs = frm.getElementsByTagName('fieldset');
+	var lgd lab el obj;
+	for (var i=0; i < fs.length; i++) {
+	  lgd = fs[i].document.getElementsByTagName('legend')[0].innerHTML;
+	  json[lgd] = [];
+	  lab = fs[i].getElementsByClassName('label');
+	  for (var j=1; j < lab; j++) {
+	    el = document.getElementById(lab[j].htmlFor);
+		obj = {'label':lab[j].innerHTML, 'type':el.type, 'name':el.name, 'value':el.value};
+	    json[lgd].push(obj);
+	  }
+    }	
+    var content = window.btoa(json);
+    var params = {'method':'PUT', 'url':url, 'auth':auth, 'req':req, setReqData}
+    httpReq(params);
   }
- }
- var content = JSON.stringify(obj);
- var b64 = window.btoa(content);
- mod.settings.updateContent(b64);
+}
+
+/*************/
+// CORS Functions
+/*************/
+function authPrompt(callback){
+  var html='<fieldset style="text-align:center; width:100px;" >'+
+    '<legend>GitHub Credentials</legend>'+
+    '<label>Username</label>'+
+    '<input type="text" id="authPromptUser" />'+
+    '<label>Password</label>'+
+    '<input type="password" id="authPromptPass" disabled="disabled" />'+
+    '<input type="button" id="authPromptGo" value="Submit" disabled="disabled" />'+
+	'<input type="button" id="authPromptCan" value="Cancel" />'+
+    '</div>';
+  var el = document.createElement('div');
+  div.id = 'authPrompt';
+  el.style.cssText = 'position:fixed; top:0; width:100%; background-color: light-gray;';
+  el.innerHTML = html;
+  document.getElementsByTagName('body')[0].appendChild(el);
+  document.getElementById('authPromptUser').onchange = function(){document.getElementById('authPromptPass').disabled=false;};
+  document.getElementById('authPromptPass').onchange = function(){document.getElementById('authPromptGo').disabled=false;};
+  document.getElementById('authPromptGo').onclick = function(){var auth = window.btoa(document.getElementById('authPromptUser').value+':'+document.getElementById('authPromptPass').value); callback(auth);};
+  document.getElementById('authPromptCan').onclick = function(){el=document.getElementById('authPrompt');el.parentNode.removeChild(el);};
+}
+
+//  GitHub API V3 Requests
+//
+//  [ACTION]  [METHOD] [URL https://api.github.com...]                 [B64 ENCODED JSON REQUEST]
+//  Delete 	  DELETE   /repos/:owner/:repo/contents/:path	             {path, message, sha, branch}
+//  Update 	  PUT      /repos/:owner/:repo/contents/:path	             {path, message, content, sha, branch}
+//  New		     PUT      /repos/:owner/:repo/contents/:path	             {path, message, content, branch}
+//  Details	  GET      /repos/:owner/:repo/contents/:path?ref=:branch
+//  Content   GET      download_url
+
+function httpReq(params){ //params = {method,url,auth,req,callback}
+  var filename = 'httpReq'+new Date().getTime();
+  var retObj = new Object();
+  if (!params.hasOwnProperty('method')){
+    responseObj = '{"error":{"code":000},"response":{"message":"No Method provided to httpReq()"}}';
+  }
+  if(params.method == "PUT" || params.method == "POST" || params.method == "DELETE"){
+   if (!params.hasOwnProperty('req')){
+     responseObj = '{"error":{"code":000},"response":{"message":"No Request provided to httpReq()"}}';
+   }
+  }
+  if (!params.hasOwnProperty('url')){
+    responseObj = '{"error":{"code":000},"response":{"message":"No URL Provided to httpReq()"}}';
+  }
+  else{
+    var shell = new ActiveXObject("WScript.Shell"); 
+    var TEMP = shell.ExpandEnvironmentStrings("%TEMP%") 
+    var fs = new ActiveXObject("Scripting.FileSystemObject"); 
+    var f = fso.CreateTextFile(TEMP+'/'+filename+'.vbs', true);     
+    f.WriteLine('Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP")'); 
+    f.WriteLine('objHTTP.Open '+params.method+', '+params.url+', false');
+    if (!params.hasOwnProperty('auth')){
+      f.WriteLine('objHTTP.setRequestHeader "Authorization", "Basic '+params.auth+'"');
+    }
+    if(params.method == "PUT" || params.method == "POST" || params.method == "DELETE"){
+      f.WriteLine(' objHTTP.send ('+params.req+')');
+    }
+    else{
+      f.WriteLine(' objHTTP.send ()');
+    }
+    f.WriteLine('If objHTTP.Status >= 400 And objHTTP.Status <= 599 Then'); 
+    f.WriteLine(' Wscript.Echo "{\'error\':{\'code\':" & objHTTP.status & "},\'response\':" & objHTTP.ResponseText & "}"'); 
+    f.WriteLine('Else'); 
+    f.WriteLine(' Wscript.Echo objHTTP.ResponseText'); 
+    f.WriteLine('End If'); 
+    f.Close(); 
+    var cmd = 'cscript //nologo %TEMP%/'+filename+'.vbs'; 
+    var shell = new ActiveXObject("WScript.Shell"); 
+    var com = shell.exec(cmd); 
+    responseObj = StdOut.ReadAll();
+    fso.DeleteFile(TEMP+'/'+filename+'.vbs');
+  }
+  callback(responseObj);
 }
