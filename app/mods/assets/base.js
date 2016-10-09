@@ -50,7 +50,7 @@ function setReqData(){
   mod.set.repo = urlArr[3]; 
   urlArr[6] = urlArr[6].replace(".htm", ".set"); 
   mod.set.path = urlArr[4]+'/'+urlArr[5]+'/'+urlArr[6];
-  var url = 'https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+path+'?ref=gh-pages';
+  var url = 'https://api.github.com/repos/'+mod.set.owner+'/'+mod.set.repo+'/contents/'+mod.set.path+'?ref=gh-pages';
   var params = {'method':'GET', 'url':url, 'callback':setReqContent};
   httpReq(params);
 }
