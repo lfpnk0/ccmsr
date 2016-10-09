@@ -61,7 +61,9 @@ function setReqContent(responseObj){
     var params = {'method':'GET', 'url':url, 'callback':setProcFile};
     httpReq(params);
   }
-  else{log('reqSettings2: 'JSON.stringify(responseObj));}
+  else{
+    log('reqSettings2: '+JSON.stringify(responseObj));
+  }
 }
 
 function setProcFile(responseObj){
