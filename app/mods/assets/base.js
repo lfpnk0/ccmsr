@@ -182,7 +182,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     var cmd = 'cscript //nologo %TEMP%/'+filename+'.vbs'; 
     var shell = new ActiveXObject("WScript.Shell"); 
     var com = shell.exec(cmd); 
-    responseObj = WScript.StdOut.ReadAll();
+    responseObj = shell.StdOut.ReadAll();
     fso.DeleteFile(TEMP+'/'+filename+'.vbs');
   }
   callback(responseObj);
