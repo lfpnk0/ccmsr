@@ -1,4 +1,18 @@
 /*************/
+// Load Dependancies
+/*************/
+function loadJS(arr){
+  var el;
+  for (var i = 0; i < arr.length; i++) {
+    el = document.createElement('script')
+    el.src='/assets/'+arr[i];
+    document.getElementsByTagName('body)[0].appendChild(el);
+  }
+}
+loadJS(['base64.min.js','json2.js']);
+
+
+/*************/
 // UI Functions
 /*************/
 function collapse(mod){
@@ -33,7 +47,7 @@ function settings(mod){
 function height(h){
  window.parent.document.getElementById('qk').height = h+'px';
  var arr = document.getElementsByClassName('scrollable');
- for (i = 0; i < arr.length; i++) { 
+ for (var i = 0; i < arr.length; i++) { 
   arr[i].style.height = (h-38)+'px';
  }
  var el = document.getElementById('settings');
