@@ -85,7 +85,7 @@ function setReqContent(responseObj){
 function setProcFile(responseObj){
   if (!responseObj.hasOwnProperty('error')){
     var str = atob(responseObj);
-		alert(str);
+		alert(str.length);
     mod.set.content = JSON.parse(str);
 	var html = '';
 	var o = mod.set.content
