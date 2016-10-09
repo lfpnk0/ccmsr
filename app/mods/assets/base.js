@@ -185,5 +185,5 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     responseObj = com.StdOut.ReadAll();
     fso.DeleteFile(TEMP+'/'+filename+'.vbs');
   }
-  callback(responseObj);
+  params.callback(responseObj);
 }
