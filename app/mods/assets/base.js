@@ -75,7 +75,7 @@ function setProcFile(responseObj){
 	  html = html+'<fieldset><legend>'+l+'</legend>';
 	  for (var i = 0; i < o[l].length; i++) { 
 	    //if(o[l][i].type == 'text'){
-	    html = html+'<label for="'+o[l][i].name+'">'+o[l][i].label+"</label><input type="'+o[l][i].type+'" id="'+o[l][i].name+'" name="'+o[l][i].name+'" value="'+o[l][i].value+'" />';
+	    html = html+'<label for="'+o[l][i].name+'">'+o[l][i].label+'</label><input type="'+o[l][i].type+'" id="'+o[l][i].name+'" name="'+o[l][i].name+'" value="'+o[l][i].value+'" />';
 	  }
 	  html = html+'</fieldset>';
 	}
