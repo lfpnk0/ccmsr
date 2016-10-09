@@ -60,10 +60,10 @@ legend{
  border-bottom: 1px solid black;
  margin-bottom: 2px;
 }
-#settings label{
+fieldset label{
  display:block;
  margin:1px;
 }
-#settings input{
+fieldset input{
  margin-bottom: 6px;
 }
