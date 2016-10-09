@@ -104,7 +104,7 @@ function setUpdate(auth){
 	  }
     }	
     var content = window.btoa(json);
-    var params = {'method':'PUT', 'url':url, 'auth':auth, 'req':req, setReqData}
+    var params = {'method':'PUT', 'url':url, 'auth':auth, 'req':req, 'callback':setReqData}
     httpReq(params);
   }
 }
