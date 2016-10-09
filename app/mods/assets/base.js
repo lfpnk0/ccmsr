@@ -7,10 +7,11 @@ function init(){
   for (var i = 0; i < arr.length; i++) {
     el = document.createElement('script')
     el.src='/assets/'+arr[i];
-	  alert(window.location)
     document.getElementsByTagName('body')[0].appendChild(el);
   }
   //setReqData();
+	alert(window.location)
+	alert(el.src);
 }
 
 
