@@ -81,7 +81,7 @@ function setProcFile(responseObj){
 	}
 	document.getElementById('settingsForm').innerHTML = html;
   }
-  else{log('reqSettings3: 'JSON.stringify(responseObj));}
+  else{log('reqSettings3: '+JSON.stringify(responseObj));}
 }
 
 function setUpdate(auth){
