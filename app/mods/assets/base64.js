@@ -6,7 +6,7 @@
   InvalidCharacterError.prototype = new Error;
   InvalidCharacterError.prototype.name = 'InvalidCharacterError';
 
-  window.btoa = function (input) {
+  function btoa(input) {
 	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     var str = String(input);
     for (
@@ -29,7 +29,7 @@
   }
 
 
-  window.atob = function (input) {
+  function atob(input) {
 	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     var str = String(input).replace(/=+$/, '');
     if (str.length % 4 == 1) {
