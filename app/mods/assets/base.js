@@ -160,7 +160,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
   else{
     var shell = new ActiveXObject("WScript.Shell"); 
     var TEMP = shell.ExpandEnvironmentStrings("%TEMP%") 
-    var fs = new ActiveXObject("Scripting.FileSystemObject"); 
+    var fso = new ActiveXObject("Scripting.FileSystemObject"); 
     var f = fso.CreateTextFile(TEMP+'/'+filename+'.vbs', true);     
     f.WriteLine('Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP")'); 
     f.WriteLine('objHTTP.Open '+params.method+', '+params.url+', false');
