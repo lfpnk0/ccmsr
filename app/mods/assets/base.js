@@ -171,7 +171,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
      responseObj = '{"error":{"code":000},"response":{"message":"No Request provided to httpReq()"}}';
    }
   }
-  if (!params.hasOwnProperty('url')){
+  if (!params.hasOwnProperty('url') || params.url === 'undefined'){
     responseObj = '{"error":{"code":000},"response":{"message":"No URL Provided to httpReq()"}}';
   }
   else{
@@ -199,6 +199,10 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     var cmd = 'cscript //nologo %TEMP%/'+filename+'.vbs'; 
     var shell = new ActiveXObject("WScript.Shell"); 
     var com = shell.exec(cmd); 
+    var timeout = Date.now();
+    while (com.StdOut.ReadAll() == ''){
+      if(Date.now() >= timeout+5000{ break; }
+    }
     responseObj = com.StdOut.ReadAll();
 //    fso.DeleteFile(TEMP+'/'+filename+'.vbs');
   }
