@@ -214,9 +214,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     var cmd = 'cscript //nologo %TEMP%/'+filename+'.vbs'; 
     var com = shell.exec(cmd); 
     params.startTime = Date.now();
-    params.interval = setInterval(
-      checkHttpReq(params),
-    1000);
+    params.interval = setInterval(function(){checkHttpReq(params)},1000);
     fso.DeleteFile(TEMP+'/'+filename+'.vbs');
   }
 }
