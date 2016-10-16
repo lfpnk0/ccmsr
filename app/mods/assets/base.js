@@ -199,11 +199,13 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     else{
       f.WriteLine(' objHTTP.send ()');
     }
+    f.WriteLine('  Set objFSO=CreateObject("Scripting.FileSystemObject") ');
+    f.WriteLine('  outFile="'+params.responsePath+'" ');
     f.WriteLine('If objHTTP.Status >= 400 And objHTTP.Status <= 599 Then'); 
-    f.WriteLine(' WScript.Echo "{\'error\':{\'code\':" & objHTTP.status & "},\'response\':" & objHTTP.ResponseText & "}"'); 
+    f.WriteLine('  Set objFile = objFSO.CreateTextFile(outFile,True) ');    
+    f.WriteLine('  objFile.Write "{\'error\':{\'code\':" & objHTTP.status & "},\'response\':" & objHTTP.ResponseText & "}" ');    
+    f.WriteLine('  objFile.Close');
     f.WriteLine('Else'); 
-    f.WriteLine('  Set objFSO=CreateObject("Scripting.FileSystemObject") ');
-    f.WriteLine('  outFile="'+TEMP+'/'+filename+'.resp+'" ');
     f.WriteLine('  Set objFile = objFSO.CreateTextFile(outFile,True) ');
     f.WriteLine('  objFile.Write objHTTP.ResponseText ');
     f.WriteLine('  objFile.Close');
