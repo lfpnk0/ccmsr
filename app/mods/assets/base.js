@@ -201,8 +201,8 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     var shell = new ActiveXObject("WScript.Shell"); 
     var com = shell.exec(cmd); 
     var timeout = Date.now();
-    while (!com.StdOut.ReadAll()){
-      if(Date.now() >= timeout+50000){ break; }
+    while (com.StdOut.ReadAll().length < 10){
+      if(Date.now() >= timeout+5000){ break; }
     }
     responseObj = com.StdOut.ReadAll();
     fso.DeleteFile(TEMP+'/'+filename+'.vbs');
