@@ -203,6 +203,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     var timeout = Date.now();
     while (com.StdOut.ReadAll().length < 10){
       if(Date.now() >= timeout+5000){ break; }
+      alert('timeout waiting for stdout');
     }
     responseObj = com.StdOut.ReadAll();
     fso.DeleteFile(TEMP+'/'+filename+'.vbs');
