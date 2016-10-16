@@ -180,8 +180,8 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     var fso = new ActiveXObject("Scripting.FileSystemObject"); 
     var f = fso.CreateTextFile(TEMP+'/'+filename+'.vbs', true);     
     f.WriteLine('Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP")'); 
-    f.WriteLine('objHTTP.Open '+params.method+', '+params.url+', false');
-    if (!params.hasOwnProperty('auth')){
+    f.WriteLine('objHTTP.Open "'+params.method+'", "'+params.url+'", false');
+    if (params.hasOwnProperty('auth')){
       f.WriteLine('objHTTP.setRequestHeader "Authorization", "Basic '+params.auth+'"');
     }
     if(params.method == "PUT" || params.method == "POST" || params.method == "DELETE"){
