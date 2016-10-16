@@ -205,7 +205,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
       if(Date.now() >= timeout+5000){ break; }
     }
     responseObj = com.StdOut.ReadAll();
-//    fso.DeleteFile(TEMP+'/'+filename+'.vbs');
+    fso.DeleteFile(TEMP+'/'+filename+'.vbs');
   }
   params.callback(responseObj);
 }
