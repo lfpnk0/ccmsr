@@ -229,8 +229,8 @@ function checkHttpReq(obj){
   if (fso.FileExists(obj.responsePath)){
     var f = fso.OpenTextFile(obj.responsePath, 1);
     var text = f.ReadAll();
-    var f.Close();
-    var f.DeleteFile(obj.responsePath);
+    f.Close();
+    f.DeleteFile(obj.responsePath);
     obj.callback(text);
     clearInterval(obj.interval);
   }
