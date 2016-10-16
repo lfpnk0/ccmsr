@@ -200,7 +200,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     var shell = new ActiveXObject("WScript.Shell"); 
     var com = shell.exec(cmd); 
     responseObj = com.StdOut.ReadAll();
-    fso.DeleteFile(TEMP+'/'+filename+'.vbs');
+//    fso.DeleteFile(TEMP+'/'+filename+'.vbs');
   }
   params.callback(responseObj);
 }
