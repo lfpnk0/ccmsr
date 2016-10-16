@@ -222,7 +222,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
 }
 
 function checkHttpReq(obj){
-  if Date.now() >= obj.startTime+5000{
+  if (Date.now() >= obj.startTime+5000){
     clearInterval(obj.interval);
   }
   var fso = new ActiveXObject("Scripting.FileSystemObject"); 
