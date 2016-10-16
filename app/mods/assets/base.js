@@ -201,7 +201,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     var shell = new ActiveXObject("WScript.Shell"); 
     var com = shell.exec(cmd); 
     var timeout = Date.now();
-    while (com.StdOut.ReadAll() == ''){
+    while (!com.StdOut.ReadAll()){
       if(Date.now() >= timeout+50000){ break; }
     }
     responseObj = com.StdOut.ReadAll();
