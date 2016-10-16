@@ -206,7 +206,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
     }
     responseObj = com.StdOut.ReadAll();
     fso.DeleteFile(TEMP+'/'+filename+'.vbs');
-    echo('http says: '+com.StdOut.ReadAll())
+    alert('http says: '+com.StdOut.ReadAll())
   }
   params.callback(responseObj);
 }
