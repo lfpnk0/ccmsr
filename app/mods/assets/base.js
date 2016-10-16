@@ -209,7 +209,7 @@ function httpReq(params){ //params = {method,url,auth,req,callback}
 
     }
     responseObj = com.StdOut.ReadAll();
-    fso.DeleteFile(TEMP+'/'+filename+'.vbs');
+//    fso.DeleteFile(TEMP+'/'+filename+'.vbs');
     alert('http says: '+com.StdOut.ReadAll().length);
   }
   params.callback(responseObj);
