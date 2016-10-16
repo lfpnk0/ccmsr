@@ -71,7 +71,8 @@ function setReqData(){
 }
 
 function setReqContent(responseObj){
-  if (!responseObj.hasOwnProperty('error')){
+alert('details': responseObj);
+if (!responseObj.hasOwnProperty('error')){
     mod.set.sha = responseObj.sha;
     var url = responseObj.download_url;
     var params = {'method':'GET', 'url':url, 'callback':setProcFile};
