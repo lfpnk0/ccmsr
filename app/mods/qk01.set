@@ -1,13 +1,1 @@
-{
-  'Target Application':[
-    {'label':'Title', 'type':text', 'name':'targetTitle', 'value':'Untitled - Notepad'}
-  ],
-  'Custom QuickKeys':[
-    {'label':'Text1', 'type':'text', 'name':'text1', 'value':' Uh-uh '}
-  ],
-  'Module':[
-    {'label':'Height (px)', 'type':'text', 'name':'modHeight', 'value':278},
-    {'label':'Quicklink Icon', 'type':'text', 'name':'modQuickIcon', 'value':'headset'},
-    {'label':'Quicklink Action', 'type':'text', 'name':'modQuickAction', 'value':'captionNet();'}
-  ]
-}
+test
