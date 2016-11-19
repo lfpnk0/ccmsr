@@ -1,7 +1,7 @@
 {
   'Interface':[
     {'label':'Height (px)', 'type':'text', 'name':'modHeight', 'value':'max'},
-    {'label':'Width (px)', 'type':'text', 'name':'modHeight', 'value':278},
+    {'label':'Width (px)', 'type':'text', 'name':'modHeight', 'value':225},
     {'label':'Edge', 'type':'text', 'name':'modHeight', 'value':'right'}
   ],
   'Modules':[
