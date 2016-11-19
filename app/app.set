@@ -1,0 +1,13 @@
+{
+  'Interface':[
+    {'label':'Height (px)', 'type':'text', 'name':'modHeight', 'value':'max'},
+    {'label':'Width (px)', 'type':'text', 'name':'modHeight', 'value':278},
+    {'label':'Edge', 'type':'text', 'name':'modHeight', 'value':'right'}
+  ],
+  'Modules':[
+    {'label':'Mod1', 'type':'text', 'name':'mod1', 'value':'qk01'},
+    {'label':'Mod2', 'type':'text', 'name':'mod2', 'value':''},
+    {'label':'Mod3', 'type':'text', 'name':'mod3', 'value':''},
+    {'label':'Mod4', 'type':'text', 'name':'mod4', 'value':''}
+  ]
+}
