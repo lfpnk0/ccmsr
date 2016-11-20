@@ -11,10 +11,10 @@ iframe{
   
 }
 #header{
-  background-color:gray;
-  color:white;
 }
 #header-nav{
+  background-color:gray;
+  color:white;
   padding-top:10px;
 }
 #header-nav .left{
