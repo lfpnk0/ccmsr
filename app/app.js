@@ -11,6 +11,7 @@ function init(){
   f.write(str);
   f.close();
 //get settings
+  document.getElementById('page-wrapper').height = '220px';
   parent.window.moveTo(screen.availWidth-225, 0); //position should come from settings
   parent.window.resizeTo(225, screen.availHeight); //width should come from settings
   parent.document.getElementsByTagName('iframe')[0].height = screen.availHeight; //height should come from settings
