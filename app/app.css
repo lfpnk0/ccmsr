@@ -23,19 +23,16 @@ iframe{
   float:left;
   text-align:left;
   width:15%;
-  background-color:red;
 }
 #header-nav .center{
   display:inline;
   float:left;
   text-align:center;
-  width:60%;
-  background-color:yellow;
+  width:66%;
 }
 #header-nav .right{  
   display:inline;
   float:left;
   text-align:right;
   width:15%;
-  background-color:green;
 }
