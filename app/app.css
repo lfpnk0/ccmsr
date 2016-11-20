@@ -7,6 +7,9 @@ iframe{
   overflow-x: hidden;
   overflow-y: hidden;
 }
+#page-wrapper{
+  background-color:gray;
+}
 #footer{
   background-color:black;
 }
