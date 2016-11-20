@@ -2,9 +2,9 @@
   margin: 0px;
   padding: 0px;
 }
-a{
-  text-decoration:none;
-  border:0px;
+a img {
+  border:none;
+  vertical-align:top; 
 }
 iframe{
   width: 225px;
