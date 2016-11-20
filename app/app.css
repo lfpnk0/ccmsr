@@ -1,7 +1,10 @@
 *{
   margin: 0px;
   padding: 0px;
-}  
+}
+a{
+  text-decoration:none;
+}
 iframe{
   width: 225px;
   overflow-x: hidden;
@@ -16,7 +19,7 @@ iframe{
   background-color:gray;
   color:white;
   width:100%;
-  padding-top:10px;
+  padding:5px;
 }
 #header-nav .left{
   display:inline;
