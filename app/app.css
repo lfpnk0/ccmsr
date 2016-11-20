@@ -17,8 +17,7 @@ iframe{
 #header{
   overflow-x: hidden;
   overflow-y: hidden;
-  height:45px;
-  background-color:green;
+  height:40px;
 }
 #header-nav{
   background-color:gray;
