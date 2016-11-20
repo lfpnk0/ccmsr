@@ -8,10 +8,10 @@ iframe{
   overflow-y: hidden;
 }
 #page-wrapper{
-  background-color:gray;
+  
 }
 #header{
-  background-color:black;
+  background-color:gray;
   color:white;
 }
 #header-nav .left{
