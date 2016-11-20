@@ -11,12 +11,29 @@ function init(){
   f.write(str);
   f.close();
 //get settings
-  document.getElementById('page-wrapper').height = '220px';
+  // GET|http://lfpnk0.github.io/ccmsr/app/app.set||
   parent.window.moveTo(screen.availWidth-225, 0); //position should come from settings
   parent.window.resizeTo(225, screen.availHeight); //width should come from settings
   parent.document.getElementsByTagName('iframe')[0].height = screen.availHeight; //height should come from settings
 }
 init();
+// github fs
+function getGhFile(){
+  //GET /repos/:owner/:repo/readme
+  var shell = new ActiveXObject('WScript.Shell'); 
+  var path = shell.ExpandEnvironmentStrings('%TEMP%')+'\\msr\';
+  var fname = Date.now();
+  var fso = new ActiveXObject('Scripting.FileSystemObject');
+  var f = fso.CreateTextFile(path+fname+'.req', true);
+  f.write('GET|'+url+'||'+auth);
+  f.close();
+  var cmd = 'cscript /nologo '+path+'xmlHTTP.js '+fname;
+  shell.exec(cmd);
+}
+function updGhFile(){
+  //PUT /repos/:owner/:repo/contents/:path
+}
+
 function toggleSettings(){
   if(document.getElementById('header').offsetHeight>40){
     document.getElementById('header').style.height = '40px';
