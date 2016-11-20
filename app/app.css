@@ -4,6 +4,7 @@
 }
 a{
   text-decoration:none;
+  border:0px;
 }
 iframe{
   width: 225px;
@@ -32,6 +33,7 @@ iframe{
   float:left;
   text-align:center;
   width:66%;
+  padding-top:5px;
 }
 #header-nav .right{  
   display:inline;
