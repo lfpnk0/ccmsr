@@ -14,7 +14,18 @@ iframe{
   background-color:black;
   color:white;
 }
-#header span{
+#header-nav .left{
   display:inline-block;
-  width:33%
+  text-align:left;
+  width:20%
+}
+#header-nav .center{
+  display:inline-block;
+  text-align:center;
+  width:58%
+}
+#header-nav .right{  
+  display:inline-block;
+  text-align:right;
+  width:20%
 }
