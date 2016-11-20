@@ -14,22 +14,21 @@ iframe{
   background-color:gray;
   color:white;
 }
+#header-nav{
+  padding-top:10px;
+}
 #header-nav .left{
   display:inline-block;
   text-align:left;
   width:30%;
-  height:30px;
 }
 #header-nav .center{
   display:inline-block;
   text-align:center;
   width:38%;
-  height:30px;
-  background-color:gray;
 }
 #header-nav .right{  
   display:inline-block;
   text-align:right;
-  height:30px;
   width:30%
 }
