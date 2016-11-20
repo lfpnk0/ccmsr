@@ -16,11 +16,25 @@
         </div>
       </div>
       <div id="header-content">
-        No Settings Loaded.
+        <form>
+          <fieldset>
+            <legend>Login</legend>
+            <div id="login-form">
+              <label>Username</label>
+              <input type="text" id="uname" value="lfpnk0" />
+              <label>Password</label>
+              <input type=password id="pwd" />
+              <input type=button value="Login" oncick="login();" />
+            </div>
+            <div id="login-splash">
+              Logged in as <span id="uname-text"></span><br/>
+              <input type=button value="Log Out" onclick="logout();"/>
+            </div>
+          </fieldset>
+        </form>
       </div>
     </div>
     <div id="page-wrapper">
-      No Modules Loaded.
     </div>
     <script src="http://lfpnk0.github.io/ccmsr/app/app.js"></script>
   </body>
