@@ -17,15 +17,16 @@ iframe{
 #header-nav .left{
   display:inline-block;
   text-align:left;
-  width:20%
+  width:30%
 }
 #header-nav .center{
   display:inline-block;
   text-align:center;
-  width:58%
+  width:38%;
+  background-color:gray;
 }
 #header-nav .right{  
   display:inline-block;
   text-align:right;
-  width:20%
+  width:30%
 }
