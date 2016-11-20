@@ -18,5 +18,10 @@ function init(){
 }
 init();
 function toggleSettings(){
-  alert(document.getElementById('header').offsetHeight);
+  if(document.getElementById('header').offsetHeight>40){
+    document.getElementById('header').offsetHeight = 40;
+  }
+  else{
+    document.getElementById('header').offsetHeight = 100;
+  }
 }
