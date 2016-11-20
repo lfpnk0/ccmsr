@@ -15,6 +15,10 @@ iframe{
   
 }
 #header{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height:100px;
+  background-color:green;
 }
 #header-nav{
   background-color:gray;
