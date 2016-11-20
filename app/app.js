@@ -19,9 +19,9 @@ function init(){
 init();
 function toggleSettings(){
   if(document.getElementById('header').offsetHeight>40){
-    document.getElementById('header').offsetHeight = 40;
+    document.getElementById('header').height = 40;
   }
   else{
-    document.getElementById('header').offsetHeight = 100;
+    document.getElementById('header').height = 100;
   }
 }
