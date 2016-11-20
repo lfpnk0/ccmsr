@@ -21,14 +21,17 @@ iframe{
   display:inline-block;
   text-align:left;
   width:30%;
+  background-color:red;
 }
 #header-nav .center{
   display:inline-block;
   text-align:center;
   width:38%;
+  background-color:yellow;
 }
 #header-nav .right{  
   display:inline-block;
   text-align:right;
-  width:30%
+  width:30%;
+  background-color:green;
 }
