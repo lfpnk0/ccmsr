@@ -10,6 +10,10 @@ iframe{
 #page-wrapper{
   background-color:gray;
 }
-#footer{
+#header{
   background-color:black;
+  color:white;
+}
+#header span{
+  display:inline-block;
 }
