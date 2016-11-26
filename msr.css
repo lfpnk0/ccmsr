@@ -4,6 +4,7 @@ padding:0px;
 }
 iframe{
 width:225px;
+height: 600px;
 overflow-x:hidden;
 overflow-y:hidden;
 border:1pz solid red;
