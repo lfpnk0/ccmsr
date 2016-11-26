@@ -55,7 +55,7 @@ function ghFile(p){
   if(!('branch' in p)){p.branch = 'gh-pages';}
   p.url = 'https://api.github.com/repos/'+p.owner+'/'+p.repo+'/'+p.path+'?ref='+p.branch;
   var shell = new ActiveXObject('WScript.Shell'); 
-  p.path = shell.ExpandEnvironmentStrings('%TEMP%')+'\\msr\';
+  p.path = shell.ExpandEnvironmentStrings('%TEMP%')+'\\msr\\';
   p.id = Date.now();
   var fso = new ActiveXObject('Scripting.FileSystemObject');
   var f = fso.CreateTextFile(p.path+p.id+'.req', true);
