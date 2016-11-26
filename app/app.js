@@ -19,6 +19,7 @@ function init(){
   parent.document.getElementsByTagName('iframe')[0].height = screen.availHeight; //height should come from settings
 }
 init();
+/*
 //polyfills
 function atob(){
 }
@@ -118,3 +119,4 @@ function toggleSettings(){
     document.getElementById('header').style.height = '100px';
   }
 }
+*/
