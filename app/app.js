@@ -90,7 +90,7 @@ function getGhFile(p){
   fso.DeleteFile(p.path+'.res', true);
   var obj = JSON.parse(t);
   p.url = obj.download_url;
-  var f = fso.CreateTextFile(p.path+p.id'.req', true);
+  var f = fso.CreateTextFile(p.path+p.id+'.req', true);
   f.write('GET|'+p.url+'||'+p.auth);
   f.close();
   var cmd = 'cscript /nologo '+p.path+'xmlHTTP.js '+p.id;
