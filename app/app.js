@@ -24,6 +24,7 @@ function atob(){
 }
 function btoa(){
 }
+JSON = new Object();
 function JSON.stringify(){
 }
 function JSON.parse(){
