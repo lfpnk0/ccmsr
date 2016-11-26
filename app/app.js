@@ -19,18 +19,16 @@ function init(){
   parent.document.getElementsByTagName('iframe')[0].height = screen.availHeight; //height should come from settings
 }
 init();
-
 //polyfills
 function atob(){
 }
 function btoa(){
 }
 JSON = new Object();
-function JSON.stringify(){
+JSON.stringify = function(){
 }
-function JSON.parse(){
+JSON.parse = function(){
 }
-/*
 // github fs
 function login(){
   document.getElementById('login-form').style.height = '0px';
@@ -120,4 +118,3 @@ function toggleSettings(){
     document.getElementById('header').style.height = '100px';
   }
 }
-*/
