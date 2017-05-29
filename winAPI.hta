@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+<HTA:APPLICATION>
+ <meta http-equiv="content-type" content="text/html" charset=UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=9">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.min.js"></script>
+ <script src="http://www.movable-type.co.uk/scripts/base64.js"></script>
+ 
+ <script type="text/javascript">
+ function init(){
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+    tempPath = fso.GetSpecialFolder(2);
+	if(fso.fileExists(tempPath+'/user32.py')){
+	}
+ }
+ 
+ function apiReq(obj){
+	//Returns Base64 encoded JSON
+	obj.reqID = new Date().getTime()
+ 	var reqJson = JSON.stringify(obj);
+	var reqB64 = Base64.encode(reqJson);
+// fix path and cmd - should be temp/user32.exe
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+    tempPath = fso.GetSpecialFolder(2);
+	var cmd = 'python '+tempPath+'user32.py '+reqB64+' >'+tempPath+'/user32.log';
+// remove this line before going production
+	document.getElementById('a').innerHTML = cmd;
+	var oShell = new ActiveXObject("WScript.shell");
+//exec flashes terminal window, consider using run and reading from file instead of stdout
+	//var oExec = oShell.Exec(cmd);
+	//return oExec.StdOut.ReadAll();
+	oShell.Run(cmd)
+ }
+ 
+ function apiResp(){
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+    logPath = fso.GetSpecialFolder(2)+'/user32.log';
+	file = fso.OpenTextFile(logPath, 2);
+	text = file.ReadAll()
+	file.write('')
+	file.Close()
+ }
+ 
+ function apiHelp(){
+// fix path and cmd - should be temp/user32.exe
+	var path = window.location.href.slice(8,window.location.href.lastIndexOf('/')+1)
+	var cmd = 'python '+path+'user32.py help';
+// remove this line before going production
+	document.getElementById('a').innerHTML = cmd;
+	var oShell = new ActiveXObject("WScript.shell");
+//exec flashes terminal window, consider using run and reading from file instead of stdout
+	var oExec = oShell.Exec(cmd);
+	return oExec.StdOut.ReadAll();
+ }
+ 
+ function downloadFile(url,filename){
+	var obj = {}
+	obj.func = 'downloadFile';
+	obj.params = {}
+	obj.params.url = url;
+	obj.params.filename = filename;
+	var res = apiReq(obj);
+	return res;
+ }
+
+ function getWindowThreadProcessId(hwnd){
+ 	var obj = {}
+	obj.func = 'getWindowThreadProcessId';
+	obj.params = {}
+	obj.params.hwnd = hwnd;
+	var res = apiReq(obj);
+	return res;
+ }
+ 
+ function getWindowTextLengthA(hwnd){
+ 	var obj = {}
+	obj.func = 'getWindowTextLengthA';
+	obj.params = {}
+	obj.params.hwnd = hwnd;
+	var res = apiReq(obj);
+	return res;	
+ }
+ 
+ function getWindowTextW(hwnd,maxCount){
+ 	var obj = {}
+	obj.func = 'getWindowTextW';
+	obj.params = {}
+	obj.params.hwnd = hwnd;
+	obj.params.maxCount = maxCount;
+	var res = apiReq(obj);
+	return res;
+ }
+ 
+ function isWindowVisible(hwnd){
+  	var obj = {}
+	obj.func = 'isWindowVisible';
+	obj.params = {}
+	obj.params.hwnd = hwnd;
+	var res = apiReq(obj);
+	return res;
+ }
+ 
+ function enumWindows(){
+	var obj = {}
+	obj.func = 'enumWindows';
+	obj.params = {}
+	obj.params.visible = 2;
+	var res = apiReq(obj);
+	return res;
+ }
+ 
+ function getWindowRect(hwnd){
+	var obj = {}
+	obj.func = "getWindowRect";
+	obj.params = {}
+	obj.params.hwnd = hwnd;
+	var res = apiReq(obj);
+	return res;
+ }
+
+ function setWindowPos(hwnd,insertAfter,left,top,width,height,uflags){
+	var obj = {}
+	obj.func = "setWindowPos";
+	obj.params = {}
+	obj.params.hwnd = hwnd;
+	obj.params.insertAfter = insertAfter;
+	obj.params.left = left;
+	obj.params.top = top;
+	obj.params.width = width;
+	obj.params.height = height;
+	obj.params.uflags = uflags;
+	var res = apiReq(obj);
+	return res;
+ }
+ 
+ function getCursorPos(){
+ 	var obj = {}
+	obj.func = "getCursorPos";
+	obj.params = {}
+	var res = apiReq(obj);
+	return res;
+ }
+ 
+  function setCursorPos(x,y){
+ 	var obj = {}
+	obj.func = "setCursorPos";
+	obj.params = {}
+	obj.params.x = x;
+	obj.params.y = y;
+	var res = apiReq(obj);
+	return res;
+ }
+ 
+ function getForegroundWindow(){
+  	var obj = {}
+	obj.func = "getForegroundWindow";
+	obj.params = {}
+	var res = apiReq(obj);
+	return res;
+ }
+ 
+ function mouseEvent(flags,x,y,data){
+	x = x || -1;
+	y = y || -1;
+	data = data || 0;
+	var obj = {}
+	obj.func = "mouseEvent";
+	obj.params = {}
+	obj.params.flags = flags;
+	obj.params.x = x;
+	obj.params.y = y;
+	obj.params.data = data;
+	var res = apiReq(obj);
+	return res;
+ }
+ 
+ function runProg(path){
+
+ }
+ </script>
+ 
+</head>
+<body>
+<script>
+function runFun(){
+	fun = document.getElementById('fun').options[document.getElementById('fun').selectedIndex].value;
+	par = document.getElementById('par').value
+	respB64 = eval(fun+'('+par+')');
+	resp = Base64.decode(respB64);
+	resp = resp.slice(0,resp.lastIndexOf("}")+1) //getting non-ANSI characters at end???
+	document.getElementById('b').innerHTML = resp;
+}
+</script>
+request<br/>
+<textarea id="a" rows="8" cols="50"></textarea><br/>
+return<br/>
+<textarea id="b" rows="8" cols="50"></textarea><br/>
+<select id="fun">
+  <option value="apiHelp">apiHelp</option>
+  <option value="downloadFile">downloadFile</option>
+  <option value="getWindowThreadProcessId">getWindowThreadProcessId</option>
+  <option value="getWindowTextLengthA">getWindowTextLengthA</option>
+  <option value="getWindowTextW">getWindowTextW</option>
+  <option value="isWindowVisible">isWindowVisible</option>
+  <option value="enumWindows">enumWindows</option>
+  <option value="getWindowRect">getWindowRect</option>
+  <option value="setWindowPos">setWindowPos</option>
+  <option value="getCursorPos">getCursorPos</option>
+  <option value="setCursorPos">setCursorPos</option>
+  <option value="getForegroundWindow">getForegroundWindow</option>
+  <option value="mouseEvent">mouseEvent</option>
+</select><br/>
+<input type="text" id="par" style="width:80%;"><br/>
+<a href="#" onclick="runFun()">Run<a/>
+</body>
