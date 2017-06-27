@@ -7,7 +7,7 @@
 	},
 	"server": {
 		"host":"",
-		"port":"8888",
+		"port":8888,
 		"queueSize":5
 	}
 }
