@@ -1,3 +1,4 @@
-$hi = 'hello';
-$earth = 'patrick';
-echo "$hi $earth";
+function pk_hi($name){
+  $hi = 'hello';
+  echo "$hi $name";
+}
